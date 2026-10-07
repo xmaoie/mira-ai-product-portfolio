@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Shopping Buddy · Mira Xue</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="shell nav-inner">
+        <a class="brand" href="index.html">Mira Xue</a>
+        <div class="nav-links">
+          <a href="index.html#work">← Selected Work</a>
+          <a href="lighting.html">Lighting</a>
+          <a aria-current="page" href="shopping-buddy.html">Shopping Buddy</a>
+          <a href="content-space.html">Content Space</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="case-hero">
+      <div class="shell">
+        <p class="eyebrow">In-store Research · AI UX · Service Handoff</p>
+        <h1>AI Shopping Buddy</h1>
+        <p class="case-deck">
+          从真实门店测试中识别用户生活语言与系统商品语言之间的落差，
+          再把错误 case 转化为拍照提问、解释与人工兜底方案。
+        </p>
+        <div class="tag-row">
+          <span class="tag">Role · Research participation + UX iteration</span>
+          <span class="tag">Context · In-store shopping</span>
+          <span class="tag">Output · Research report + design directions</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="case-section case-columns">
+        <p class="case-label">01 · RESEARCH QUESTION</p>
+        <div class="case-content">
+          <h2>用户需要的不是一次回答，而是被带到下一步。</h2>
+          <p>
+            我参与上海门店的实地可用性测试，观察顾客如何在真实逛店动线中拍摄商品、
+            表达需求、理解系统回答并继续做购买判断。研究重点不是评价单个页面，
+            而是识别 AI 在门店任务中的最佳介入方式和服务边界。
+          </p>
+          <div class="metric-grid">
+            <div class="metric"><strong>4 组</strong><span>不同购物目的与家庭情境</span></div>
+            <div class="metric"><strong>6 人</strong><span>真实门店用户</span></div>
+            <div class="metric"><strong>3.5h</strong><span>陪同观察、出声思考与访谈</span></div>
+            <div class="metric"><strong>6 类</strong><span>识别、理解、节奏、引导等核心痛点</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">02 · SYNTHESIS</p>
+        <div class="case-content">
+          <h2>把现场现象从“AI 答错了”推进到结构性问题。</h2>
+          <div class="insight-list">
+            <article class="insight-row">
+              <span class="num">01</span>
+              <div>
+                <h3>用户说生活任务，系统依赖商品 taxonomy。</h3>
+                <p>“浴室好物”“这个是干什么的”无法稳定映射到内部品类和属性。</p>
+              </div>
+            </article>
+            <article class="insight-row">
+              <span class="num">02</span>
+              <div>
+                <h3>用户习惯先拍照，再决定要问什么。</h3>
+                <p>预设问题先于识别结果出现，反而要求用户提前理解系统的操作方式。</p>
+              </div>
+            </article>
+            <article class="insight-row">
+              <span class="num">03</span>
+              <div>
+                <h3>识别商品只是起点，不是完整服务。</h3>
+                <p>用户还需要用途、适配性、比较、位置和取货信息，并在失败时知道下一步。</p>
+              </div>
+            </article>
+          </div>
+          <div class="evidence-frame contain">
+            <img src="assets/shopping/journey.png" alt="AI Shopping Buddy 用户旅程与 AI 支持机会" />
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">03 · DESIGN RESPONSE</p>
+        <div class="case-content">
+          <h2>让 AI 跟随用户当前任务，而不是让用户适应系统入口。</h2>
+          <div class="decision-grid">
+            <article class="decision">
+              <span class="mono">CAMERA FIRST</span>
+              <h3>拍摄 → 识别 → 围绕结果提问</h3>
+              <p>移除相机页中竞争注意力的预设问题，把输入建立在已识别商品之上。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">EXPLAIN WHEN NEEDED</span>
+              <h3>告诉用户为什么拍价签更准确</h3>
+              <p>主流程保持轻量，通过 Info 弹窗解释识别依据和正确拍摄方式。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">GRACEFUL HANDOFF</span>
+              <h3>AI 无法解决时，给出可执行的人工出口</h3>
+              <p>答案不满意或超出能力范围时，引导顾客寻找可识别的门店员工。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">STATE CLARITY</span>
+              <h3>统一语音、键盘和多行输入状态</h3>
+              <p>把不同输入方式组织为连续状态，而不是互不相关的页面片段。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">04 · OUTCOME</p>
+        <div class="case-content">
+          <h2>形成研究报告、完整用户旅程与下一轮设计方向。</h2>
+          <p>
+            我完成了现场素材整理、case 编码与关键问题聚类，并将顾客从进入门店、表达需求、
+            识别商品到购买决策的路径整理为 User Journey。后续交互方案围绕拍照优先、
+            解释性引导和人工服务兜底继续迭代。
+          </p>
+          <div class="disclosure">
+            当前证据支持研究与设计探索已经形成；团队最终采用、开发上线和业务影响仍待验证。
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell"><a href="content-space.html">Next · Content Space →</a></div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>

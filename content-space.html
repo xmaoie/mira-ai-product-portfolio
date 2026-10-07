@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Space Workstreams · Mira Xue</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="shell nav-inner">
+        <a class="brand" href="index.html">Mira Xue</a>
+        <div class="nav-links">
+          <a href="index.html#work">← Selected Work</a>
+          <a href="lighting.html">Lighting</a>
+          <a href="shopping-buddy.html">Shopping Buddy</a>
+          <a aria-current="page" href="content-space.html">Content Space</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="case-hero">
+      <div class="shell">
+        <p class="eyebrow">Enterprise UX · Information Architecture · State Modeling</p>
+        <h1>Content Space Workstreams</h1>
+        <p class="case-deck">
+          在企业内容工具的多个小需求中，持续处理真实数据语义、高频筛选、
+          批量操作、异常状态与审计追溯。
+        </p>
+        <div class="tag-row">
+          <span class="tag">Role · UX Design Intern</span>
+          <span class="tag">Context · Enterprise content tool</span>
+          <span class="tag">Format · Workstream collection</span>
+        </div>
+        <div class="hero-media enterprise-visual">
+          <div class="filter-mock">
+            <strong>Gallery filters</strong>
+            <div class="filter-line"></div>
+            <div class="filter-line short"></div>
+            <div class="filter-line"></div>
+            <div class="filter-line short"></div>
+            <div class="filter-line"></div>
+            <div class="filter-line short"></div>
+          </div>
+          <div class="result-mock">
+            <div class="search-mock"></div>
+            <div class="suggestion-mock">
+              <span class="pill">Source · China</span>
+              <span class="pill">Project · FY26</span>
+              <span class="pill">Suggested filter</span>
+            </div>
+            <div class="result-grid">
+              <div></div><div></div><div></div>
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="case-section case-columns">
+        <p class="case-label">01 · CONTEXT</p>
+        <div class="case-content">
+          <h2>这些不是四个独立大项目，而是一个企业产品里的连续设计切片。</h2>
+          <p>
+            Content Space 面向内容检索、管理、选图和模板操作。它的难点不在于增加更多组件，
+            而在于让用户在高信息密度下理解字段、快速完成批量任务，并在复杂状态中保持可追踪。
+            我参与多个 feature workstream，通过小需求持续建立对企业级系统的整体理解。
+          </p>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">02 · WORKSTREAMS</p>
+        <div class="case-content">
+          <h2>四个切片，共同证明一套 B 端问题解决能力。</h2>
+          <div class="workstream-grid">
+            <article class="workstream">
+              <span class="mono">GALLERY FILTER</span>
+              <h3>高频筛选外露</h3>
+              <p>
+                将 Source 与 Project Name 移出复杂筛选树，同时避免把名称相似但业务语义不同的
+                China / Global 与 Local / Global 错误合并。
+              </p>
+              <strong>能力：信息架构 · 父子三态 · 高密度布局</strong>
+            </article>
+            <article class="workstream">
+              <span class="mono">AI-ASSISTED SEARCH</span>
+              <h3>从 AI Search 到 Intent-to-Filter</h3>
+              <p>
+                先验证现有搜索能力，再将自然语言拆成语义查询与结构化条件；
+                AI 先给出可编辑建议，用户确认后才进入标准筛选系统。
+              </p>
+              <strong>能力：问题定义 · Human-in-the-loop · AI 退出机制</strong>
+            </article>
+            <article class="workstream">
+              <span class="mono">FUTURE PRICE</span>
+              <h3>从价格下拉追到数据契约</h3>
+              <p>
+                拆分时间维度与价格类型，明确单行具体记录和批量默认规则不是同一语义，
+                并持续追问可空日期、无未来价与部分失败。
+              </p>
+              <strong>能力：字段语义 · 批量规则 · 可空与异常数据</strong>
+            </article>
+            <article class="workstream">
+              <span class="mono">OPERATION LOG</span>
+              <h3>让 Restore 成为可追溯的闭环</h3>
+              <p>
+                将列表扫读与完整详情分层，并通过确认、完成反馈、新增恢复日志与旧动作禁用，
+                区分历史事件和对象当前状态。
+              </p>
+              <strong>能力：状态建模 · 审计追溯 · 防重复操作</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">03 · SHARED METHOD</p>
+        <div class="case-content">
+          <h2>在画界面之前，先建立可以被产品和开发共同理解的模型。</h2>
+          <div class="decision-grid">
+            <article class="decision">
+              <span class="mono">SEMANTICS</span>
+              <h3>相似文案不等于相同字段。</h3>
+              <p>先确认数据来源、层级和映射，再决定信息架构与组件关系。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">LIFECYCLE</span>
+              <h3>不在成功页面停止。</h3>
+              <p>继续检查 Clear、失败、部分成功、重试、撤销和退出条件。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">BULK ACTION</span>
+              <h3>批量操作不是把单行控件放到表头。</h3>
+              <p>每个对象如何决定最终值、缺少数据时怎么办，都必须被定义。</p>
+            </article>
+            <article class="decision">
+              <span class="mono">FEASIBILITY</span>
+              <h3>先确认系统已有能力，再决定是否新增 AI。</h3>
+              <p>把 Search API、facet、filter action 和状态传递作为设计输入。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-columns">
+        <p class="case-label">04 · OUTCOME</p>
+        <div class="case-content">
+          <h2>价值不在页面数量，而在于减少错误假设和开发返工。</h2>
+          <p>
+            这些 workstream 已形成筛选信息架构、AI Search 主流程、价格选择与批量规则、
+            Operation Log 与 Restore 状态等设计产出。它们处于不同的评审和开发阶段，
+            因此本案例重点展示我如何澄清复杂问题，而不把所有方案统一描述为已上线。
+          </p>
+          <div class="disclosure">
+            为保护内部信息，页面使用重新绘制的结构示意；项目归属限定为 Content Space 内的具体 feature workstreams。
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell"><a href="index.html#practice">Next · Practice & Workloop →</a></div>
+    </footer>
+    <script src="main.js"></script>
+  </body>
+</html>
