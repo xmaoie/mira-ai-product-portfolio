@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="home-scroll">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,14 +8,27 @@
       content="Mira Xue 的 IKEA AI 产品与 Enterprise UX 实习作品集。"
     />
     <title>Mira Xue · AI Product & Enterprise UX</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="preload"
+      href="assets/fonts/smiley-sans/SmileySans-Oblique.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      if (new URLSearchParams(window.location.search).get("heroFont") === "pingfang") {
+        document.documentElement.dataset.heroFont = "pingfang";
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20261009-10" />
   </head>
-  <body>
+  <body class="home-page">
     <nav class="nav">
       <div class="shell nav-inner">
         <a class="brand" href="index.html">Mira Xue</a>
         <div class="nav-links">
           <a href="#work">Selected Work</a>
+          <a href="#workflow">How I Work</a>
           <a href="#practice">Practice</a>
           <a href="#about">About</a>
           <a class="nav-cta" href="#work">查看项目 ↓</a>
@@ -24,22 +37,28 @@
     </nav>
 
     <header class="hero">
-      <div class="shell hero-grid">
-        <div>
-          <p class="eyebrow">AI Product · Enterprise UX · Workflow Design</p>
-          <h1>把模糊需求，转化为<em>可执行的产品体验</em>。</h1>
-          <p class="hero-intro">
-            我是 Mira，一名关注 AI 产品与企业级工具的 UX 设计师。我的工作不止于界面：
-            我会追问数据语义、状态边界、AI 何时介入，以及方案怎样真正被工程承接。
+      <div class="shell hero-layout">
+        <div class="hero-heading">
+          <p class="hero-context">
+            我在宜家工作的天 · 的 worklog<br />
+            IKEA China Digital Innovation Center
           </p>
+
+          <h1>
+            <span>需求通常只有一句话。</span>
+            <em>真正的设计，从下一句开始。</em>
+          </h1>
         </div>
-        <aside class="hero-note">
-          <strong>这是一份“工作方法型”作品集</strong>
-          <p>
-            以 IKEA 实习中的真实 workstream 为基础，展示我如何从研究与问题定义出发，
-            建立状态模型、工作流和可运行原型。部分内部信息已做脱敏与重新编辑。
+
+        <div class="hero-footer">
+          <p class="hero-intro">
+            需求只是起点。我会先确认真实发生了什么、问题究竟在哪里，再把判断做成团队可以继续检查和推进的方案。
           </p>
-        </aside>
+          <a class="hero-scroll" href="#work">
+            <span>Selected Work</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -49,16 +68,13 @@
           <div class="section-head fade-up">
             <div>
               <p class="eyebrow">Selected Work</p>
-              <h2 class="section-title">三个项目，三种不同的问题解决能力。</h2>
+              <h2 class="section-title">三个项目，问题开始的地方完全不同。</h2>
             </div>
-            <p class="section-copy">
-              从 AIGC 内容 Pipeline、真实门店用户研究，到高信息密度的企业内容工具。
-              每个案例只保留最能证明判断过程的证据。
-            </p>
+            <p class="section-copy">一个从单张生图走向重复生产，一个从门店里的真实提问开始，另一个藏在企业工具的字段和状态里。</p>
           </div>
 
           <div class="case-grid">
-            <a class="case-card large fade-up" href="lighting.html">
+            <a class="case-card fade-up" href="lighting.html">
               <div class="case-visual lamp-preview" data-lamp-preview>
                 <img
                   src="assets/lighting/night-off.png"
@@ -78,120 +94,57 @@
               </div>
               <div class="case-body">
                 <span class="case-index">01 · AI WORKFLOW</span>
-                <h3>IKEA Lighting AIGC Pipeline</h3>
-                <p>
-                  将灯具场景生成、人工审核与交互展示串联为可复用流程，
-                  从 8 款体验 Demo 推进到 16 款稳定交付。
+                <h3>Lighting AIGC Pipeline</h3>
+                <p class="case-card-claim">
+                  单张效果图跑通后，真正麻烦的是每换一个商品，都要重新生成、检查和整理。
                 </p>
                 <div class="case-link">
-                  <span>查看生成、审核与发布闭环</span><span>↗</span>
+                  <span>从一张图到一条可重复的流程</span><span>↗</span>
                 </div>
               </div>
             </a>
 
-            <a class="case-card medium fade-up" href="shopping-buddy.html">
+            <a class="case-card fade-up" href="shopping-buddy.html">
               <div class="case-visual shopping-visual">
                 <img
-                  src="assets/shopping/life-language.jpg"
+                  src="assets/shopping/research/life-language.jpg"
                   alt="门店购物助手真实测试界面"
                 />
                 <img
-                  src="assets/shopping/journey.png"
+                  src="assets/shopping/research/journey.png"
                   alt="AI Shopping Buddy 用户旅程"
                 />
               </div>
               <div class="case-body">
                 <span class="case-index">02 · USER RESEARCH</span>
                 <h3>AI Shopping Buddy</h3>
-                <p>
-                  从 4 组真实门店测试中识别生活语言与商品 taxonomy 的落差，
-                  将错误 case 转化为可执行的交互方向。
+                <p class="case-card-claim">
+                  用户站在商品旁边时，问的是“这是什么、适不适合我”，而不是系统里的品类名。
                 </p>
                 <div class="case-link">
-                  <span>查看研究如何进入设计</span><span>↗</span>
+                  <span>看现场问题怎样进入下一轮设计</span><span>↗</span>
                 </div>
               </div>
             </a>
 
-            <a class="case-card wide fade-up" href="content-space.html">
-              <div class="case-visual enterprise-visual">
-                <div class="filter-mock">
-                  <strong>Filters</strong>
-                  <div class="filter-line"></div>
-                  <div class="filter-line short"></div>
-                  <div class="filter-line"></div>
-                  <div class="filter-line short"></div>
-                  <div class="filter-line"></div>
-                </div>
-                <div class="result-mock">
-                  <div class="search-mock"></div>
-                  <div class="suggestion-mock">
-                    <span class="pill">China published</span>
-                    <span class="pill">FY26</span>
-                  </div>
-                  <div class="result-grid">
-                    <div></div><div></div><div></div>
-                    <div></div><div></div><div></div>
-                  </div>
-                </div>
+            <a class="case-card fade-up" href="content-space.html">
+              <div class="case-visual content-space-visual">
+                <img
+                  src="assets/content-space/gallery-overview.png"
+                  alt="Content Space Gallery 界面"
+                />
               </div>
               <div class="case-body">
                 <span class="case-index">03 · ENTERPRISE UX</span>
-                <h3>Content Space Workstreams</h3>
-                <p>
-                  围绕检索筛选、AI Search、Future Price 与 Operation Log，
-                  在多个小需求中持续处理字段语义、批量操作、异常状态和审计闭环。
+                <h3>Content Space</h3>
+                <p class="case-card-claim">
+                  很多“小改动”继续追问下去，最后都会回到字段含义、批量规则和异常状态。
                 </p>
                 <div class="case-link">
-                  <span>查看 B 端综合能力切片</span><span>↗</span>
+                  <span>四个小需求背后的系统问题</span><span>↗</span>
                 </div>
               </div>
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section blue" id="practice">
-        <div class="shell">
-          <div class="section-head fade-up">
-            <div>
-              <p class="eyebrow" style="color: var(--yellow)">Practice</p>
-              <h2 class="section-title">不只设计产品，也持续设计自己的工作系统。</h2>
-            </div>
-            <p class="section-copy">
-              这些不是独立的大型业务项目，而是我为解决信息丢失、会议复盘与 AI 协作边界而形成的实践。
-            </p>
-          </div>
-
-          <div class="practice-grid">
-            <article class="practice-card fade-up">
-              <p class="eyebrow">Meeting Workbench</p>
-              <h3>让会议从“录下来”变成可追踪的工作证据。</h3>
-              <p>
-                将录音、转写、摘要、问题追问与项目归档集中到一个工作台，
-                让会议结论能够回到项目上下文，而不是散落在聊天和文件夹里。
-              </p>
-              <div class="practice-points">
-                <span>Recording states</span>
-                <span>Project archive</span>
-                <span>Evidence capture</span>
-              </div>
-            </article>
-
-            <article class="practice-card fade-up">
-              <p class="eyebrow">Agent Workloop</p>
-              <h3>把 Agent 当作闭环协作者，而不是一次性生成工具。</h3>
-              <p>
-                用项目上下文、Evidence Log、Skill 和人工审核组织 AI 协作：
-                Agent 负责查找、整理与执行，我保留问题定义、判断、异常处理和发布闸门。
-              </p>
-              <div class="practice-points">
-                <span>Context</span>
-                <span>Skills</span>
-                <span>Human gate</span>
-                <span>Reflection</span>
-              </div>
-            </article>
           </div>
         </div>
       </section>
@@ -201,37 +154,68 @@
           <div class="section-head fade-up">
             <div>
               <p class="eyebrow">How I Work</p>
-              <h2 class="section-title">AI 加速执行，但不替代判断。</h2>
+              <h2 class="section-title">先看发生了什么，再决定要不要画页面。</h2>
             </div>
-            <p class="section-copy">
-              我的默认工作方式，是先确认真实能力和证据，再定义状态与边界，最后才进入设计和实现。
-            </p>
+            <p class="section-copy">方法名不是起点。先看真实页面、用户原话和系统能力，找到问题发生在哪里，再决定用设计、原型还是流程解决。</p>
           </div>
-          <div class="workflow">
-            <article class="workflow-step fade-up">
-              <span class="mono">01</span>
-              <h3>Evidence</h3>
-              <p>真实页面、会议原话、数据和代码优先于模型记忆。</p>
+          <div class="workflow-story">
+            <article class="workflow-chapter fade-up">
+              <span class="mono">01 · SEE</span>
+              <h3>先找事实</h3>
+              <p>真实页面、用户原话、会议记录和代码，优先于模型给出的完整解释。</p>
             </article>
-            <article class="workflow-step fade-up">
-              <span class="mono">02</span>
-              <h3>Model</h3>
-              <p>先拆字段、角色、状态和系统依赖，再决定界面。</p>
+            <article class="workflow-chapter fade-up">
+              <span class="mono">02 · JUDGE</span>
+              <h3>再做判断</h3>
+              <p>问题发生在字段、状态、用户决定，还是系统能力？不同判断会导向完全不同的方案。</p>
             </article>
-            <article class="workflow-step fade-up">
-              <span class="mono">03</span>
-              <h3>Prototype</h3>
-              <p>用可运行原型验证交互、能力边界与实现成本。</p>
+            <article class="workflow-chapter fade-up">
+              <span class="mono">03 · MAKE</span>
+              <h3>做一个能被检查的东西</h3>
+              <p>可能是交互稿、流程图，也可能是可运行原型；重点是让团队能继续讨论和验证。</p>
             </article>
-            <article class="workflow-step fade-up">
-              <span class="mono">04</span>
-              <h3>Human gate</h3>
-              <p>模型不确定时，让人能够理解、修改、确认和撤销。</p>
+            <article class="workflow-chapter fade-up">
+              <span class="mono">04 · KEEP</span>
+              <h3>把边界和失败留下来</h3>
+              <p>哪些已经确认、哪些仍是推断、哪里需要人工判断，都会进入下一轮工作。</p>
             </article>
-            <article class="workflow-step fade-up">
-              <span class="mono">05</span>
-              <h3>Reflect</h3>
-              <p>将失败与判断沉淀为规则、Skill 和下一轮检查项。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blue" id="practice">
+        <div class="shell">
+          <div class="section-head fade-up">
+            <div>
+              <p class="eyebrow" style="color: var(--yellow)">Practice</p>
+              <h2 class="section-title">会后反复找资料，也是一种可以被设计的问题。</h2>
+            </div>
+            <p class="section-copy">这些实践从自己的重复工作开始：会议结束后还要翻录音、找项目背景，AI 生成了内容却没有留下可靠证据。</p>
+          </div>
+
+          <div class="practice-stack">
+            <article class="practice-story fade-up">
+              <p class="eyebrow">Meeting Workbench</p>
+              <div>
+                <h3>真正麻烦的不是开会，是会后重新拼上下文。</h3>
+                <p>
+                  录音、转写、相关项目和下一步原本散在不同地方。工作台先只串起一条具体链路：
+                  记录会议，补回项目上下文，再把结论变成可以继续跟进的事项。
+                </p>
+              </div>
+              <span class="practice-status">可运行原型</span>
+            </article>
+
+            <article class="practice-story fade-up">
+              <p class="eyebrow">Agent Workloop</p>
+              <div>
+                <h3>AI 可以整理和执行，但不能替我决定什么值得相信。</h3>
+                <p>
+                  项目上下文、Evidence Log 和 Skill 负责保留事实与规则；
+                  Agent 处理查找和重复执行，我保留问题定义、异常判断和最终发布。
+                </p>
+              </div>
+              <span class="practice-status">持续使用中</span>
             </article>
           </div>
         </div>
@@ -241,24 +225,24 @@
         <div class="shell about-grid">
           <div class="fade-up">
             <p class="eyebrow">About</p>
-            <h2 class="section-title">我擅长把复杂性变成团队可以继续行动的结构。</h2>
+            <h2 class="section-title">我更擅长把问题问清楚，再把它交到下一步。</h2>
           </div>
           <div class="about-list fade-up">
             <div class="about-row">
               <strong>AI UX</strong>
-              <p>关注不确定性、解释性、用户控制和 AI 退出机制。</p>
+              <p>先确定 AI 在哪里有用，再确定用户在哪里需要确认、修改或退出。</p>
             </div>
             <div class="about-row">
               <strong>Enterprise UX</strong>
-              <p>处理高信息密度、复杂字段、批量操作和审计追溯。</p>
+              <p>面对复杂字段和批量操作，先把数据与状态讲清楚，再谈界面。</p>
             </div>
             <div class="about-row">
               <strong>Workflow</strong>
-              <p>把一次性设计判断转化为可执行、可审核、可复用的流程。</p>
+              <p>当同一件事开始重复，就把经验整理成可以继续执行和检查的流程。</p>
             </div>
             <div class="about-row">
               <strong>Collaboration</strong>
-              <p>在产品、设计、开发、内容团队与 AI 工具之间翻译问题。</p>
+              <p>把内部语言翻成不同角色都能继续行动的问题、规则和原型。</p>
             </div>
           </div>
         </div>
@@ -268,6 +252,6 @@
     <footer class="footer">
       <div class="shell">Mira Xue · IKEA China Digital Innovation Centre · UX Design Internship</div>
     </footer>
-    <script src="main.js"></script>
+    <script src="main.js?v=20261008-1"></script>
   </body>
 </html>

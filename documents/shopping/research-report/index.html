@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 购物助手用户调研报告 · 上海北蔡宜家 · 2026-08-21</title>
+<style>
+/* ── FONTS ─────────────────────────────────────────────────── */
+@font-face{font-family:"Noto IKEA";src:url("./fonts/NotoIKEALatin-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-024F,U+1E00-1EFF,U+2000-206F}
+@font-face{font-family:"Noto IKEA";src:url("./fonts/NotoIKEALatin-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0000-024F,U+1E00-1EFF,U+2000-206F}
+@font-face{font-family:"Noto IKEA";src:url("./fonts/NotoIKEASimplifiedChinese_Latin-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF}
+@font-face{font-family:"Noto IKEA";src:url("./fonts/NotoIKEASimplifiedChinese_Latin-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap;unicode-range:U+3000-303F,U+4E00-9FFF,U+FF00-FFEF}
+
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  --font: "Noto IKEA","Noto Sans",Verdana,system-ui,sans-serif;
+  --blue: #0058A3;
+  --yellow: #FFDB00;
+  --ink: #111111;
+  --ink-secondary: #484848;
+  --ink-muted: #767676;
+  --paper: #FFFFFF;
+  --paper-soft: #F5F5F5;
+  --line: #DFDFDF;
+  --semantic-caution: #F26A2F;
+  --max-width: 880px;
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+  --section-gap: 5rem;
+  --block-gap: 2rem;
+}
+
+/* ── BASE ───────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.65;
+  color: var(--ink-secondary);
+  background: var(--paper);
+}
+img { max-width: 100%; height: auto; display: block; border-radius: 4px; }
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── LAYOUT ─────────────────────────────────────────────────── */
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+.hero {
+  background: var(--blue);
+  color: #fff;
+  padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+}
+.hero .wrapper { display: flex; flex-direction: column; gap: 1.5rem; }
+.hero .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,.72);
+  text-transform: none;
+}
+.hero h1 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.hero .hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,.82);
+}
+.hero .hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.hero .cover-img {
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 340px;
+}
+.hero .cover-img img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 0;
+}
+
+/* ── MAIN CONTENT ───────────────────────────────────────────── */
+main {
+  padding: clamp(2.5rem, 6vw, 5rem) var(--gutter);
+}
+main > .wrapper > * + * {
+  margin-top: var(--section-gap);
+}
+
+/* ── SECTION LABEL ──────────────────────────────────────────── */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+/* ── HEADINGS ───────────────────────────────────────────────── */
+h2 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+h3 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+h4 {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+/* ── PARAGRAPH ──────────────────────────────────────────────── */
+p {
+  color: var(--ink-secondary);
+  margin-bottom: 1rem;
+  max-width: 68ch;
+}
+p:last-child { margin-bottom: 0; }
+
+/* ── SECTION DIVIDER ────────────────────────────────────────── */
+.section-break {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 8px;
+  padding: 2.5rem 2.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.section-break .part-num {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  color: var(--yellow);
+  flex-shrink: 0;
+  min-width: 2ch;
+}
+.section-break .part-body h2 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.section-break .part-body p {
+  color: rgba(255,255,255,.82);
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* ── CARD GRID ──────────────────────────────────────────────── */
+.card-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 680px) {
+  .card-grid.cols-2,
+  .card-grid.cols-3 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--paper-soft);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.card .card-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+}
+.card h3 { margin-bottom: 0; }
+.card p { margin: 0; font-size: 0.9rem; }
+.card ul { margin: 0; }
+
+/* ── PARTICIPANT CARD ───────────────────────────────────────── */
+.participant-card {
+  background: var(--paper-soft);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  border-left: 4px solid var(--blue);
+}
+.participant-card .group-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.participant-card h3 { margin-bottom: 0.5rem; font-size: 1.05rem; }
+.participant-card p { font-size: 0.9rem; margin-bottom: 0.25rem; }
+.participant-card p:last-child { margin-bottom: 0; }
+.participant-card strong { color: var(--ink); }
+
+/* ── PAIN POINT BLOCK ───────────────────────────────────────── */
+.pain-block {
+  border-top: 2px solid var(--line);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+.pain-block:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.pain-num {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+  color: var(--blue);
+  margin-bottom: 0.25rem;
+}
+
+/* ── QUOTE ──────────────────────────────────────────────────── */
+.quote {
+  background: #FFF8E1;
+  border-left: 4px solid var(--yellow);
+  border-radius: 0 6px 6px 0;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink);
+  margin: 1rem 0;
+  max-width: 62ch;
+}
+.quote .quote-src {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ink-muted);
+}
+
+/* ── FLOW (设计意图 vs 真实路径) ─────────────────────────── */
+.flow-card {
+  background: var(--paper-soft);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+.flow-card .flow-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.flow-card .flow-label.real { color: var(--semantic-caution); }
+.flow-card ul.arrow-list { gap: 0.45rem; }
+.flow-card ul.arrow-list li { font-size: 0.9rem; }
+.flow-card.real { background: #FFF3EE; border: 1px solid #FFDCC8; }
+
+/* ── CALLOUT / QUOTE ────────────────────────────────────────── */
+.callout {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  max-width: 62ch;
+}
+
+.callout-yellow {
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  max-width: 62ch;
+}
+
+.callout-warn {
+  background: #FFF3EE;
+  border-left: 4px solid var(--semantic-caution);
+  border-radius: 0 6px 6px 0;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  max-width: 62ch;
+}
+.callout-warn strong { color: #CA5008; }
+
+/* ── ARROW LIST ─────────────────────────────────────────────── */
+ul.arrow-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+}
+ul.arrow-list li {
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+}
+ul.arrow-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* ── IMAGE EVIDENCE ─────────────────────────────────────────── */
+.image-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.25rem 0;
+}
+.image-row figure {
+  flex: 1;
+  min-width: min(160px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.image-row figure img,
+.image-row figure video {
+  width: 100%;
+  object-fit: contain;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  max-height: 280px;
+}
+.image-row figcaption {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  text-align: center;
+}
+.img-single {
+  margin: 1.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 520px;
+}
+.img-single figcaption {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+/* ── INTENT FRAMEWORK ───────────────────────────────────────── */
+.intent-diagram {
+  background: var(--paper-soft);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+.intent-diagram .diagram-title {
+  text-align: center;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+.intent-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .intent-cols { grid-template-columns: 1fr; }
+}
+.intent-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.intent-col .intent-title {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 0.875rem;
+}
+.intent-col .intent-tag {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+}
+.intent-col .intent-mode {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.intent-arrow {
+  color: var(--ink-muted);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ── INSIGHT CARD ───────────────────────────────────────────── */
+.insight-block {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: var(--block-gap);
+}
+.insight-header {
+  background: var(--blue);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+.insight-header .insight-num {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--yellow);
+  flex-shrink: 0;
+}
+.insight-header h3 {
+  color: #fff;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.insight-body {
+  background: var(--paper-soft);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.insight-body .two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media (max-width: 600px) {
+  .insight-body .two-col { grid-template-columns: 1fr; }
+}
+.insight-body h4 {
+  font-size: 0.9rem;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+.insight-body p,
+.insight-body li { font-size: 0.9rem; }
+
+/* ── BEFORE / AFTER ─────────────────────────────────────────── */
+.advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+@media (max-width: 600px) { .advantage-grid { grid-template-columns: 1fr; } }
+.advantage-card {
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--paper-soft);
+}
+.advantage-card .adv-letter {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+.advantage-card h4 { font-size: 1rem; margin-bottom: 0.6rem; }
+.advantage-card p { font-size: 0.875rem; margin: 0; max-width: none; }
+.advantage-card ul.arrow-list li { font-size: 0.875rem; }
+.advantage-card.after-card {
+  background: var(--blue);
+}
+.advantage-card.after-card .adv-letter { color: var(--yellow); }
+.advantage-card.after-card h4 { color: #fff; }
+.advantage-card.after-card ul.arrow-list li { color: rgba(255,255,255,.88); }
+.advantage-card.after-card ul.arrow-list li::before { color: var(--yellow); }
+
+/* ── ROADMAP ────────────────────────────────────────────────── */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+@media (max-width: 720px) { .roadmap-grid { grid-template-columns: 1fr; } }
+.roadmap-card {
+  border-radius: 8px;
+  padding: 1.5rem;
+  background: var(--paper-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.roadmap-card .priority {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--blue);
+}
+.roadmap-card .phase-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+.roadmap-card h4 { font-size: 0.95rem; margin-bottom: 0; }
+.roadmap-card ul.arrow-list li { font-size: 0.875rem; }
+
+/* ── FOOTER ─────────────────────────────────────────────────── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.78);
+  padding: 2.5rem var(--gutter);
+}
+footer .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+footer img { height: 32px; width: auto; }
+footer p { font-size: 0.8rem; color: rgba(255,255,255,.65); margin: 0; max-width: none; }
+
+/* ── PRINT ──────────────────────────────────────────────────── */
+@media print {
+  .hero { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .section-break { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="wrapper">
+    <img src="./logo/ikea-logo-white.svg" alt="IKEA" style="height:36px;width:auto;margin-bottom:0.5rem">
+    <div>
+      <span class="eyebrow">门店用户调研报告 · 2026-08-21 · 上海北蔡宜家</span>
+      <h1>AI 购物助手<br>用户调研报告</h1>
+    </div>
+    <div class="hero-meta">
+      <span>📍 上海北蔡宜家</span>
+      <span>🕑 2026-08-21 · 14:00 – 17:30</span>
+      <span>👥 4 组 · 6 位用户 · 3.5 小时</span>
+      <span>📋 陪同观察 + 出声思考 + 定性访谈</span>
+    </div>
+    <div class="cover-img">
+      <img src="./images/cover.jpg" alt="上海北蔡宜家门店实地测试现场">
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrapper">
+
+<!-- ═══ SECTION 1: 背景 ════════════════════════════════════ -->
+<section>
+  <span class="section-label">背景信息</span>
+  <h2>为什么做这次测试？</h2>
+  <p>2026 年 8 月 21 日，我们在上海北蔡宜家门店进行线下实地可用性测试，观察用户在真实逛店动线中如何理解和使用门店 AI 购物助手，并找出体验中最关键的阻碍点。</p>
+  <div class="card-grid cols-3" style="margin-top:1.5rem">
+    <div class="card">
+      <span class="card-eyebrow">目标 01</span>
+      <h3>验证真实使用方式</h3>
+      <p>用户在真实逛店中如何理解和使用 AI 购物助手，与产品设计的预期之间有多大落差？</p>
+    </div>
+    <div class="card">
+      <span class="card-eyebrow">目标 02</span>
+      <h3>找出核心卡点</h3>
+      <p>拍照、语音、文字与预设问题四条路径，在门店场景中的主要卡点分别在哪里？</p>
+    </div>
+    <div class="card">
+      <span class="card-eyebrow">目标 03</span>
+      <h3>理解真实任务</h3>
+      <p>用户在门店中真正想借助 AI 完成什么任务，AI 的最佳介入方式与边界在哪里？</p>
+    </div>
+  </div>
+
+  <div class="card-grid cols-4" style="margin-top:1.5rem;grid-template-columns:repeat(4,1fr)">
+    <div class="card" style="gap:0.25rem">
+      <span class="card-eyebrow">时间</span>
+      <p style="font-weight:700;color:var(--ink)">2026-08-21<br>14:00 – 17:30</p>
+    </div>
+    <div class="card" style="gap:0.25rem">
+      <span class="card-eyebrow">地点</span>
+      <p style="font-weight:700;color:var(--ink)">上海北蔡<br>宜家</p>
+    </div>
+    <div class="card" style="gap:0.25rem">
+      <span class="card-eyebrow">样本</span>
+      <p style="font-weight:700;color:var(--ink)">4 组<br>6 位用户</p>
+    </div>
+    <div class="card" style="gap:0.25rem">
+      <span class="card-eyebrow">证据</span>
+      <p style="font-weight:700;color:var(--ink)">27 个 case<br>含录音、视频与截图</p>
+    </div>
+  </div>
+  <style>@media (max-width:680px){.card-grid.cols-4{grid-template-columns:1fr 1fr !important}}</style>
+</section>
+
+<!-- ═══ SECTION 2: 受访者 ════════════════════════════════ -->
+<section>
+  <div class="section-break">
+    <div class="part-num">01</div>
+    <div class="part-body">
+      <h2>受访者画像</h2>
+      <p>4 组、6 位用户，带着不同的家庭场景与购物任务进入门店，覆盖多元年龄、购物目的与技术背景。</p>
+    </div>
+  </div>
+
+  <div class="card-grid cols-2" style="margin-top:2rem">
+    <div class="participant-card">
+      <span class="group-label">用户 01</span>
+      <h3>年轻姐妹 · 20–30 岁</h3>
+      <p><strong>背景：</strong>姐姐正在为新家添置小家具和收纳用品；妹妹伴逛，也有自己的购买需求。</p>
+      <p><strong>典型任务：</strong>了解陌生小件的用途，寻找「浴室好物」。</p>
+    </div>
+    <div class="participant-card">
+      <span class="group-label">用户 02</span>
+      <h3>独自逛店的男士 · 50 岁左右</h3>
+      <p><strong>背景：</strong>独自逛店，会主动核对商品知识与实际购买条件。</p>
+      <p><strong>典型任务：</strong>询问产地、流明和尺寸，寻找符合空间的柜子，同时关心运费与停车政策。</p>
+    </div>
+    <div class="participant-card">
+      <span class="group-label">用户 03</span>
+      <h3>中年男士 · 30 岁左右</h3>
+      <p><strong>背景：</strong>独自逛店，对样板间探索和商品深层信息感兴趣，明确表示不愿在门店阅读长段回复。</p>
+      <p><strong>典型任务：</strong>了解材质与保养，寻找取货点，判断大件商品如何运回家。</p>
+    </div>
+    <div class="participant-card">
+      <span class="group-label">用户 04</span>
+      <h3>妈妈带着小朋友 · 35–45 岁</h3>
+      <p><strong>背景：</strong>目标明确，到店前已测量房间尺寸，并准备了手绘布局。</p>
+      <p><strong>典型任务：</strong>为之前购买的上下床寻找匹配床垫，并判断家具是否适合儿童房。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 3: 主要总结（痛点） ════════════════════════ -->
+<section>
+  <div class="section-break">
+    <div class="part-num">02</div>
+    <div class="part-body">
+      <h2>六大核心痛点</h2>
+      <p>从用户行为、现场原声与界面证据中提炼的主要阻碍，覆盖识别、理解、节奏、引导、语音与门店知识六个方面。</p>
+    </div>
+  </div>
+
+  <!-- 痛点 1 -->
+  <div class="pain-block" style="margin-top:2rem">
+    <div class="pain-num">01</div>
+    <h3>识别结果频频出错，答案也不可靠</h3>
+    <p>AI 将实物识别成其他商品，甚至给出与标签相悖的错误事实。</p>
+    <div class="callout">「最匹配」不等于「识别正确」——当结果偏离实物时，用户要怎么得到正确答案呢？</div>
+    <div class="image-row">
+      <figure>
+        <img src="./images/pain1-bag.jpg" alt="灰色收纳袋被识别成其他商品">
+        <figcaption>灰色收纳袋被识别成其他商品</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/pain1-plate.jpg" alt="OSTBIT 盘子架识别错误">
+        <figcaption>OSTBIT 盘子架 → 拍实物识别成「杯架」→ 改拍标签才正确</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/pain1-tag.jpg" alt="产地标签与 AI 回答不符">
+        <figcaption>玩具标签写明「印度尼西亚」，AI 却回答「上海」</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 痛点 2 -->
+  <div class="pain-block">
+    <div class="pain-num">02</div>
+    <h3>听见用户怎么说了，却没理解真正需求</h3>
+    <p>用户用生活场景、用途和空间条件表达需求，系统仍按商品关键词和标准属性进行匹配。</p>
+    <div class="callout">用户问的是需求，AI 搜的是关键词。</div>
+    <ul class="arrow-list" style="margin-bottom:1rem">
+      <li>用户说「浴室好物」无结果，换成「浴室收纳物品推荐」后，AI 才能回答</li>
+      <li>用户要高、宽都约 1.5–1.8 米的柜子，推荐结果只满足其中一维</li>
+      <li>拍标签后识别出正确 SKU，用户想知道的是用途与深层信息，系统默认只给价格和货号</li>
+    </ul>
+    <div class="quote">「如果我看了标签，我不会问他多少钱，也不会问他什么，我可能问材质面料、保洁。」
+      <span class="quote-src">—— 30 岁男士 · 现场原声</span>
+    </div>
+    <div class="image-row">
+      <figure>
+        <img src="./images/pain2-bathroom-reply.jpg" alt="浴室好物类生活化表达">
+        <figcaption>用户说「浴室好物」，系统按品类推理但均未找到商品</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/pain2-cabinet-size.jpg" alt="柜子推荐尺寸不对">
+        <figcaption>用户要求高、宽都约 1.5–1.8 米的柜子，推荐结果只满足其中一维</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 痛点 3 -->
+  <div class="pain-block">
+    <div class="pain-num">03</div>
+    <h3>等太久，字太多——打断逛店节奏</h3>
+    <p>用户希望边走边获得答案，AI 的思考时间与长段回复迫使用户停下来盯着手机，错过逛店的节奏与沿途的商品。</p>
+    <div class="quote">「我想立马就能看到信息，但是它很慢，那我就要在那站住、站一会儿。」
+      <span class="quote-src">—— 二十多岁姐姐 · 现场原声</span>
+    </div>
+    <div class="quote">「如果不是在跟你对话，我已经没有耐心看下去了。」
+      <span class="quote-src">—— 三十多岁男性 · 现场原声</span>
+    </div>
+    <ul class="arrow-list">
+      <li><strong>长时间思考</strong> → 用户在货架前停下等待</li>
+      <li><strong>长段文字回复</strong> → 用户被迫盯着屏幕逐行阅读</li>
+      <li><strong>结果</strong> → 逛店节奏被打断，错过沿途的商品与风景</li>
+    </ul>
+  </div>
+
+  <!-- 痛点 4 -->
+  <div class="pain-block">
+    <div class="pain-num">04</div>
+    <h3>预设入口被忽视——用户习惯先拍照后想问题</h3>
+    <p>页面提供了「讲解商品详情」「从海报/标签上识别商品」「推荐搭配商品」等预设问题，但用户通常直接拍照，没有意识到需要先选择意图；拍摄后没有自动推荐问题，用户需要自己思考接下来问什么。</p>
+    <div class="card-grid cols-2" style="margin:1.25rem 0">
+      <div class="flow-card">
+        <span class="flow-label">设计意图</span>
+        <ul class="arrow-list">
+          <li>选择预设问题</li>
+          <li>拍摄商品</li>
+          <li>AI 回答</li>
+        </ul>
+      </div>
+      <div class="flow-card real">
+        <span class="flow-label real">真实路径</span>
+        <ul class="arrow-list">
+          <li>直接拍照</li>
+          <li>语音 / 打字输入</li>
+          <li>AI 回答</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">引导虽然存在，却没有降低用户的提问成本。</div>
+    <div class="image-row">
+      <figure>
+        <img src="./images/pain4-presets.jpg" alt="左下角三个预设入口">
+        <figcaption>左下角三个预设入口，普遍被忽视</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/pain4-after-photo.jpg" alt="拍照后的输入提示">
+        <figcaption>拍摄后没有自动推荐问题，用户需要自己思考接下来问什么</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 痛点 5 -->
+  <div class="pain-block">
+    <div class="pain-num">05</div>
+    <h3>语音输入失控——该听时不听，不该听时乱听</h3>
+    <ul class="arrow-list">
+      <li>长按「按住说话」没有明确反馈，用户不知道系统是否开始收音</li>
+      <li>语音转文字不完整，或识别成其他内容</li>
+      <li>切换回键盘输入后，麦克风仍持续收音，把环境声音自动填入输入框</li>
+    </ul>
+    <div class="callout">想说话时没反应，想打字时却一直在听。</div>
+    <div class="image-row">
+      <figure>
+        <video src="./videos/voice-bug.mp4" controls muted playsinline loop></video>
+        <figcaption>语音输入没有明确开始/结束反馈，误把环境音识别成文字；切换到键盘输入后，麦克风仍在收音并自动填入文字框</figcaption>
+      </figure>
+      <figure>
+        <video src="./videos/store-assistant.mp4" controls muted playsinline loop></video>
+        <figcaption>用户语音输入过程中的交互问题</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- 痛点 6 -->
+  <div class="pain-block">
+    <div class="pain-num">06</div>
+    <h3>只懂商品，不懂这家店</h3>
+    <p>用户从了解商品转向询问位置、取货、运费、配送和停车时，AI 经常无法给出有效答案。</p>
+    <div class="callout">商品能介绍，门店行动接不上。</div>
+    <ul class="arrow-list" style="margin-bottom:1rem">
+      <li>下单后问去哪里拿货，系统没查到取货地点，建议看订单或咨询人工</li>
+      <li>问住在三林的运费，AI 没有回复</li>
+      <li>问停车场收费政策，AI 回复不出来</li>
+    </ul>
+    <div class="image-row">
+      <figure>
+        <img src="./images/pain6-pickup.jpg" alt="取货地点无结果">
+        <figcaption>取货地点查不到，只能建议看订单</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/pain6-shipping.jpg" alt="运费未回复">
+        <figcaption>三林地区运费，AI 没有回复</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 4: 关键洞察 ════════════════════════════════ -->
+<section>
+  <div class="section-break">
+    <div class="part-num">03</div>
+    <div class="part-body">
+      <h2>关键洞察与产品方向</h2>
+      <p>顾客不是在完成一次问答，而是在推进一次购物。沿着从进店到离店的旅程，观察每一步需要怎样的支持。</p>
+    </div>
+  </div>
+
+  <!-- 用户旅程 Flow -->
+  <div class="journey-flow" style="margin-top:2rem">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1080" style="display:block;width:100%;height:auto" role="img" aria-labelledby="journeyTitle journeyDesc">
+      <title id="journeyTitle">宜家门店 AI 购物助手用户旅程</title>
+      <desc id="journeyDesc">顾客从进入门店、表达需求、识别商品、判断是否适合，到购买取货或暂时离开的完整旅程。左侧展示探索、识别失败、比较和离店分支，右侧展示各节点对应的 AI 支持机会。</desc>
+      <defs>
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#185FA5"/>
+        </marker>
+        <marker id="arrow-light" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#78A9D4"/>
+        </marker>
+        <style>
+          text { font-family: "Noto IKEA", "Noto Sans SC", system-ui, sans-serif; fill: #111111; }
+          .title { font-size: 15px; font-weight: 500; }
+          .subtitle { font-size: 12px; font-weight: 400; fill: #52606D; }
+          .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .08em; fill: #185FA5; }
+          .stage { font-size: 13px; font-weight: 500; }
+          .thought { font-size: 11px; font-weight: 400; fill: #52606D; }
+          .support-title { font-size: 12px; font-weight: 500; fill: #0C447C; }
+          .support-copy { font-size: 11px; font-weight: 400; fill: #34495E; }
+          .branch-title { font-size: 12px; font-weight: 500; }
+          .branch-copy { font-size: 11px; font-weight: 400; fill: #52606D; }
+          .pain { font-size: 10px; font-weight: 500; fill: #8A4B08; }
+          .step-num { font-size: 11px; font-weight: 500; fill: #FFFFFF; text-anchor: middle; dominant-baseline: middle; }
+          .main-line { fill: none; stroke: #185FA5; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow-blue); }
+          .branch-line { fill: none; stroke: #78A9D4; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow-light); }
+          .return-line { fill: none; stroke: #78A9D4; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 5; marker-end: url(#arrow-light); }
+          .station { fill: #185FA5; }
+          .support-rule { stroke: #78A9D4; stroke-width: 3; stroke-linecap: round; }
+          .warm { fill: #FFF3D6; stroke: #E2A33A; stroke-width: 1; }
+        </style>
+      </defs>
+
+      <rect width="680" height="1080" fill="#FFFFFF"/>
+
+      <text x="32" y="38" class="eyebrow">03 关键洞察与产品方向</text>
+      <text x="32" y="67" class="title">顾客不是在完成一次问答，而是在推进一次购物</text>
+      <text x="32" y="89" class="subtitle">从进店到离店，在每一个决定发生的地方提供恰当支持</text>
+
+      <g aria-label="图例" transform="translate(32 112)">
+        <line x1="0" y1="6" x2="28" y2="6" stroke="#185FA5" stroke-width="4" stroke-linecap="round"/>
+        <text x="36" y="10" class="thought">主旅程</text>
+        <line x1="112" y1="6" x2="140" y2="6" stroke="#78A9D4" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="148" y="10" class="thought">行为分支</text>
+        <line x1="236" y1="6" x2="264" y2="6" stroke="#78A9D4" stroke-width="3" stroke-linecap="round"/>
+        <text x="272" y="10" class="thought">AI 支持机会</text>
+        <rect x="390" y="-3" width="35" height="18" rx="9" fill="#FFF3D6" stroke="#E2A33A"/>
+        <text x="407.5" y="10" class="pain" text-anchor="middle">P1</text>
+        <text x="434" y="10" class="thought">现场痛点</text>
+      </g>
+
+      <line x1="441" y1="150" x2="441" y2="957" stroke="#D8E9F7" stroke-width="1"/>
+      <text x="468" y="158" class="eyebrow">AI 支持机会</text>
+
+      <!-- 主旅程路径 -->
+      <path class="main-line" d="M300 178 L300 239"/>
+      <path class="main-line" d="M300 267 L300 338"/>
+      <path class="main-line" d="M300 382 L300 469"/>
+      <path class="main-line" d="M300 513 L300 622"/>
+      <path class="main-line" d="M300 666 L300 774"/>
+      <path class="main-line" d="M300 818 L300 917"/>
+
+      <!-- 01 进店 -->
+      <circle cx="300" cy="164" r="14" class="station"/>
+      <text x="300" y="164" class="step-num">01</text>
+      <text x="328" y="159" class="stage">进入门店，打开 AI</text>
+      <text x="328" y="178" class="thought">“先问问看”</text>
+      <line x1="465" y1="178" x2="465" y2="222" class="support-rule"/>
+      <text x="478" y="185" class="support-title">让入口和使用方式一眼可懂</text>
+      <text x="478" y="204" class="support-copy">文字、语音或拍标签都能开始</text>
+
+      <!-- 是否有明确目标 -->
+      <circle cx="300" cy="253" r="14" fill="#E6F1FB" stroke="#185FA5" stroke-width="2"/>
+      <text x="300" y="257" text-anchor="middle" style="font-size:13px;font-weight:500;fill:#185FA5">?</text>
+      <text x="328" y="249" class="stage">此刻有明确目标吗？</text>
+      <text x="328" y="268" class="thought">目标明确，或只是边逛边看</text>
+
+      <!-- 无目标探索分支 -->
+      <path class="branch-line" d="M284 253 C224 253 210 258 190 278 L190 311"/>
+      <path class="return-line" d="M190 365 C190 391 221 401 270 380"/>
+      <circle cx="190" cy="326" r="7" fill="#78A9D4"/>
+      <text x="42" y="306" class="branch-title">没有明确目标</text>
+      <text x="42" y="325" class="branch-copy">随便逛逛，不希望被打断</text>
+      <text x="42" y="352" class="branch-title">被商品或场景吸引</text>
+      <text x="42" y="371" class="branch-copy">产生兴趣后，汇入提问</text>
+      <text x="42" y="394" class="support-copy">AI：低打扰，按需响应</text>
+
+      <!-- 02 表达需求 -->
+      <circle cx="300" cy="360" r="14" class="station"/>
+      <text x="300" y="360" class="step-num">02</text>
+      <text x="328" y="355" class="stage">表达需求</text>
+      <text x="328" y="374" class="thought">“能放客厅的、白色的……”</text>
+      <line x1="465" y1="325" x2="465" y2="390" class="support-rule"/>
+      <text x="478" y="337" class="support-title">听懂生活化表达</text>
+      <text x="478" y="356" class="support-copy">承接非标准名称和多个条件</text>
+      <text x="478" y="378" class="support-copy">主动推荐下一步可问的问题</text>
+      <g transform="translate(603 393)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P1</text>
+      </g>
+      <g transform="translate(642 393)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P2</text>
+      </g>
+
+      <!-- 03 找到商品 -->
+      <circle cx="300" cy="491" r="14" class="station"/>
+      <text x="300" y="491" class="step-num">03</text>
+      <text x="328" y="486" class="stage">找到并核对商品</text>
+      <text x="328" y="505" class="thought">“是这个吗？”</text>
+      <line x1="465" y1="450" x2="465" y2="520" class="support-rule"/>
+      <text x="478" y="462" class="support-title">把识别结果变成确定答案</text>
+      <text x="478" y="481" class="support-copy">优先扫标签，展示商品与货号</text>
+      <text x="478" y="500" class="support-copy">找不到时解释原因并给下一步</text>
+      <g transform="translate(642 524)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P2</text>
+      </g>
+
+      <!-- 识别失败分支 -->
+      <path class="branch-line" d="M284 491 C233 491 216 502 216 526"/>
+      <path class="return-line" d="M224 600 C224 615 244 620 270 622"/>
+      <rect x="42" y="509" width="182" height="91" rx="12" fill="#F6F9FC" stroke="#B9D3EA"/>
+      <text x="58" y="533" class="branch-title">识别失败 / 空结果</text>
+      <text x="58" y="553" class="branch-copy">说明没找到的可能原因</text>
+      <text x="58" y="573" class="support-copy">换种问法 · 重拍标签</text>
+      <text x="58" y="590" class="support-copy">仍无结果时提供相近替代</text>
+
+      <!-- 04 判断适合 -->
+      <circle cx="300" cy="644" r="14" class="station"/>
+      <text x="300" y="644" class="step-num">04</text>
+      <text x="328" y="633" class="stage">了解商品</text>
+      <text x="328" y="650" class="stage">判断是否适合</text>
+      <text x="328" y="670" class="thought">“我家放得下吗？”</text>
+      <line x1="465" y1="601" x2="465" y2="686" class="support-rule"/>
+      <text x="478" y="613" class="support-title">围绕真正的顾虑回答</text>
+      <text x="478" y="632" class="support-copy">先给结论，再给来源和依据</text>
+      <text x="478" y="651" class="support-copy">结合用户提供的尺寸或照片判断</text>
+      <g transform="translate(603 690)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P3</text>
+      </g>
+      <g transform="translate(642 690)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P6</text>
+      </g>
+
+      <!-- 05 决策 -->
+      <circle cx="300" cy="796" r="14" class="station"/>
+      <text x="300" y="796" class="step-num">05</text>
+      <text x="328" y="791" class="stage">做购买决定</text>
+      <text x="328" y="810" class="thought">购买、再比较，或暂时离开</text>
+      <line x1="465" y1="754" x2="465" y2="831" class="support-rule"/>
+      <text x="478" y="766" class="support-title">把决策依据摆出来</text>
+      <text x="478" y="785" class="support-copy">比较差异，补充搭配与配件</text>
+      <text x="478" y="804" class="support-copy">必要时追问“你在犹豫什么？”</text>
+
+      <!-- 犹豫与暂时离开分支 -->
+      <path class="branch-line" d="M284 796 C244 796 222 785 212 760"/>
+      <path class="return-line" d="M212 715 C223 690 246 678 270 665"/>
+      <text x="42" y="707" class="branch-title">还在犹豫</text>
+      <text x="42" y="726" class="branch-copy">问同伴、查价格、比较商品</text>
+      <text x="42" y="750" class="support-copy">AI：保留条件，继续比较</text>
+      <path class="branch-line" d="M284 806 C225 831 200 861 190 895"/>
+      <circle cx="190" cy="912" r="7" fill="#78A9D4"/>
+      <text x="42" y="886" class="branch-title">暂时不买</text>
+      <text x="42" y="905" class="branch-copy">保留问过的商品与条件</text>
+      <text x="42" y="924" class="support-copy">下次回来可以接着问</text>
+
+      <!-- 06 获取商品 -->
+      <circle cx="300" cy="939" r="14" class="station"/>
+      <text x="300" y="939" class="step-num">06</text>
+      <text x="328" y="928" class="stage">下单、取货</text>
+      <text x="328" y="945" class="stage">完成购物</text>
+      <text x="328" y="965" class="thought">“去哪里取货？”</text>
+      <line x1="465" y1="899" x2="465" y2="966" class="support-rule"/>
+      <text x="478" y="911" class="support-title">明确告诉用户下一步</text>
+      <text x="478" y="930" class="support-copy">价格、库存、取货与配件信息</text>
+      <text x="478" y="949" class="support-copy">信息不确定时清楚说明边界</text>
+      <g transform="translate(642 970)">
+        <rect width="35" height="18" rx="9" class="warm"/>
+        <text x="17.5" y="12.5" class="pain" text-anchor="middle">P5</text>
+      </g>
+
+      <!-- 贯穿式兜底 -->
+      <rect x="32" y="1000" width="616" height="44" rx="12" fill="#FFF3D6" stroke="#E2A33A"/>
+      <circle cx="55" cy="1022" r="7" fill="#E2A33A"/>
+      <text x="72" y="1018" class="branch-title">任何一步卡住，都不能把用户晾在半路</text>
+      <text x="72" y="1036" class="branch-copy">说明原因，给可继续的下一步；必要时提供人工协助入口</text>
+
+      <text x="340" y="1068" text-anchor="middle" class="subtitle">识别商品只是起点，真正的帮助是理解用户此刻要做的决定，并带他走到下一步。</text>
+    </svg>
+  </div>
+
+  <!-- 产品定位 -->
+  <div style="margin-top:var(--block-gap)">
+    <span class="section-label">产品策略</span>
+    <h3>从「人适应工具」到「AI 理解人和现场」</h3>
+    <div class="advantage-grid">
+      <div class="advantage-card">
+        <div class="adv-letter">B</div>
+        <h4>优化前 · 以商品识别为中心的问答助手</h4>
+        <ul class="arrow-list">
+          <li>操作路径和预设问题先于用户的真实意图</li>
+          <li>识别错误、空结果或答非所问后缺少有效承接</li>
+          <li>能返回商品信息，却难以理解用户所处的购物情境</li>
+        </ul>
+      </div>
+      <div class="advantage-card after-card">
+        <div class="adv-letter">A</div>
+        <h4>优化后 · 以购物任务为中心的门店助手</h4>
+        <ul class="arrow-list">
+          <li><strong>意图优先：</strong>让用户自然地拍、说、问</li>
+          <li><strong>可信可恢复：</strong>主动确认、纠错并承接失败</li>
+          <li><strong>答案可行动：</strong>结合商品与现场给出明确下一步</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECTION 5: 下一步计划 ══════════════════════════════ -->
+<section>
+  <div class="section-break">
+    <div class="part-num">04</div>
+    <div class="part-body">
+      <h2>下一步计划</h2>
+      <p>从基础可用性出发，到完整门店任务支持，再到家庭空间适配探索，分三阶段落地。</p>
+    </div>
+  </div>
+
+  <div class="roadmap-grid">
+    <!-- P0 -->
+    <div class="roadmap-card">
+      <div>
+        <div class="priority">P0</div>
+        <div class="phase-label">短期 · 立即执行</div>
+      </div>
+      <div>
+        <h4>基础可信可用</h4>
+        <p style="font-size:0.8rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">先解决识别、提问与等待体验的基础问题</p>
+      </div>
+      <ul class="arrow-list">
+        <li><strong>识别与理解：</strong>提升准确率，理解生活化表达；失败时引导拍标签或调整问法</li>
+        <li><strong>回答与反馈：</strong>先答用户所问，结论先行；缩短响应并显示处理状态</li>
+        <li><strong>拍照引导：</strong>拍照后提供贴合商品的口语化快捷问题</li>
+        <li><strong>语音输入：</strong>修复开始、结束与误收音状态</li>
+      </ul>
+    </div>
+
+    <!-- P1 -->
+    <div class="roadmap-card">
+      <div>
+        <div class="priority">P1</div>
+        <div class="phase-label">中期 · 季度内</div>
+      </div>
+      <div>
+        <h4>门店任务</h4>
+        <p style="font-size:0.8rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">支持完整的门店购物行动闭环</p>
+      </div>
+      <ul class="arrow-list">
+        <li>补齐位置、库存、取货、运费、配送、组装和停车等门店信息</li>
+        <li>门店问题直接给出结论、位置或路线及明确下一步</li>
+        <li>空结果提供替代方案；支持用商品号或订单截图寻找配件</li>
+      </ul>
+    </div>
+
+    <!-- P2 -->
+    <div class="roadmap-card">
+      <div>
+        <div class="priority">P2</div>
+        <div class="phase-label">长期 · 半年以上</div>
+      </div>
+      <div>
+        <h4>空间适配</h4>
+        <p style="font-size:0.8rem;color:var(--ink-muted);margin:0.25rem 0 0.75rem">探索家庭场景的轻量空间判断</p>
+      </div>
+      <ul class="arrow-list">
+        <li>理解房间照片、关键尺寸和家庭场景</li>
+        <li>判断商品能否放下、是否适合，并推荐少量匹配商品</li>
+        <li>复杂规划连接 IKEA 现有工具或专业服务</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrapper -->
+</main>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════ -->
+<footer>
+  <div class="wrapper">
+    <img src="./logo/ikea-logo-white.svg" alt="IKEA">
+    <p>AI 购物助手团队 · 上海北蔡宜家 · 2026-08-21<br>
+    4 组 · 6 位参与者 · 3.5 小时实地测试 · 陪同观察 + 出声思考 + 定性访谈</p>
+  </div>
+</footer>
+
+</body>
+</html>

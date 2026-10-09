@@ -1,0 +1,258 @@
+/* ============================================================
+   IKEA Lighting PLP · 手机屏 Demo（灯光实景对比概念）
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: #101114;                 /* 桌面观察背景 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1f2022;
+}
+
+/* ---------- 手机屏容器 ---------- */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  max-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .45s ease, color .45s ease;
+}
+@media (min-width: 500px) {
+  .app { border-radius: 22px; box-shadow: 0 24px 70px rgba(0,0,0,.45); height: min(100dvh, 900px); }
+}
+
+/* ---------- 主题变量：正常 / dark ---------- */
+.app {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface2: #f2f2f2;
+  --text: #1d1f21;
+  --text2: #71747a;
+  --line: #e3e3df;
+  --shadow: 0 1px 3px rgba(0,0,0,.05);
+  --link: #0058a3;
+  --yellow: #ffdb00;
+  --sw-icon: #111111;
+}
+.app.night {
+  --bg: #17181b;
+  --surface: #1f2126;
+  --surface2: #26282e;
+  --text: #f1f1ee;
+  --text2: #9fa2a9;
+  --line: #30323a;
+  --shadow: 0 1px 3px rgba(0,0,0,.35);
+  --link: #8fc4ff;
+  --sw-icon: rgba(255,255,255,.82);
+}
+
+/* ============================================================
+   视图
+   ============================================================ */
+.view { position: absolute; inset: 0; display: none; flex-direction: column; }
+.view.active { display: flex; animation: rise .34s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* ---------- 入口 PLP：直接铺满用户截图 ---------- */
+.plp-bg-wrap {
+  position: absolute; inset: 0;
+  background: var(--bg);
+}
+.plp-bg {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* ---------- 对比分屏：外层负责滚动，内层负责连续网格 ---------- */
+.cpages {
+  min-height: 0;
+  overscroll-behavior-y: contain;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: max-content;
+  align-content: start;
+  gap: 12px;
+  padding: 6px 14px 14px;
+}
+
+/* ---------- 稳定产品卡：上方 1:1 场景大图，下方名称/简介/价格 ---------- */
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: background .45s ease, border-color .45s ease;
+}
+
+/* 图框：1:1 正方形，图片撑满（三张叠层，500ms crossfade） */
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--surface2);
+  overflow: hidden;
+}
+.media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: opacity .5s ease, transform .5s ease;
+}
+.media img.active { opacity: 1; }
+
+/* LERSTA 的历史场景图本身带有上下白边；只在卡片内放大内容，保留原图文件。 */
+.product-card[data-product="lersta"] .media img {
+  /* Reveal more of the lamp on the left while still filling the square frame. */
+  transform: translateX(5%) scale(1.45);
+}
+
+/* 信息条：名称 / 简介 / 价格，各行高度统一 → 卡片高度对齐 */
+.info {
+  padding: 10px 11px 12px;
+  background: var(--surface);
+}
+.pname {
+  font-size: 13.5px; font-weight: 700;
+  line-height: 1.3; color: var(--text);
+  letter-spacing: .1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;   /* 单行省略，保证各行信息区等高 */
+}
+.pdesc {
+  margin-top: 3px;
+  font-size: 11.5px; color: var(--text2);
+  line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(2 * 1.45 * 11.5px);   /* 占满两行，保证各卡信息区等高 */
+}
+.pprice {
+  margin-top: 6px;
+  font-size: 14.5px; font-weight: 800; color: var(--text);
+}
+
+/* ============================================================
+   FAB：进入灯光实景对比入口
+   ============================================================ */
+.fab {
+  position: absolute;
+  right: 16px; bottom: 22px;
+  z-index: 30;
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 0; cursor: pointer;
+  background: rgba(28, 30, 34, .92);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28);
+  backdrop-filter: blur(6px);
+  transition: opacity .3s ease, transform .15s ease;
+}
+.fab:active { transform: scale(.95); }
+.fab-ic { display: inline-flex; }
+.app[data-view="compare"] .fab { opacity: 0; pointer-events: none; }
+
+/* ============================================================
+   对比模式（视图2）
+   ============================================================ */
+.cmp-top {
+  display: flex; align-items: center;
+  padding: 10px 8px 10px 14px;
+  background: var(--bg);
+}
+.back-btn {
+  width: 28px; height: 28px; border: 0; padding: 0;
+  background: transparent; color: var(--text);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.cmp-title { flex: 1; text-align: center; }
+.cmp-title strong { font-size: 16px; font-weight: 700; }
+.cmp-spacer { flex: 0 0 28px; }
+
+/* ---------- 控制条：左 Day/Night · 右 Light On/Off ---------- */
+.ctlbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px 8px;
+  background: var(--bg);
+}
+.sw-group { display: flex; flex-direction: column; align-items: center; }
+
+/* Day 模式下隐藏 Light 开关 */
+.app:not(.night) #swLight { display: none; }
+
+/* 开关本体：无边框按钮 + 内联 svg */
+.sw {
+  position: relative;
+  width: 105px; height: 32px;
+  border: 0; padding: 0; background: transparent;
+  cursor: pointer;
+  user-select: none;
+}
+.sw svg { display: block; width: 105px; height: 32px; }
+/* 按钮背景透明，但仍保留一条柔和描边，让用户能看到这是个可点击的按钮 */
+.sw svg .sw-rail {
+  fill: transparent;
+  stroke: rgba(0, 0, 0, .14);
+  stroke-width: 1;
+  transition: stroke .25s ease;
+}
+.app.night .sw svg .sw-rail { stroke: rgba(255, 255, 255, .18); }
+
+/* 滑动 pill：完整胶囊圆角 */
+.sw svg .sw-pill { transition: transform .28s cubic-bezier(.35,.75,.4,1); }
+.sw svg .sw-pill rect { fill: #111111; transition: fill .25s ease; }
+
+/* 图标默认色随主题变化 */
+.sw svg .i-l, .sw svg .i-r { fill: var(--sw-icon); transition: fill .25s ease; }
+
+/* 状态：右端激活（day / on）→ pill 右移，右图标变白（浅色主题：白图标压黑 pill） */
+.sw[data-v="day"] .sw-pill, .sw[data-v="on"] .sw-pill { transform: translateX(53px); }
+.sw[data-v="day"] .i-r, .sw[data-v="on"] .i-r { fill: #ffffff; }
+/* 状态：左端激活（night / off）→ pill 左位，左图标变白 */
+.sw[data-v="night"] .i-l, .sw[data-v="off"] .i-l { fill: #ffffff; }
+
+/* 点击热区：左右两半 */
+.half {
+  position: absolute; top: 0; bottom: 0;
+  width: 50%; cursor: pointer;
+}
+.half.left  { left: 0; }
+.half.right { right: 0; }
+
+/* Night（dark）选中态更醒目：白 pill + 黑图标；未选中图标保持半透明白 */
+.app.night .sw svg .sw-pill rect { fill: #ffffff; }
+.app.night .sw[data-v="day"] .i-r,
+.app.night .sw[data-v="on"] .i-r,
+.app.night .sw[data-v="night"] .i-l,
+.app.night .sw[data-v="off"] .i-l { fill: #111111; }
+
+.cmp-hint {
+  font-size: 11px; color: var(--text2);
+  text-align: center;
+  padding: 9px 16px 2px;
+  background: var(--bg);
+}
+
+/* 滚动条美化（桌面预览时） */
+.scroll::-webkit-scrollbar { width: 5px; }
+.scroll::-webkit-scrollbar-thumb { background: rgba(127,127,127,.35); border-radius: 3px; }

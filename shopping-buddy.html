@@ -1,12 +1,24 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="case-scroll">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Shopping Buddy · Mira Xue</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="preload"
+      href="assets/fonts/smiley-sans/SmileySans-Oblique.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script>
+      if (new URLSearchParams(window.location.search).get("heroFont") === "pingfang") {
+        document.documentElement.dataset.heroFont = "pingfang";
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20261010-33" />
   </head>
-  <body>
+  <body class="case-page shopping-page">
     <nav class="nav">
       <div class="shell nav-inner">
         <a class="brand" href="index.html">Mira Xue</a>
@@ -19,115 +31,270 @@
       </div>
     </nav>
 
-    <header class="case-hero">
-      <div class="shell">
-        <p class="eyebrow">In-store Research · AI UX · Service Handoff</p>
-        <h1>AI Shopping Buddy</h1>
-        <p class="case-deck">
-          从真实门店测试中识别用户生活语言与系统商品语言之间的落差，
-          再把错误 case 转化为拍照提问、解释与人工兜底方案。
-        </p>
-        <div class="tag-row">
-          <span class="tag">Role · Research participation + UX iteration</span>
-          <span class="tag">Context · In-store shopping</span>
-          <span class="tag">Output · Research report + design directions</span>
+    <header class="case-hero shopping-hero">
+      <div class="shell shopping-hero-grid">
+        <div class="shopping-hero-copy">
+          <p class="eyebrow">In-store Research · AI UX · Service Handoff</p>
+          <h1>AI Shopping Buddy</h1>
+          <p class="case-deck">用户站在商品旁边时，不会先想好一个标准问题。他们会拍下眼前的东西，再问“这是什么、怎么用、适不适合我”。</p>
+          <div class="tag-row">
+            <span class="tag">Role · Research participation + UX iteration</span>
+            <span class="tag">Context · In-store shopping</span>
+            <span class="tag">Output · Research report + design directions</span>
+          </div>
         </div>
+        <figure class="shopping-demo-preview">
+          <div class="shopping-demo-glow" aria-hidden="true"></div>
+          <div class="shopping-phone-shell">
+            <div class="shopping-phone-screen">
+              <video
+                autoplay
+                controls
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                poster="assets/shopping/media/demo-poster.jpg"
+                aria-label="AI Shopping Buddy 门店模式产品演示"
+              >
+                <source src="assets/shopping/media/shopping-buddy-demo.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <figcaption><span class="mono">CURRENT EXPERIENCE</span>真实门店模式体验录屏；可直接播放、暂停或拖动查看。</figcaption>
+        </figure>
       </div>
     </header>
 
-    <main class="shell">
-      <section class="case-section case-columns">
-        <p class="case-label">01 · RESEARCH QUESTION</p>
-        <div class="case-content">
-          <h2>用户需要的不是一次回答，而是被带到下一步。</h2>
-          <p>
-            我参与上海门店的实地可用性测试，观察顾客如何在真实逛店动线中拍摄商品、
-            表达需求、理解系统回答并继续做购买判断。研究重点不是评价单个页面，
-            而是识别 AI 在门店任务中的最佳介入方式和服务边界。
-          </p>
-          <div class="metric-grid">
-            <div class="metric"><strong>4 组</strong><span>不同购物目的与家庭情境</span></div>
-            <div class="metric"><strong>6 人</strong><span>真实门店用户</span></div>
-            <div class="metric"><strong>3.5h</strong><span>陪同观察、出声思考与访谈</span></div>
-            <div class="metric"><strong>6 类</strong><span>识别、理解、节奏、引导等核心痛点</span></div>
-          </div>
+    <main class="shell shopping-case">
+      <section class="case-section shopping-section shopping-study">
+        <div class="shopping-section-head">
+          <p class="case-label">01 · FIELD STUDY</p>
+          <h2>我跟着用户在门店里真实地用了一遍，而不是从功能列表开始想方案。</h2>
+          <p>现有研究报告记录了 4 组参与者的真实逛店过程。我参与现场观察、素材整理、case 编码和后续交互探索。</p>
+          <a
+            class="shopping-report-link"
+            href="documents/shopping/research-report/index.html"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="mono">RESEARCH REPORT</span>
+            <strong>打开完整调研报告 ↗</strong>
+          </a>
+        </div>
+        <div class="shopping-metrics">
+          <div><strong>4 组</strong><span>报告记录的现场参与者分组</span></div>
+          <div><strong>6 位</strong><span>不同年龄与购物情境</span></div>
+          <div><strong>3.5h</strong><span>陪同观察、出声思考和定性访谈</span></div>
+          <div><strong>27 Cases</strong><span>报告记录的现场案例</span></div>
         </div>
       </section>
 
-      <section class="case-section case-columns">
-        <p class="case-label">02 · SYNTHESIS</p>
-        <div class="case-content">
-          <h2>把现场现象从“AI 答错了”推进到结构性问题。</h2>
-          <div class="insight-list">
-            <article class="insight-row">
-              <span class="num">01</span>
-              <div>
-                <h3>用户说生活任务，系统依赖商品 taxonomy。</h3>
-                <p>“浴室好物”“这个是干什么的”无法稳定映射到内部品类和属性。</p>
-              </div>
-            </article>
-            <article class="insight-row">
-              <span class="num">02</span>
-              <div>
-                <h3>用户习惯先拍照，再决定要问什么。</h3>
-                <p>预设问题先于识别结果出现，反而要求用户提前理解系统的操作方式。</p>
-              </div>
-            </article>
-            <article class="insight-row">
-              <span class="num">03</span>
-              <div>
-                <h3>识别商品只是起点，不是完整服务。</h3>
-                <p>用户还需要用途、适配性、比较、位置和取货信息，并在失败时知道下一步。</p>
-              </div>
-            </article>
+      <section class="case-section shopping-section shopping-observed">
+        <div class="shopping-section-head shopping-section-head-wide">
+          <p class="case-label">02 · WHAT HAPPENED</p>
+          <h2>用户说的是生活问题，系统听的是商品字段。</h2>
+          <p>“浴室好物”“这个是干什么的”都不是标准品类名。下面从 27 个现场 case 中选取 3 个代表性片段；完整记录可在调研报告中查看。</p>
+        </div>
+        <div class="shopping-evidence-wall">
+          <div class="shopping-case-browser" data-shopping-cases>
+            <div class="shopping-case-nav" role="tablist" aria-label="代表性研究案例">
+              <button
+                type="button"
+                id="shopping-case-tab-01"
+                role="tab"
+                aria-selected="true"
+                aria-controls="shopping-case-panel-01"
+                data-shopping-case="01"
+              >01 · 生活语言</button>
+              <button
+                type="button"
+                id="shopping-case-tab-02"
+                role="tab"
+                aria-selected="false"
+                aria-controls="shopping-case-panel-02"
+                tabindex="-1"
+                data-shopping-case="02"
+              >02 · 相机任务</button>
+              <button
+                type="button"
+                id="shopping-case-tab-03"
+                role="tab"
+                aria-selected="false"
+                aria-controls="shopping-case-panel-03"
+                tabindex="-1"
+                data-shopping-case="03"
+              >03 · 空间判断</button>
+            </div>
+            <div class="shopping-case-panels">
+              <article
+                class="shopping-case-panel"
+                id="shopping-case-panel-01"
+                role="tabpanel"
+                aria-labelledby="shopping-case-tab-01"
+                data-shopping-case-panel="01"
+              >
+                <div class="shopping-case-media">
+                  <a
+                    class="shopping-evidence-image"
+                    href="assets/shopping/research/life-language.jpg"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="打开生活语言研究证据原图"
+                  >
+                    <img src="assets/shopping/research/life-language.jpg" alt="用户使用生活化语言提问的现场证据" />
+                  </a>
+                </div>
+                <div class="shopping-case-copy">
+                  <span class="mono">CASE 01 / 27</span>
+                  <h3>生活语言无法直接映射</h3>
+                  <p>“浴室好物”描述的是生活场景，不是系统里的标准商品分类。用户已经表达了需求，系统却仍在等待关键词。</p>
+                  <small>点击图片可查看原始研究证据。</small>
+                </div>
+              </article>
+              <article
+                class="shopping-case-panel"
+                id="shopping-case-panel-02"
+                role="tabpanel"
+                aria-labelledby="shopping-case-tab-02"
+                data-shopping-case-panel="02"
+                hidden
+              >
+                <div class="shopping-case-media">
+                  <div class="shopping-case-pair">
+                    <figure>
+                      <a
+                        class="shopping-evidence-image"
+                        href="assets/shopping/research/preset-questions-before-photo.jpg"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="打开拍摄前预设问题入口原图"
+                      >
+                        <img src="assets/shopping/research/preset-questions-before-photo.jpg" alt="拍摄前位于左下角的三个预设问题入口" />
+                      </a>
+                      <figcaption>拍摄前：三个预设入口普遍被忽视</figcaption>
+                    </figure>
+                    <figure>
+                      <a
+                        class="shopping-evidence-image"
+                        href="assets/shopping/research/photo-first.jpg"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="打开拍摄后输入界面原图"
+                      >
+                        <img src="assets/shopping/research/photo-first.jpg" alt="拍摄后没有自动推荐问题的输入界面" />
+                      </a>
+                      <figcaption>拍摄后：没有根据识别结果继续推荐问题</figcaption>
+                    </figure>
+                  </div>
+                </div>
+                <div class="shopping-case-copy">
+                  <span class="mono">CASE 02 / 27</span>
+                  <h3>引导存在，却没有降低提问成本</h3>
+                  <p>拍摄前的预设入口没有进入用户视线；拍摄后系统也没有根据识别结果提供下一步问题，用户仍要自己想“接下来该问什么”。</p>
+                  <small>点击任一图片可查看原始研究证据。</small>
+                </div>
+              </article>
+              <article
+                class="shopping-case-panel"
+                id="shopping-case-panel-03"
+                role="tabpanel"
+                aria-labelledby="shopping-case-tab-03"
+                data-shopping-case-panel="03"
+                hidden
+              >
+                <div class="shopping-case-media">
+                  <a
+                    class="shopping-evidence-image"
+                    href="assets/shopping/research/context-clue.jpg"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="打开空间判断研究证据原图"
+                  >
+                    <img src="assets/shopping/research/context-clue.jpg" alt="用户记录尺寸并判断商品是否适合真实空间" />
+                  </a>
+                </div>
+                <div class="shopping-case-copy">
+                  <span class="mono">CASE 03 / 27</span>
+                  <h3>判断延伸到真实空间</h3>
+                  <p>用户一边记录尺寸，一边比较位置和使用情境。识别商品之后，真正的问题是它是否适合自己的家。</p>
+                  <small>点击图片可查看原始研究证据。</small>
+                </div>
+              </article>
+            </div>
           </div>
-          <div class="evidence-frame contain">
-            <img src="assets/shopping/journey.png" alt="AI Shopping Buddy 用户旅程与 AI 支持机会" />
-          </div>
+          <article class="shopping-evidence-pattern">
+            <span class="mono">REPEATED PATTERN</span>
+            <blockquote><span>这是什么？</span><span>怎么用？</span><span>在哪里拿到？</span></blockquote>
+            <p>问题会从识别商品继续延伸到用途、适配和取货，单次回答并不是任务终点。</p>
+          </article>
         </div>
       </section>
 
-      <section class="case-section case-columns">
-        <p class="case-label">03 · DESIGN RESPONSE</p>
-        <div class="case-content">
-          <h2>让 AI 跟随用户当前任务，而不是让用户适应系统入口。</h2>
-          <div class="decision-grid">
-            <article class="decision">
-              <span class="mono">CAMERA FIRST</span>
-              <h3>拍摄 → 识别 → 围绕结果提问</h3>
-              <p>移除相机页中竞争注意力的预设问题，把输入建立在已识别商品之上。</p>
-            </article>
-            <article class="decision">
-              <span class="mono">EXPLAIN WHEN NEEDED</span>
-              <h3>告诉用户为什么拍价签更准确</h3>
-              <p>主流程保持轻量，通过 Info 弹窗解释识别依据和正确拍摄方式。</p>
-            </article>
-            <article class="decision">
-              <span class="mono">GRACEFUL HANDOFF</span>
-              <h3>AI 无法解决时，给出可执行的人工出口</h3>
-              <p>答案不满意或超出能力范围时，引导顾客寻找可识别的门店员工。</p>
-            </article>
-            <article class="decision">
-              <span class="mono">STATE CLARITY</span>
-              <h3>统一语音、键盘和多行输入状态</h3>
-              <p>把不同输入方式组织为连续状态，而不是互不相关的页面片段。</p>
-            </article>
-          </div>
+      <section class="case-section shopping-section shopping-synthesis">
+        <div class="shopping-section-head shopping-section-head-wide">
+          <p class="case-label">03 · SYNTHESIS</p>
+          <h2>识别商品只是起点，用户需要完成的是一条连续任务。</h2>
+          <p>我把现场观察整理成一条门店旅程：从发现、理解和判断，到购买与取货，每个节点都可能需要 AI 支持或人工协助。</p>
+        </div>
+        <figure class="shopping-journey-frame">
+          <img src="assets/shopping/research/journey.png" alt="AI Shopping Buddy 用户旅程与 AI 支持机会" />
+          <figcaption>研究洞察被整理成一条门店旅程：每个行为节点对应 AI 支持，人工协助贯穿全程。</figcaption>
+        </figure>
+      </section>
+
+      <section class="case-section shopping-section shopping-shift">
+        <div class="shopping-section-head">
+          <p class="case-label">04 · DESIGN SHIFT</p>
+          <h2>设计重点不是增加更多 AI 入口，而是让每一步都接得上。</h2>
+        </div>
+        <div class="shopping-shift-line">
+          <article>
+            <span class="mono">01 · 看到</span>
+            <strong>有些商品识别错了，有些问题没有回答。</strong>
+          </article>
+          <article>
+            <span class="mono">02 · 理解</span>
+            <strong>用户需要的是确认商品、理解用途、判断是否适合，再知道下一步去哪里。</strong>
+          </article>
+          <article>
+            <span class="mono">03 · 转向</span>
+            <strong>设计重点不是增加更多 AI 入口，而是让拍摄、提问、结果和人工服务接得上。</strong>
+          </article>
         </div>
       </section>
 
-      <section class="case-section case-columns">
-        <p class="case-label">04 · OUTCOME</p>
-        <div class="case-content">
-          <h2>形成研究报告、完整用户旅程与下一轮设计方向。</h2>
-          <p>
-            我完成了现场素材整理、case 编码与关键问题聚类，并将顾客从进入门店、表达需求、
-            识别商品到购买决策的路径整理为 User Journey。后续交互方案围绕拍照优先、
-            解释性引导和人工服务兜底继续迭代。
-          </p>
-          <div class="disclosure">
-            当前证据支持研究与设计探索已经形成；团队最终采用、开发上线和业务影响仍待验证。
-          </div>
+      <section class="case-section shopping-section shopping-response">
+        <div class="shopping-section-head">
+          <p class="case-label">05 · DESIGN RESPONSE</p>
+          <h2>相机页先拍再问；解释和人工出口只在需要时出现。</h2>
+          <p>我没有把所有帮助同时堆进主界面，而是按照用户当下最需要完成的动作，逐步提供下一步。</p>
+        </div>
+        <div class="shopping-design-showcase">
+          <article>
+            <figure><img src="assets/shopping/design/design-suggested-questions.png" alt="商品识别后显示相关问题建议的设计稿" /></figure>
+            <div class="shopping-design-caption">
+              <span class="mono">01 · AFTER RECOGNITION</span>
+              <h3>识别后再给问题建议</h3>
+              <p>移除相机页里竞争注意力的预设问题，把建议建立在已识别商品之上。</p>
+            </div>
+          </article>
+          <article>
+            <figure><img src="assets/shopping/design/design-label-guidance.png" alt="解释拍摄商品价签原因的设计稿" /></figure>
+            <div class="shopping-design-caption">
+              <span class="mono">02 · EXPLAIN WHEN NEEDED</span>
+              <h3>需要时再解释为什么拍价签更准确</h3>
+              <p>主流程保持轻量，Info 弹窗再说明识别依据和正确拍摄方式。</p>
+            </div>
+          </article>
+          <article>
+            <figure><img src="assets/shopping/design/design-human-handoff.png" alt="AI 回答后提供黄色制服员工帮助入口的设计稿" /></figure>
+            <div class="shopping-design-caption">
+              <span class="mono">03 · HUMAN HANDOFF</span>
+              <h3>AI 没解决时，下一步是找到真实员工</h3>
+              <p>不把 AI 包装成万能入口；回答不满意或超出能力范围时，明确引导至黄色制服员工。</p>
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -135,6 +302,6 @@
     <footer class="footer">
       <div class="shell"><a href="content-space.html">Next · Content Space →</a></div>
     </footer>
-    <script src="main.js"></script>
+    <script src="main.js?v=20261009-2"></script>
   </body>
 </html>
