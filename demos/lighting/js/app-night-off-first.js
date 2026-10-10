@@ -121,7 +121,6 @@
       img.alt = p.name + ' ' + (i === 0 ? '场景' : i === 1 ? '开灯' : '关灯');
       img.decoding = 'async';
       if (i === 0) {
-        img.src = src;
         img.classList.add('active');
       }
       wrap.appendChild(img);
@@ -182,10 +181,19 @@
     swLight.setAttribute('aria-disabled', mode !== 'night' ? 'true' : 'false');
   }
 
+  function cardIsNearViewport(card) {
+    if (!viewCompare.classList.contains('active')) return false;
+    var viewport = cmpPages.parentElement.getBoundingClientRect();
+    var bounds = card.getBoundingClientRect();
+    var margin = viewport.height * 0.25;
+    return bounds.bottom >= viewport.top - margin && bounds.top <= viewport.bottom + margin;
+  }
+
   function updateImages(requestId) {
     var target = mode === 'day' ? 0 : (light === 'on' ? 1 : 2);
     var cards = document.querySelectorAll('#cmpPages .product-card');
     cards.forEach(function (card) {
+      if (!cardIsNearViewport(card)) return;
       var imgs = card.querySelectorAll('.media img');
       var targetImg = imgs[target];
       var reveal = function () {
@@ -250,6 +258,19 @@
     applyState('day', 'on');
   });
   btnBack.addEventListener('click', goPlp);
+
+  var scrollUpdatePending = false;
+  function scheduleVisibleImageUpdate() {
+    if (scrollUpdatePending) return;
+    scrollUpdatePending = true;
+    window.setTimeout(function () {
+      scrollUpdatePending = false;
+      updateImages(stateRequest);
+    }, 0);
+  }
+
+  cmpPages.parentElement.addEventListener('scroll', scheduleVisibleImageUpdate, { passive: true });
+  window.addEventListener('resize', scheduleVisibleImageUpdate);
 
   // Day / Night 左半边 = night，右半边 = day
   swMode.querySelectorAll('.half').forEach(function (h) {

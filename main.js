@@ -1,5 +1,34 @@
 const pageParams = new URLSearchParams(window.location.search);
 
+const deferredImages = new Set(document.querySelectorAll("img[data-src]"));
+let deferredImageCheckPending = false;
+
+const checkDeferredImages = () => {
+  deferredImageCheckPending = false;
+  const preloadMargin = window.innerHeight;
+
+  deferredImages.forEach((image) => {
+    if (image.offsetParent === null) return;
+    const bounds = image.getBoundingClientRect();
+    if (bounds.bottom < -preloadMargin || bounds.top > window.innerHeight + preloadMargin) return;
+
+    image.src = image.dataset.src;
+    image.removeAttribute("data-src");
+    deferredImages.delete(image);
+  });
+};
+
+const scheduleDeferredImageCheck = () => {
+  if (deferredImageCheckPending || !deferredImages.size) return;
+  deferredImageCheckPending = true;
+  window.setTimeout(checkDeferredImages, 0);
+};
+
+window.addEventListener("scroll", scheduleDeferredImageCheck, { passive: true });
+window.addEventListener("resize", scheduleDeferredImageCheck);
+document.addEventListener("click", scheduleDeferredImageCheck);
+scheduleDeferredImageCheck();
+
 if (pageParams.get("heroFont") === "pingfang") {
   document.querySelectorAll("a[href]").forEach((link) => {
     const url = new URL(link.href, window.location.href);
@@ -77,7 +106,7 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
     demoStarted = true;
     demoLoading.hidden = false;
     demoPlaceholder.dataset.hidden = "true";
-    demoFrame.src = "demos/lighting/index.html?v=20261010-3";
+    demoFrame.src = "demos/lighting/index.html?v=20261010-4";
   };
 
   demoLaunchers.forEach((button) => button.addEventListener("click", startDemo));
