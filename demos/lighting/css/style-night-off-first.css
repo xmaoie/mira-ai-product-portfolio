@@ -273,6 +273,35 @@ body {
 .half.left  { left: 0; }
 .half.right { right: 0; }
 
+.view.state-loading .sw {
+  opacity: .55;
+  pointer-events: none;
+}
+
+.state-status {
+  position: absolute;
+  z-index: 20;
+  top: 142px;
+  left: 50%;
+  margin: 0;
+  padding: 6px 10px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(17, 17, 17, .82);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.state-status.is-error {
+  background: #b00020;
+}
+
+.state-status[hidden] {
+  display: none;
+}
+
 /* Night（dark）选中态更醒目：白 pill + 黑图标；未选中图标保持半透明白 */
 .app.night .sw svg .sw-pill rect { fill: #ffffff; }
 .app.night .sw[data-v="day"] .i-r,

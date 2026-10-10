@@ -94,6 +94,7 @@
   var btnBack   = document.getElementById('btnBack');
   var swMode    = document.getElementById('swMode');
   var swLight   = document.getElementById('swLight');
+  var stateStatus = document.getElementById('stateStatus');
 
   /* ---------- 状态 ---------- */
   var mode  = 'day';   // day | night
@@ -185,54 +186,122 @@
     if (!viewCompare.classList.contains('active')) return false;
     var viewport = cmpPages.parentElement.getBoundingClientRect();
     var bounds = card.getBoundingClientRect();
-    var margin = viewport.height * 0.25;
+    var margin = viewport.height * 0.5;
     return bounds.bottom >= viewport.top - margin && bounds.top <= viewport.bottom + margin;
   }
 
-  function updateImages(requestId) {
-    var target = mode === 'day' ? 0 : (light === 'on' ? 1 : 2);
-    var cards = document.querySelectorAll('#cmpPages .product-card');
-    cards.forEach(function (card) {
-      if (!cardIsNearViewport(card)) return;
-      var imgs = card.querySelectorAll('.media img');
-      var targetImg = imgs[target];
-      var reveal = function () {
-        if (requestId !== stateRequest) return;
-        imgs.forEach(function (img, i) {
-          img.classList.toggle('active', i === target);
-        });
+  function getNearCards() {
+    return Array.prototype.filter.call(
+      document.querySelectorAll('#cmpPages .product-card'),
+      cardIsNearViewport
+    );
+  }
+
+  function getTargetIndex(nextMode, nextLight) {
+    return nextMode === 'day' ? 0 : (nextLight === 'on' ? 1 : 2);
+  }
+
+  function waitForImage(img) {
+    if (!img.getAttribute('src')) {
+      img.src = img.dataset.src;
+    }
+
+    return new Promise(function (resolve, reject) {
+      var finish = function () {
+        if (typeof img.decode === 'function') {
+          img.decode().then(resolve, resolve);
+        } else {
+          resolve();
+        }
       };
 
-      if (!targetImg.getAttribute('src')) {
-        targetImg.src = targetImg.dataset.src;
+      if (img.complete) {
+        if (img.naturalWidth) finish();
+        else reject(new Error('Failed to load ' + img.dataset.src));
+        return;
       }
-      if (targetImg.complete && targetImg.naturalWidth) {
-        if (typeof targetImg.decode === 'function') {
-          targetImg.decode().then(reveal, reveal);
-        } else {
-          reveal();
-        }
-      } else {
-        targetImg.addEventListener('load', reveal, { once: true });
-        targetImg.addEventListener('error', function () {
-          console.error('Failed to load lighting state image:', targetImg.dataset.src);
-        }, { once: true });
-      }
+
+      img.addEventListener('load', finish, { once: true });
+      img.addEventListener('error', function () {
+        reject(new Error('Failed to load ' + img.dataset.src));
+      }, { once: true });
     });
   }
 
-  function commitState(nextMode, nextLight, requestId) {
-    if (requestId !== stateRequest) return;
-    mode = nextMode;
-    light = nextLight;
-    syncTheme();
-    updateImages(requestId);
+  function activateImages(cards, target) {
+    cards.forEach(function (card) {
+      card.querySelectorAll('.media img').forEach(function (img, i) {
+        img.classList.toggle('active', i === target);
+      });
+    });
+  }
+
+  function setStateLoading(isLoading) {
+    viewCompare.classList.toggle('state-loading', isLoading);
+    viewCompare.setAttribute('aria-busy', isLoading ? 'true' : 'false');
+    stateStatus.classList.remove('is-error');
+    stateStatus.textContent = isLoading ? '正在切换灯光…' : '';
+    stateStatus.hidden = !isLoading;
+  }
+
+  function showStateError(error) {
+    viewCompare.classList.remove('state-loading');
+    viewCompare.setAttribute('aria-busy', 'false');
+    stateStatus.classList.add('is-error');
+    stateStatus.textContent = '图片加载失败，请重试';
+    stateStatus.hidden = false;
+    console.error(error);
+  }
+
+  function preloadNearStates(cards) {
+    cards.forEach(function (card) {
+      var imgs = card.querySelectorAll('.media img');
+      [2, 1, 0].forEach(function (index) {
+        waitForImage(imgs[index]).catch(function (error) {
+          console.error(error);
+        });
+      });
+    });
+  }
+
+  function updateImages(requestId) {
+    var cards = getNearCards();
+    var target = getTargetIndex(mode, light);
+    var targetImages = cards.map(function (card) {
+      return card.querySelectorAll('.media img')[target];
+    });
+
+    Promise.all(targetImages.map(waitForImage)).then(function () {
+      if (requestId !== stateRequest) return;
+      activateImages(cards, target);
+      preloadNearStates(cards);
+    }).catch(function (error) {
+      if (requestId === stateRequest) showStateError(error);
+    });
   }
 
   function applyState(nextMode, nextLight, onCommitted) {
     var requestId = ++stateRequest;
-    commitState(nextMode, nextLight, requestId);
-    if (onCommitted) onCommitted();
+    var cards = getNearCards();
+    var target = getTargetIndex(nextMode, nextLight);
+    var targetImages = cards.map(function (card) {
+      return card.querySelectorAll('.media img')[target];
+    });
+
+    if (cards.length) setStateLoading(true);
+
+    Promise.all(targetImages.map(waitForImage)).then(function () {
+      if (requestId !== stateRequest) return;
+      mode = nextMode;
+      light = nextLight;
+      syncTheme();
+      activateImages(cards, target);
+      setStateLoading(false);
+      preloadNearStates(cards);
+      if (onCommitted) onCommitted();
+    }).catch(function (error) {
+      if (requestId === stateRequest) showStateError(error);
+    });
   }
 
   /* ---------- 视图切换 ---------- */
