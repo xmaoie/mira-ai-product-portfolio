@@ -197,21 +197,39 @@
     );
   }
 
+  function getVisibleCards() {
+    if (!viewCompare.classList.contains('active')) return [];
+    var viewport = cmpPages.parentElement.getBoundingClientRect();
+    return Array.prototype.filter.call(
+      document.querySelectorAll('#cmpPages .product-card'),
+      function (card) {
+        var bounds = card.getBoundingClientRect();
+        return bounds.bottom > viewport.top && bounds.top < viewport.bottom;
+      }
+    );
+  }
+
   function getTargetIndex(nextMode, nextLight) {
     return nextMode === 'day' ? 0 : (nextLight === 'on' ? 1 : 2);
   }
 
-  function waitForImage(img) {
+  function waitForImage(img, priority) {
+    if (priority) img.fetchPriority = priority;
+    if (img.dataset.ready === 'true') return Promise.resolve();
     if (!img.getAttribute('src')) {
       img.src = img.dataset.src;
     }
 
     return new Promise(function (resolve, reject) {
+      var markReady = function () {
+        img.dataset.ready = 'true';
+        resolve();
+      };
       var finish = function () {
         if (typeof img.decode === 'function') {
-          img.decode().then(resolve, resolve);
+          img.decode().then(markReady, markReady);
         } else {
-          resolve();
+          markReady();
         }
       };
 
@@ -257,10 +275,33 @@
     cards.forEach(function (card) {
       var imgs = card.querySelectorAll('.media img');
       [2, 1, 0].forEach(function (index) {
-        waitForImage(imgs[index]).catch(function (error) {
+        waitForImage(imgs[index], 'low').catch(function (error) {
           console.error(error);
         });
       });
+    });
+  }
+
+  function preloadInitialStates() {
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll('#cmpPages .product-card'),
+      0,
+      8
+    );
+    var groups = [0, 2, 1].map(function (target) {
+      return cards.map(function (card) {
+        return card.querySelectorAll('.media img')[target];
+      });
+    });
+
+    groups.reduce(function (sequence, images) {
+      return sequence.then(function () {
+        return Promise.all(images.map(function (img) {
+          return waitForImage(img, 'low');
+        }));
+      });
+    }, Promise.resolve()).catch(function (error) {
+      console.error(error);
     });
   }
 
@@ -271,7 +312,9 @@
       return card.querySelectorAll('.media img')[target];
     });
 
-    Promise.all(targetImages.map(waitForImage)).then(function () {
+    Promise.all(targetImages.map(function (img) {
+      return waitForImage(img, 'high');
+    })).then(function () {
       if (requestId !== stateRequest) return;
       activateImages(cards, target);
       preloadNearStates(cards);
@@ -282,7 +325,7 @@
 
   function applyState(nextMode, nextLight, onCommitted) {
     var requestId = ++stateRequest;
-    var cards = getNearCards();
+    var cards = getVisibleCards();
     var target = getTargetIndex(nextMode, nextLight);
     var targetImages = cards.map(function (card) {
       return card.querySelectorAll('.media img')[target];
@@ -290,14 +333,16 @@
 
     if (cards.length) setStateLoading(true);
 
-    Promise.all(targetImages.map(waitForImage)).then(function () {
+    Promise.all(targetImages.map(function (img) {
+      return waitForImage(img, 'high');
+    })).then(function () {
       if (requestId !== stateRequest) return;
       mode = nextMode;
       light = nextLight;
       syncTheme();
       activateImages(cards, target);
       setStateLoading(false);
-      preloadNearStates(cards);
+      preloadNearStates(getNearCards());
       if (onCommitted) onCommitted();
     }).catch(function (error) {
       if (requestId === stateRequest) showStateError(error);
@@ -379,5 +424,6 @@
   /* ---------- 启动 ---------- */
   render();
   applyHash();
+  window.setTimeout(preloadInitialStates, 100);
   window.addEventListener('hashchange', applyHash);
 })();
