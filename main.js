@@ -100,19 +100,35 @@ const demoLaunchers = document.querySelectorAll("[data-demo-launch]");
 
 if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
   let demoStarted = false;
+  let demoLoadStarted = false;
+  let demoReady = false;
+
+  const ensureDemoLoaded = () => {
+    if (demoLoadStarted) return;
+    demoLoadStarted = true;
+    demoFrame.src = "demos/lighting/index.html?v=20261010-5";
+  };
 
   const startDemo = () => {
     if (demoStarted) return;
     demoStarted = true;
-    demoLoading.hidden = false;
     demoPlaceholder.dataset.hidden = "true";
-    demoFrame.src = "demos/lighting/index.html?v=20261010-4";
+    demoLoading.hidden = demoReady;
+    ensureDemoLoaded();
   };
 
   demoLaunchers.forEach((button) => button.addEventListener("click", startDemo));
   demoFrame.addEventListener("load", () => {
+    demoReady = true;
     demoLoading.hidden = true;
   });
+
+  const preloadDemo = () => {
+    window.setTimeout(ensureDemoLoaded, 500);
+  };
+
+  if (document.readyState === "complete") preloadDemo();
+  else window.addEventListener("load", preloadDemo, { once: true });
 }
 
 const observer = new IntersectionObserver(
