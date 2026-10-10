@@ -106,7 +106,7 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
   const ensureDemoLoaded = () => {
     if (demoLoadStarted) return;
     demoLoadStarted = true;
-    demoFrame.src = "demos/lighting/index.html?v=20261010-7";
+    demoFrame.src = "demos/lighting/index.html?v=20261010-8";
   };
 
   const startDemo = () => {
@@ -123,12 +123,7 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
     demoLoading.hidden = true;
   });
 
-  const preloadDemo = () => {
-    window.setTimeout(ensureDemoLoaded, 500);
-  };
-
-  if (document.readyState === "complete") preloadDemo();
-  else window.addEventListener("load", preloadDemo, { once: true });
+  window.setTimeout(ensureDemoLoaded, 0);
 }
 
 const observer = new IntersectionObserver(

@@ -284,15 +284,24 @@
 
   function preloadInitialStates() {
     var cards = Array.prototype.slice.call(
-      document.querySelectorAll('#cmpPages .product-card'),
-      0,
-      8
+      document.querySelectorAll('#cmpPages .product-card')
     );
-    var groups = [0, 2, 1].map(function (target) {
-      return cards.map(function (card) {
-        return card.querySelectorAll('.media img')[target];
-      });
-    });
+    var firstCards = cards.slice(0, 8);
+    var remainingCards = cards.slice(8);
+    var getImages = function (items, targets) {
+      return items.reduce(function (images, card) {
+        var cardImages = card.querySelectorAll('.media img');
+        targets.forEach(function (target) {
+          images.push(cardImages[target]);
+        });
+        return images;
+      }, []);
+    };
+    var groups = [
+      getImages(firstCards, [0, 2]),
+      getImages(firstCards, [1]),
+      getImages(remainingCards, [0, 2, 1])
+    ];
 
     groups.reduce(function (sequence, images) {
       return sequence.then(function () {
@@ -424,6 +433,6 @@
   /* ---------- 启动 ---------- */
   render();
   applyHash();
-  window.setTimeout(preloadInitialStates, 100);
+  preloadInitialStates();
   window.addEventListener('hashchange', applyHash);
 })();
