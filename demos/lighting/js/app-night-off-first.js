@@ -119,7 +119,6 @@
       var img = document.createElement('img');
       img.dataset.src = src;
       img.alt = p.name + ' ' + (i === 0 ? '场景' : i === 1 ? '开灯' : '关灯');
-      img.loading = 'lazy';
       img.decoding = 'async';
       if (i === 0) {
         img.src = src;
@@ -218,11 +217,8 @@
     if (requestId !== stateRequest) return;
     mode = nextMode;
     light = nextLight;
-    requestAnimationFrame(function () {
-      if (requestId !== stateRequest) return;
-      syncTheme();
-      updateImages(requestId);
-    });
+    syncTheme();
+    updateImages(requestId);
   }
 
   function applyState(nextMode, nextLight, onCommitted) {
