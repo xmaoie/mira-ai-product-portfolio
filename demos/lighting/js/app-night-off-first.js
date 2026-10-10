@@ -100,7 +100,6 @@
   var light = 'on';    // on  | off
   var hasEnteredNight = false;
   var stateRequest = 0;
-  var imageReady = Object.create(null);
 
   /* ---------- 工具 ---------- */
   function el(tag, cls) {
@@ -118,10 +117,14 @@
     var wrap = el('div', 'media');
     [p.day, p.nightOn, p.nightOff].forEach(function (src, i) {
       var img = document.createElement('img');
-      img.src = src;
+      img.dataset.src = src;
       img.alt = p.name + ' ' + (i === 0 ? '场景' : i === 1 ? '开灯' : '关灯');
       img.loading = 'lazy';
       img.decoding = 'async';
+      if (i === 0) {
+        img.src = src;
+        img.classList.add('active');
+      }
       wrap.appendChild(img);
     });
     return wrap;
@@ -166,43 +169,6 @@
     });
   }
 
-  function loadImage(src) {
-    if (!src) return Promise.resolve();
-    if (imageReady[src]) return imageReady[src];
-
-    imageReady[src] = new Promise(function (resolve) {
-      var img = new Image();
-      var finish = function () {
-        if (typeof img.decode === 'function') {
-          img.decode().then(resolve, resolve);
-        } else {
-          resolve();
-        }
-      };
-      img.onload = finish;
-      img.onerror = resolve;
-      img.decoding = 'async';
-      img.src = src;
-      if (img.complete && img.naturalWidth) finish();
-    });
-
-    return imageReady[src];
-  }
-
-  function stateSources(nextMode, nextLight) {
-    var key = nextMode === 'day' ? 'day' : nextLight === 'on' ? 'nightOn' : 'nightOff';
-    return PRODUCTS.map(function (p) { return p[key]; });
-  }
-
-  function preloadState(nextMode, nextLight) {
-    return Promise.all(stateSources(nextMode, nextLight).map(loadImage));
-  }
-
-  function preload() {
-    // 先准备首屏状态；其余状态在用户切换前再准备，避免启动时一次解码全部素材。
-    preloadState('day', 'on');
-  }
-
   /* ---------- 状态 → UI ---------- */
   function syncTheme() {
     // 整页 dark：mode === night 时 .app 加 night，所有 CSS 变量联动
@@ -217,14 +183,34 @@
     swLight.setAttribute('aria-disabled', mode !== 'night' ? 'true' : 'false');
   }
 
-  function updateImages() {
+  function updateImages(requestId) {
     var target = mode === 'day' ? 0 : (light === 'on' ? 1 : 2);
     var cards = document.querySelectorAll('#cmpPages .product-card');
     cards.forEach(function (card) {
       var imgs = card.querySelectorAll('.media img');
-      imgs.forEach(function (img, i) {
-        img.classList.toggle('active', i === target);
-      });
+      var targetImg = imgs[target];
+      var reveal = function () {
+        if (requestId !== stateRequest) return;
+        imgs.forEach(function (img, i) {
+          img.classList.toggle('active', i === target);
+        });
+      };
+
+      if (!targetImg.getAttribute('src')) {
+        targetImg.src = targetImg.dataset.src;
+      }
+      if (targetImg.complete && targetImg.naturalWidth) {
+        if (typeof targetImg.decode === 'function') {
+          targetImg.decode().then(reveal, reveal);
+        } else {
+          reveal();
+        }
+      } else {
+        targetImg.addEventListener('load', reveal, { once: true });
+        targetImg.addEventListener('error', function () {
+          console.error('Failed to load lighting state image:', targetImg.dataset.src);
+        }, { once: true });
+      }
     });
   }
 
@@ -235,17 +221,14 @@
     requestAnimationFrame(function () {
       if (requestId !== stateRequest) return;
       syncTheme();
-      updateImages();
+      updateImages(requestId);
     });
   }
 
   function applyState(nextMode, nextLight, onCommitted) {
     var requestId = ++stateRequest;
-    preloadState(nextMode, nextLight).then(function () {
-      if (requestId !== stateRequest) return;
-      commitState(nextMode, nextLight, requestId);
-      if (onCommitted) onCommitted();
-    });
+    commitState(nextMode, nextLight, requestId);
+    if (onCommitted) onCommitted();
   }
 
   /* ---------- 视图切换 ---------- */
@@ -308,7 +291,6 @@
   }
 
   /* ---------- 启动 ---------- */
-  preload();
   render();
   applyHash();
   window.addEventListener('hashchange', applyHash);

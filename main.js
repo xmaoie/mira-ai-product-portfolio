@@ -77,7 +77,7 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
     demoStarted = true;
     demoLoading.hidden = false;
     demoPlaceholder.dataset.hidden = "true";
-    demoFrame.src = "demos/lighting/index.html?v=20261007-1";
+    demoFrame.src = "demos/lighting/index.html?v=20261008-1";
   };
 
   demoLaunchers.forEach((button) => button.addEventListener("click", startDemo));
