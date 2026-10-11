@@ -106,7 +106,7 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
   const ensureDemoLoaded = () => {
     if (demoLoadStarted) return;
     demoLoadStarted = true;
-    demoFrame.src = "demos/lighting/index.html?v=20261010-8";
+    demoFrame.src = "demos/lighting/index.html?v=20261010-9";
   };
 
   const startDemo = () => {

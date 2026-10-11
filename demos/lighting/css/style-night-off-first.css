@@ -102,7 +102,7 @@ body {
   transition: background-color var(--theme-duration) ease, border-color var(--theme-duration) ease;
 }
 
-/* 图框：1:1 正方形，图片撑满（三张叠层，500ms crossfade） */
+/* 图框：1:1 正方形；每个状态使用一张 4×4 精灵图。 */
 .media {
   position: relative;
   width: 100%;
@@ -121,6 +121,18 @@ body {
   transition: opacity .5s ease, transform .5s ease;
 }
 .media img.active { opacity: 1; }
+.media img.sheet-image {
+  inset: auto;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  max-width: none;
+  object-fit: fill;
+  opacity: 1;
+  transform-origin: top left;
+  transition: none;
+}
 
 /* LERSTA 的历史场景图本身带有上下白边；只在卡片内放大内容，保留原图文件。 */
 .product-card[data-product="lersta"] .media img {

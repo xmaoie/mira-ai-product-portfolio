@@ -9,6 +9,13 @@
   'use strict';
 
   var PRODUCTS = window.LIGHTING_PRODUCTS || [];
+  var STATE_SHEETS = {
+    day: 'assets/sheets/day.jpg?v=20261010-9',
+    nightOn: 'assets/sheets/night-on.jpg?v=20261010-9',
+    nightOff: 'assets/sheets/night-off.jpg?v=20261010-9'
+  };
+  var sheetPromises = {};
+  var sheetReady = {};
   /* 16 款已审核通过的产品数据。 */
   /*
     {
@@ -113,19 +120,16 @@
     return '¥' + (Number.isInteger(n) ? n : n.toFixed(2));
   }
 
-  /* 图片层：0 = day · 1 = nightOn · 2 = nightOff */
-  function mediaEl(p) {
+  function mediaEl(p, index) {
     var wrap = el('div', 'media');
-    [p.day, p.nightOn, p.nightOff].forEach(function (src, i) {
-      var img = document.createElement('img');
-      img.dataset.src = src;
-      img.alt = p.name + ' ' + (i === 0 ? '场景' : i === 1 ? '开灯' : '关灯');
-      img.decoding = 'async';
-      if (i === 0) {
-        img.classList.add('active');
-      }
-      wrap.appendChild(img);
-    });
+    var img = document.createElement('img');
+    var column = index % 4;
+    var row = Math.floor(index / 4);
+    img.className = 'sheet-image';
+    img.alt = p.name + ' 场景';
+    img.decoding = 'async';
+    img.style.transform = 'translate(' + (-column * 25) + '%, ' + (-row * 25) + '%)';
+    wrap.appendChild(img);
     return wrap;
   }
 
@@ -146,10 +150,10 @@
   }
 
   /* 产品卡：上方 1:1 场景大图，下方稳定信息区（名称 / 简介 / 价格） */
-  function buildCmpCard(p) {
+  function buildCmpCard(p, index) {
     var card = el('article', 'product-card');
     card.dataset.product = p.slug;
-    card.appendChild(mediaEl(p));
+    card.appendChild(mediaEl(p, index));
     card.appendChild(infoEl(p, true));
     return card;
   }
@@ -163,8 +167,8 @@
       cmpPages.appendChild(empty);
       return;
     }
-    PRODUCTS.forEach(function (p) {
-      cmpPages.appendChild(buildCmpCard(p));
+    PRODUCTS.forEach(function (p, index) {
+      cmpPages.appendChild(buildCmpCard(p, index));
     });
   }
 
@@ -182,76 +186,9 @@
     swLight.setAttribute('aria-disabled', mode !== 'night' ? 'true' : 'false');
   }
 
-  function cardIsNearViewport(card) {
-    if (!viewCompare.classList.contains('active')) return false;
-    var viewport = cmpPages.parentElement.getBoundingClientRect();
-    var bounds = card.getBoundingClientRect();
-    var margin = viewport.height * 0.5;
-    return bounds.bottom >= viewport.top - margin && bounds.top <= viewport.bottom + margin;
-  }
-
-  function getNearCards() {
-    return Array.prototype.filter.call(
-      document.querySelectorAll('#cmpPages .product-card'),
-      cardIsNearViewport
-    );
-  }
-
-  function getVisibleCards() {
-    if (!viewCompare.classList.contains('active')) return [];
-    var viewport = cmpPages.parentElement.getBoundingClientRect();
-    return Array.prototype.filter.call(
-      document.querySelectorAll('#cmpPages .product-card'),
-      function (card) {
-        var bounds = card.getBoundingClientRect();
-        return bounds.bottom > viewport.top && bounds.top < viewport.bottom;
-      }
-    );
-  }
-
-  function getTargetIndex(nextMode, nextLight) {
-    return nextMode === 'day' ? 0 : (nextLight === 'on' ? 1 : 2);
-  }
-
-  function waitForImage(img, priority) {
-    if (priority) img.fetchPriority = priority;
-    if (img.dataset.ready === 'true') return Promise.resolve();
-    if (!img.getAttribute('src')) {
-      img.src = img.dataset.src;
-    }
-
-    return new Promise(function (resolve, reject) {
-      var markReady = function () {
-        img.dataset.ready = 'true';
-        resolve();
-      };
-      var finish = function () {
-        if (typeof img.decode === 'function') {
-          img.decode().then(markReady, markReady);
-        } else {
-          markReady();
-        }
-      };
-
-      if (img.complete) {
-        if (img.naturalWidth) finish();
-        else reject(new Error('Failed to load ' + img.dataset.src));
-        return;
-      }
-
-      img.addEventListener('load', finish, { once: true });
-      img.addEventListener('error', function () {
-        reject(new Error('Failed to load ' + img.dataset.src));
-      }, { once: true });
-    });
-  }
-
-  function activateImages(cards, target) {
-    cards.forEach(function (card) {
-      card.querySelectorAll('.media img').forEach(function (img, i) {
-        img.classList.toggle('active', i === target);
-      });
-    });
+  function getStateKey(nextMode, nextLight) {
+    if (nextMode === 'day') return 'day';
+    return nextLight === 'on' ? 'nightOn' : 'nightOff';
   }
 
   function setStateLoading(isLoading) {
@@ -271,87 +208,65 @@
     console.error(error);
   }
 
-  function preloadNearStates(cards) {
-    cards.forEach(function (card) {
-      var imgs = card.querySelectorAll('.media img');
-      [2, 1, 0].forEach(function (index) {
-        waitForImage(imgs[index], 'low').catch(function (error) {
-          console.error(error);
-        });
-      });
+  function preloadSheet(stateKey, priority) {
+    if (sheetReady[stateKey]) return Promise.resolve();
+    if (sheetPromises[stateKey]) return sheetPromises[stateKey];
+
+    sheetPromises[stateKey] = new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.decoding = 'async';
+      img.fetchPriority = priority || 'low';
+      img.onload = function () {
+        var markReady = function () {
+          sheetReady[stateKey] = true;
+          resolve();
+        };
+        if (typeof img.decode === 'function') {
+          img.decode().then(markReady, markReady);
+        } else {
+          markReady();
+        }
+      };
+      img.onerror = function () {
+        delete sheetPromises[stateKey];
+        reject(new Error('Failed to load ' + STATE_SHEETS[stateKey]));
+      };
+      img.src = STATE_SHEETS[stateKey];
     });
+
+    return sheetPromises[stateKey];
   }
 
   function preloadInitialStates() {
-    var cards = Array.prototype.slice.call(
-      document.querySelectorAll('#cmpPages .product-card')
-    );
-    var firstCards = cards.slice(0, 8);
-    var remainingCards = cards.slice(8);
-    var getImages = function (items, targets) {
-      return items.reduce(function (images, card) {
-        var cardImages = card.querySelectorAll('.media img');
-        targets.forEach(function (target) {
-          images.push(cardImages[target]);
-        });
-        return images;
-      }, []);
-    };
-    var groups = [
-      getImages(firstCards, [0, 2]),
-      getImages(firstCards, [1]),
-      getImages(remainingCards, [0, 2, 1])
-    ];
-
-    groups.reduce(function (sequence, images) {
-      return sequence.then(function () {
-        return Promise.all(images.map(function (img) {
-          return waitForImage(img, 'low');
-        }));
-      });
-    }, Promise.resolve()).catch(function (error) {
-      console.error(error);
-    });
+    preloadSheet('day', 'high').catch(console.error);
+    preloadSheet('nightOff', 'high').catch(console.error);
+    preloadSheet('nightOn', 'low').catch(console.error);
   }
 
-  function updateImages(requestId) {
-    var cards = getNearCards();
-    var target = getTargetIndex(mode, light);
-    var targetImages = cards.map(function (card) {
-      return card.querySelectorAll('.media img')[target];
-    });
-
-    Promise.all(targetImages.map(function (img) {
-      return waitForImage(img, 'high');
-    })).then(function () {
-      if (requestId !== stateRequest) return;
-      activateImages(cards, target);
-      preloadNearStates(cards);
-    }).catch(function (error) {
-      if (requestId === stateRequest) showStateError(error);
+  function activateSheet(stateKey) {
+    var source = STATE_SHEETS[stateKey];
+    var label = stateKey === 'day' ? '场景' : stateKey === 'nightOn' ? '开灯' : '关灯';
+    document.querySelectorAll('#cmpPages .product-card').forEach(function (card, index) {
+      var img = card.querySelector('.sheet-image');
+      if (img.getAttribute('src') !== source) img.src = source;
+      img.alt = PRODUCTS[index].name + ' ' + label;
     });
   }
 
   function applyState(nextMode, nextLight, onCommitted) {
     var requestId = ++stateRequest;
-    var cards = getVisibleCards();
-    var target = getTargetIndex(nextMode, nextLight);
-    var targetImages = cards.map(function (card) {
-      return card.querySelectorAll('.media img')[target];
-    });
+    var stateKey = getStateKey(nextMode, nextLight);
+    var needsLoading = !sheetReady[stateKey];
 
-    if (cards.length) setStateLoading(true);
+    if (viewCompare.classList.contains('active') && needsLoading) setStateLoading(true);
 
-    Promise.all(targetImages.map(function (img) {
-      return waitForImage(img, 'high');
-    })).then(function () {
+    preloadSheet(stateKey, 'high').then(function () {
       if (requestId !== stateRequest) return;
       mode = nextMode;
       light = nextLight;
       syncTheme();
-      activateImages(cards, target);
+      activateSheet(stateKey);
       setStateLoading(false);
-      preloadNearStates(getNearCards());
       if (onCommitted) onCommitted();
     }).catch(function (error) {
       if (requestId === stateRequest) showStateError(error);
@@ -381,19 +296,6 @@
     applyState('day', 'on');
   });
   btnBack.addEventListener('click', goPlp);
-
-  var scrollUpdatePending = false;
-  function scheduleVisibleImageUpdate() {
-    if (scrollUpdatePending) return;
-    scrollUpdatePending = true;
-    window.setTimeout(function () {
-      scrollUpdatePending = false;
-      updateImages(stateRequest);
-    }, 0);
-  }
-
-  cmpPages.parentElement.addEventListener('scroll', scheduleVisibleImageUpdate, { passive: true });
-  window.addEventListener('resize', scheduleVisibleImageUpdate);
 
   // Day / Night 左半边 = night，右半边 = day
   swMode.querySelectorAll('.half').forEach(function (h) {
