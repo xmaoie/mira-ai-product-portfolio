@@ -39,6 +39,35 @@ if (pageParams.get("heroFont") === "pingfang") {
   });
 }
 
+const heroComposition = document.querySelector("[data-hero-composition]");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (heroComposition && !reducedMotion.matches) {
+  const setCompositionShift = (x, y) => {
+    heroComposition.style.setProperty("--composition-a-x", `${x * -7}px`);
+    heroComposition.style.setProperty("--composition-a-y", `${y * 6}px`);
+    heroComposition.style.setProperty("--composition-b-x", `${x * 9}px`);
+    heroComposition.style.setProperty("--composition-b-y", `${y * -4}px`);
+    heroComposition.style.setProperty("--composition-c-x", `${x * -5}px`);
+    heroComposition.style.setProperty("--composition-c-y", `${y * -7}px`);
+    heroComposition.style.setProperty("--composition-d-x", `${x * 8}px`);
+    heroComposition.style.setProperty("--composition-d-y", `${y * 3}px`);
+    heroComposition.style.setProperty("--composition-e-x", `${x * -6}px`);
+    heroComposition.style.setProperty("--composition-e-y", `${y * 4}px`);
+    heroComposition.style.setProperty("--composition-f-x", `${x * 11}px`);
+    heroComposition.style.setProperty("--composition-f-y", `${y * -10}px`);
+  };
+
+  heroComposition.addEventListener("pointermove", (event) => {
+    const bounds = heroComposition.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    setCompositionShift(x, y);
+  });
+
+  heroComposition.addEventListener("pointerleave", () => setCompositionShift(0, 0));
+}
+
 document.querySelectorAll("[data-lamp-control]").forEach((control) => {
   const scope = control.closest("[data-lamp-preview]");
   if (!scope) return;
@@ -139,3 +168,64 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll(".fade-up").forEach((element) => observer.observe(element));
+
+const lightObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("light-visible");
+        lightObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
+
+document.querySelectorAll("[data-light-reveal]").forEach((element) => lightObserver.observe(element));
+
+const copyToClipboard = async (value) => {
+  try {
+    await navigator.clipboard.writeText(value);
+    return true;
+  } catch {
+    const temporaryField = document.createElement("textarea");
+    temporaryField.value = value;
+    temporaryField.setAttribute("readonly", "");
+    temporaryField.style.position = "fixed";
+    temporaryField.style.opacity = "0";
+    document.body.append(temporaryField);
+    temporaryField.select();
+    const copied = document.execCommand("copy");
+    temporaryField.remove();
+    return copied;
+  }
+};
+
+document.querySelectorAll("[data-copy]").forEach((button) => {
+  const status = button.querySelector("[data-copy-status]");
+  let resetTimer;
+
+  button.addEventListener("click", async () => {
+    const copied = await copyToClipboard(button.dataset.copy);
+    if (!copied || !status) return;
+
+    window.clearTimeout(resetTimer);
+    button.classList.add("copied");
+    status.textContent = "Copied";
+    resetTimer = window.setTimeout(() => {
+      button.classList.remove("copied");
+      status.textContent = "Copy";
+    }, 1800);
+  });
+});
+
+const siteNav = document.querySelector(".home-page .nav");
+
+if (siteNav) {
+  const updateNavState = () => {
+    siteNav.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+
+  updateNavState();
+  window.addEventListener("scroll", updateNavState, { passive: true });
+}

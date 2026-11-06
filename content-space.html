@@ -16,7 +16,7 @@
         document.documentElement.dataset.heroFont = "pingfang";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261023-1" />
+  <link rel="stylesheet" href="styles.css?v=20261103-1" />
   </head>
   <body class="case-page content-space-page">
     <nav class="nav">
@@ -42,20 +42,29 @@
           </div>
           <p class="case-deck">Content Space 是 IKEA 内容与业务团队使用的内容工作台，用于查找、管理和选择素材，并把正确内容带入模板与发布流程。</p>
         </div>
-        <figure class="content-space-hero-visual">
+    <figure class="content-space-hero-visual">
           <div class="content-browser-frame">
             <div class="content-browser-bar" aria-hidden="true">
               <span></span><span></span><span></span>
               <b>Content Space · Gallery</b>
             </div>
-            <img src="assets/content-space/gallery-overview-optimized.jpg" alt="Content Space Gallery 真实页面" decoding="async" />
+      <img src="assets/content-space/gallery-overview.png" alt="Content Space Gallery 真实页面" decoding="async" />
           </div>
-          <figcaption>真实 Gallery 页面。后续设计细节将在对应 workstream 中分别展开。</figcaption>
         </figure>
         <div class="tag-row content-space-hero-tags">
-          <span class="tag">Role · UX Design Intern</span>
-          <span class="tag">Context · Enterprise content tool</span>
-          <span class="tag">Scope · Feature workstreams</span>
+          <span class="tag">AI Search</span>
+          <span class="tag">Comment states</span>
+          <span class="tag">企业协作体验</span>
+        </div>
+        <div class="project-hero-role content-space-hero-role" aria-label="项目中的工作范围">
+          <div>
+            <span>我的工作</span>
+            <p>负责 AI Search 的交互概念、PDP Editor Comment 的状态设计，并参与关键流程的评审与迭代。</p>
+          </div>
+          <div>
+            <span>设计重点</span>
+            <p>把自然语言、字段状态和协作责任拆成可被看见、确认和继续推进的交互。</p>
+          </div>
         </div>
       </div>
     </header>
@@ -64,21 +73,20 @@
       <section class="case-section content-space-section content-context">
         <div class="content-space-section-head">
           <p class="case-label">01 · CONTEXT</p>
-          <h2>这三个小需求，都来自同一套内容工作流。</h2>
-          <p>我参与的不是整个 Content Space，而是其中三个 feature workstream。它们分别发生在找素材、组织 AI 推荐和配置模板的环节。</p>
+          <h2>同一套内容工具里，AI 搜索和评论看起来很不一样，难点却相同。</h2>
+          <p>我参与的是 Content Space 中的 feature workstreams，而不是整个产品。它们分别发生在找素材、把一句自然语言变成可操作条件，以及让团队围绕同一份内容协作的时候。</p>
         </div>
         <div class="content-capability-strip">
-          <span><strong>AI-assisted Search</strong><small>AI 搜索体验</small></span>
-          <span><strong>Tag Group Navigation</strong><small>标签组设计</small></span>
-          <span><strong>Future Price</strong><small>价格选项设计</small></span>
+          <span><strong>AI-assisted Search</strong><small>一句话如何变成可编辑的筛选</small></span>
+          <span><strong>PDP Editor Comment</strong><small>评论如何跨画布和面板保持一致</small></span>
+          <span><strong>Other Workstreams</strong><small>标签导航、价格选择与状态细节</small></span>
         </div>
       </section>
 
       <section class="case-section content-space-section content-feature-details">
         <div class="content-space-section-head">
           <p class="case-label">02 · SELECTED WORKSTREAMS</p>
-          <h2>每一个页面改动，都从界面细节追到底层规则。</h2>
-          <p>每个模块用真实页面和组件状态说明设计判断，不把三个需求继续压成文字总结。</p>
+          <h2>界面不是从功能名开始设计的，而是从“用户接下来怎么继续”开始。</h2>
         </div>
         <div class="content-feature-list">
           <article class="content-feature content-feature-gallery">
@@ -87,22 +95,113 @@
                 <span class="content-feature-index">CASE A</span>
                 <div><strong>AI-ASSISTED SEARCH</strong><span class="content-feature-cn">AI 搜索体验 · 对话与筛选</span></div>
               </div>
-              <h3>用户输入一句话后，AI 的判断应该变成可见、可修改的条件。</h3>
+            <h3>用户会按自己的方式找素材，系统要把这句话翻译成可操作的条件。</h3>
             </header>
             <div class="content-feature-body">
               <div class="content-feature-copy">
-              <p>现有搜索已经能返回自然语言相关内容，真正缺少的是把 FY、Source、Project 等结构化意图显示出来。新方案不是增加一个独立 Chat，而是让 AI 先生成待确认条件。</p>
+              <p>一开始看起来像是要加一个 AI 搜索入口。继续拆开后发现，用户更需要的是把一句生活语言变成看得见、改得动的筛选条件。新方案不另起 Chat，而是让 AI 回到既有的搜索和 Filter 体系里。</p>
                 <ul>
-                  <li>自然语言拆成 Semantic Query + Structured Filters</li>
-                  <li>用户可以删除、修改或补充 AI 建议</li>
-                  <li>确认 Apply 后再执行，不让不确定条件自动生效</li>
+                  <li>自然语言先拆成搜索词和结构化筛选条件</li>
+                  <li>用户可以删除、修改或补充 AI 建议，再决定 Apply</li>
+                  <li>只有缺少继续任务所必需的信息时，才向用户 Clarify</li>
                 </ul>
               </div>
               <figure class="content-design-frame content-evidence-figure">
                 <div class="content-evidence-panel">
-                  <img data-src="assets/content-space/ai-search-assistant-optimized.jpg" alt="Content Space Gallery 中的 AI Search Assistant 设计" decoding="async" />
+              <img data-src="assets/content-space/ai-search-assistant.png" alt="Content Space Gallery 中的 AI Search Assistant 设计" decoding="async" />
                 </div>
-                <figcaption>自然语言请求、AI 返回、已应用筛选与结果处在同一个任务页面中。</figcaption>
+                <figcaption>自然语言请求、AI 返回、已应用筛选与结果处在同一个任务页面中；用户始终能看到和修改发生了什么。</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="content-feature content-feature-comment">
+            <header class="content-feature-heading">
+              <div class="content-feature-identity">
+                <span class="content-feature-index">CASE B</span>
+                <div><strong>PDP EDITOR COMMENT</strong><span class="content-feature-cn">协作状态 · 画布与评论面板</span></div>
+              </div>
+              <h3>一条评论不是一个气泡，而是一段会变化的协作记录。</h3>
+            </header>
+            <div class="content-feature-body comment-feature-body">
+              <div class="content-feature-copy">
+                <p>Comment 的视觉形式很熟悉，但放进 PDP Editor 后，它要同时在画布和右侧面板里保持一致。真正需要设计的不是一个气泡，而是评论在解决、重新打开、对象删除和权限变化后，系统还要留下什么。</p>
+                <ul>
+                  <li>从画布气泡进入 Comment Mode，并与右侧线程准确定位</li>
+                  <li>Resolve 后画布提示收起，记录和回复仍可 Reopen</li>
+                  <li>对象删除、已读未读、权限与图片上传分别定义状态边界</li>
+                </ul>
+              </div>
+              <figure class="comment-state-map comment-evidence" aria-label="Comment 在画布和评论面板之间的状态变化">
+                <figcaption>
+                  <span>COMMENT LIFECYCLE</span>
+                  <p>同一条评论从待处理到已解决，画布、线程与异常状态必须同步。</p>
+                </figcaption>
+
+                <div class="comment-lifecycle">
+                  <article class="comment-lifecycle-stage comment-stage-main">
+                    <div class="comment-stage-heading">
+                      <div class="comment-stage-label">
+                        <span>01</span>
+                        <strong>进行中</strong>
+                        <small>Default · Canvas + panel</small>
+                      </div>
+                      <p>点击画布气泡，定位对应线程；用户可以继续回复、编辑或处理。</p>
+                    </div>
+                    <div class="comment-stage-media comment-stage-default">
+                      <img data-src="assets/content-space/comment/comment-default.png" alt="进行中的评论在画布气泡和右侧评论面板之间同步" decoding="async" />
+                    </div>
+                  </article>
+
+                  <div class="comment-lifecycle-arrow comment-lifecycle-arrow-down" aria-hidden="true">
+                    <span>Resolve</span><i>↓</i>
+                  </div>
+
+                  <article class="comment-lifecycle-stage comment-stage-resolved">
+                    <div class="comment-stage-resolved-copy">
+                      <div class="comment-stage-label">
+                        <span>02</span>
+                        <strong>已解决，仍可追溯</strong>
+                        <small>Resolved · Record remains</small>
+                      </div>
+                      <p>画布气泡不再打扰编辑；评论、附件与回复仍保留在面板，也可以 Reopen。</p>
+                    </div>
+                    <div class="comment-stage-media-pair">
+                      <figure class="comment-stage-media">
+                        <img data-src="assets/content-space/comment/comment-resolved.png" alt="已解决的评论在线程中保留完整记录" decoding="async" />
+                        <figcaption>Resolved · 画布收起，线程保留</figcaption>
+                      </figure>
+                      <figure class="comment-stage-media">
+                        <img data-src="assets/content-space/comment/comment-target-deleted.png" alt="评论目标被删除后的线程记录" decoding="async" />
+                        <figcaption>Target deleted · 对象消失，记录仍可追溯</figcaption>
+                      </figure>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="comment-state-evidence">
+                  <div class="comment-state-evidence-head">
+                    <span>STATE EVIDENCE</span>
+                    <p>组件不只有默认样式，也要覆盖完成与异常后的可见性。</p>
+                  </div>
+                  <div class="comment-state-cards">
+                    <article>
+                      <img data-src="assets/content-space/comment/comment-card-default.png" alt="评论组件的默认状态" decoding="async" />
+                      <strong>Default</strong>
+                      <p>对象仍存在，评论可以继续协作。</p>
+                    </article>
+                    <article>
+                      <img data-src="assets/content-space/comment/comment-card-resolved.png" alt="评论组件的已解决状态" decoding="async" />
+                      <strong>Resolved</strong>
+                      <p>完成后淡出，但历史记录仍可查看。</p>
+                    </article>
+                    <article>
+                      <img data-src="assets/content-space/comment/comment-card-deleted.png" alt="评论组件的目标被删除状态" decoding="async" />
+                      <strong>Target deleted</strong>
+                      <p>对象消失后，评论仍说明原有上下文。</p>
+                    </article>
+                  </div>
+                </div>
               </figure>
             </div>
           </article>
@@ -110,7 +209,7 @@
           <article class="content-feature content-feature-tag">
             <header class="content-feature-heading">
               <div class="content-feature-identity">
-                <span class="content-feature-index">CASE B</span>
+                <span class="content-feature-index">SUPPORTING</span>
                 <div><strong>TAG GROUP NAVIGATION</strong><span class="content-feature-cn">标签组设计 · 分组导航与状态</span></div>
               </div>
               <h3>AI 给出多个选图方向后，用户需要知道自己正在看哪一组、哪一个方向。</h3>
@@ -126,7 +225,7 @@
               </div>
               <figure class="content-design-frame content-evidence-figure">
                 <div class="content-evidence-panel">
-                  <img data-src="assets/content-space/tag-group-in-context-optimized.jpg" alt="Tag Group 在 Selection Agent 页面中的呈现" decoding="async" />
+              <img data-src="assets/content-space/tag-group-in-context.png" alt="Tag Group 在 Selection Agent 页面中的呈现" decoding="async" />
                 </div>
                 <figcaption>标签组出现在选图结果上方，帮助用户切换不同推荐方向。</figcaption>
               </figure>
@@ -136,14 +235,14 @@
                 <span>COMPONENT DETAIL</span>
                 <p>同一套组件需要覆盖 Default、Active、Collapsed 和 Long text。</p>
               </div>
-              <img data-src="assets/content-space/tag-group-component-states-optimized.jpg" alt="Tag Group 的 default、active、collapsed 和 long text 状态" decoding="async" />
+              <img data-src="assets/content-space/tag-group-component-states.png" alt="Tag Group 的 default、active、collapsed 和 long text 状态" decoding="async" />
             </figure>
           </article>
 
           <article class="content-feature content-feature-price">
             <header class="content-feature-heading">
               <div class="content-feature-identity">
-                <span class="content-feature-index">CASE C</span>
+                <span class="content-feature-index">SUPPORTING</span>
                 <div><strong>FUTURE PRICE</strong><span class="content-feature-cn">价格选项设计 · 信息层级与批量规则</span></div>
               </div>
               <h3>多个价格并存时，用户需要快速看懂并选对。</h3>
@@ -159,7 +258,7 @@
               </div>
               <figure class="content-design-frame content-evidence-figure">
                 <div class="content-evidence-panel">
-                  <img data-src="assets/content-space/future-price-in-context-optimized.jpg" alt="模板创建页面中的当前与未来价格选择" decoding="async" />
+              <img data-src="assets/content-space/future-price-in-context.png" alt="模板创建页面中的当前与未来价格选择" decoding="async" />
                 </div>
                 <figcaption>用户在模板表格中为单个商品选择当前或未来价格。</figcaption>
               </figure>
@@ -169,7 +268,7 @@
                 <span>COMPONENT DETAIL</span>
                 <p>选项中同时呈现金额、价格类型、生效日期和选中状态。</p>
               </div>
-              <img data-src="assets/content-space/future-price-component-states-optimized.jpg" alt="价格选项的 selected、default 和 hover 状态" decoding="async" />
+              <img data-src="assets/content-space/future-price-component-states.png" alt="价格选项的 selected、default 和 hover 状态" decoding="async" />
             </figure>
             <div class="content-feature-notes">
               <span>当前 / 未来是第一层选择</span>

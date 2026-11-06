@@ -16,7 +16,7 @@
         document.documentElement.dataset.heroFont = "pingfang";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261023-1" />
+  <link rel="stylesheet" href="styles.css?v=20261030-26" />
   </head>
   <body class="case-page lighting-page">
     <nav class="nav">
@@ -39,13 +39,22 @@
           <p class="eyebrow">AI Workflow · AIGC · Human-in-the-loop</p>
           <h1>IKEA Lighting AIGC Pipeline</h1>
           <p class="case-deck">
-            IKEA 线上灯具页能清楚展示产品，却很难还原线下样板间里灯光改变空间的感觉。
-            我先用轻量 Demo 验证场景化展示，再把手工生图过程推进成可重复生成、审核和交付的本地工作流。
+            我从开／关灯的轻量体验 Demo 出发，验证灯光能否帮助用户理解空间；再把手动生成里反复出现的判断，整理成可以审核、复用和继续交接的工作流。
           </p>
           <div class="tag-row">
             <span class="tag">Role · UX / Workflow Design</span>
             <span class="tag">Scope · Concept validation</span>
             <span class="tag">Output · Interactive demo + Local pipeline</span>
+          </div>
+          <div class="lighting-role" aria-label="我的工作范围">
+            <div>
+              <span>我的工作</span>
+              <p>体验概念与交互 Demo、三态生图方法、提示词测试，以及任务与审核规则的设计和本地验证。</p>
+            </div>
+            <div>
+              <span>如何继续</span>
+              <p>把已跑通的体验、输入结构和质量标准整理为后续与技术同事对齐批量生产及页面接入的基础。</p>
+            </div>
           </div>
           <div class="lighting-hero-links">
             <span>点击右侧手机直接体验</span>
@@ -96,169 +105,245 @@
       <section class="case-section lighting-section lighting-brief" id="project-brief">
         <div class="brief-context">
           <div class="lighting-section-head">
-            <p class="case-label">01 · PROJECT BRIEF</p>
-            <h2>用户在线上只能看到灯的样子，却看不到它亮起来之后的氛围。</h2>
-            <div class="brief-narrative">
-              <p>
-                <strong>当前购物体验</strong>
-                线上 PLP 多是白底图。用户能看清产品的外形和价格，却看不到灯亮起来后会照亮哪里，
-                也很难想象它放进自己家里是什么感觉。
-              </p>
-              <p>
-                <strong>为什么值得改变</strong>
-                此前 APP 做过一次落地灯场景图实验。相比白底图，场景图版本的加购和转化都更高。
-              </p>
-              <p>
-                <strong>我的假设与目标</strong>
-                我的假设是，如果用户能在同一商品里切换白天、夜晚和开关灯状态，就能更直接地感受灯光如何改变空间。
-                所以我先做一个轻量、可交互的 Demo，看看这种体验是否值得继续做下去。
-              </p>
-            </div>
+            <p class="case-label">01 · WHY THIS MATTERS</p>
+            <h2>灯在门店里卖的是氛围；<br />在线上，却常常只剩一张白底商品图。</h2>
+            <p class="section-intro">三个已有信号让我把“把灯做得更好看”换成了另一个问题：能不能让用户直接看见，它亮起来以后会怎样改变一个空间？</p>
           </div>
-          <figure class="brief-plp-evidence">
-            <div class="brief-image-frame">
-              <img
-                data-src="assets/lighting/current-plp-white-background-optimized.jpg"
-                alt="IKEA 线上落地灯商品列表页以白底商品图为主"
-                decoding="async"
-              />
-            </div>
-            <figcaption>
-              <span class="mono">CURRENT ONLINE PLP</span>
-              <p>白底图能展示商品，却看不到灯光如何改变空间。</p>
-            </figcaption>
-          </figure>
+          <div class="background-signals">
+            <figure class="signal-store">
+              <img data-src="assets/lighting/background/store-lighting.jpg" alt="IKEA 门店中由灯光营造的餐厅空间" decoding="async" />
+              <figcaption><span>01 · 宜家门店样板间的真实体验</span><strong>人们感受到的是被灯光改变过的空间。</strong></figcaption>
+            </figure>
+            <figure class="signal-plp">
+              <img data-src="assets/lighting/background/plp-mobile.png" alt="线上列表页以白底落地灯商品图为主" decoding="async" />
+              <figcaption><span>02 · 线上当前表达</span><strong>白底图说明“它是什么”，却很难说明“它会带来什么”。</strong></figcaption>
+            </figure>
+            <figure class="signal-test">
+              <img data-src="assets/lighting/background/context-test-poster.png" alt="HEKTAR 场景优先实验的内部验证材料" decoding="async" />
+              <figcaption><span>03 · 已有实验信号</span><strong>此前落地灯的 Context First 测试已显示正向加购和转化信号。</strong></figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
       <section class="case-section lighting-section lighting-turn">
         <div class="lighting-section-head">
-          <p class="case-label">02 · FROM DEMO TO SYSTEM</p>
-          <h2>最初只是做 8 款 Demo；当内容要继续扩展，手工方式开始成为瓶颈。</h2>
+          <p class="case-label">02 · MAKE IT TESTABLE</p>
+          <h2>我先手动做出几款开／关灯状态，确认这个体验值不值得继续做。</h2>
+          <p class="section-intro">这一阶段不是追求量产，而是验证两个问题：用户是否能读懂灯光变化；生成是否能保住商品和空间本身。</p>
         </div>
-        <div class="turn-panel lighting-turn-panel">
-          <div>
-            <span class="mono">01 · PROVE THE EXPERIENCE</span>
-            <p>先用 8 款落地灯做出可以切换状态的交互 Demo。</p>
+        <div class="validation-layout">
+          <div class="validation-states">
+            <figure class="state-day">
+              <div class="state-heading"><strong>Day On</strong><span>01 / 光效证据</span></div>
+              <div class="state-image">
+                <img data-src="assets/lighting/comparison-day.jpg" alt="Day On：官网原始场景" decoding="async" />
+                <i class="callout callout-direction">出光方向</i>
+                <i class="callout callout-range">光照范围</i>
+                <i class="callout callout-shadow">阴影关系</i>
+              </div>
+              <figcaption>提供真实的光照方向、范围、落点和阴影关系。</figcaption>
+            </figure>
+            <figure class="state-off">
+              <div class="state-heading"><strong>Night Off</strong><span>02 / 夜景底图</span></div>
+              <div class="state-image">
+                <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="Night Off：夜景底图" decoding="async" />
+                <i class="callout callout-night">先固定夜晚环境</i>
+                <i class="callout callout-lock">构图、家具和灯具位置不变</i>
+              </div>
+              <figcaption>只改变时间，不改变同一个房间和商品。</figcaption>
+            </figure>
+            <figure class="state-on">
+              <div class="state-heading"><strong>Night On</strong><span>03 / 输出</span></div>
+              <div class="state-image">
+                <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="Night On：夜晚开灯效果" decoding="async" />
+                <i class="callout callout-restore">只恢复目标灯具的局部受光</i>
+              </div>
+              <figcaption>在同一夜景上恢复目标灯真实的局部光效。</figcaption>
+            </figure>
           </div>
-          <div>
-            <span class="mono">02 · FIND THE BOTTLENECK</span>
-            <p>每增加一个商品，都要重新找图、写 Prompt、检查、下载、改名和整理。</p>
+          <div class="validation-copy">
+            <p>先选少量灯具手动测试图像与提示词，再把通过的状态放进可点按的 Demo。</p>
+            <ul>
+              <li>同一场景下，用户能直观看见 Day / Night 与开关灯的区别。</li>
+              <li>每张图都要保住商品结构、房间构图和真实光照方向。</li>
+              <li>验证成立后，Demo 扩展至 16 款灯具，成为团队讨论下一步的共同参照。</li>
+            </ul>
           </div>
-          <div>
-            <span class="mono">03 · REFRAME THE TASK</span>
-            <p>问题不再是多生成几张图，而是怎样把判断变成可重复、可审核的工作流。</p>
-          </div>
-        </div>
-        <div class="disclosure">
-          我定义流程、质量判断和异常规则；本地代码、候选图与部分自动化由 Codex 辅助实现。
         </div>
       </section>
 
       <section class="case-section lighting-section lighting-pipeline">
         <div class="lighting-section-head">
-          <p class="case-label">03 · HOW THE SYSTEM WORKS</p>
-          <h2>我把找图、生图、审核和展示，串成了一条可以继续增加商品的流程。</h2>
-          <p>每个商品从官网真实素材开始，依次完成任务准备、Night Off / Night On 生成、人工审核和归档；只有审核通过的版本才进入 Demo。</p>
+          <p class="case-label">03 · THE TURNING POINT</p>
+          <h2>Demo 能跑，但每增加一盏灯，几乎都要从头再做一遍。</h2>
+          <p class="section-intro">真正的瓶颈不在“再生一张图”，而在于一套重复、容易遗漏、也难向别人交接的人工判断。</p>
         </div>
-        <div class="pipeline-map" aria-label="Lighting Pipeline 四个阶段">
-          <article>
-            <span class="stage-kicker">01 · SOURCE</span>
-            <h3>从官网拿到真实输入</h3>
-            <p>确定商品范围，收集场景图、产品图、SKU 和基础参数。</p>
-            <div class="stage-detail">官网分类页 · 图片 · 参数</div>
-          </article>
-          <article>
-            <span class="stage-kicker">02 · PREPARE</span>
-            <h3>为每盏灯建立任务</h3>
-            <p>Python 整理素材和命名；每个商品拥有独立工作区与版本记录。</p>
-            <div class="stage-detail">一灯一任务 · 不覆盖原图</div>
-          </article>
-          <article class="pipeline-generate-stage">
-            <span class="stage-kicker">03 · GENERATE</span>
-            <h3>按固定顺序生成夜景</h3>
-            <p>先生成 Night Off，再结合原图生成 Night On。</p>
-            <div class="pipeline-state-pair" aria-hidden="true">
-              <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="" decoding="async" />
-              <span>→</span>
-              <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="" decoding="async" />
-            </div>
-          </article>
-          <article>
-            <span class="stage-kicker">04 · REVIEW & DELIVER</span>
-            <h3>通过审核才进入 Demo</h3>
-            <p>问题版本退回重做；通过版本自动归档，再进入 Day / Night 展示。</p>
-            <div class="stage-detail">Review → Archive → H5</div>
-          </article>
+        <div class="workflow-phase workflow-before" aria-label="人工试跑阶段">
+          <div class="workflow-phase-head">
+            <p class="workflow-phase-label">Before</p>
+            <h3>人工试跑</h3>
+            <p>每增加一盏灯，都要重新从素材、判断到归档走一遍。</p>
+          </div>
+          <ol class="bottleneck-rail">
+            <li><b>01</b><span>找官网素材</span></li>
+            <li><b>02</b><span>观察真实光影</span></li>
+            <li><b>03</b><span>写 Prompt</span></li>
+            <li><b>04</b><span>生成与挑选</span></li>
+            <li><b>05</b><span>命名、归档、放入 Demo</span></li>
+          </ol>
+        </div>
+        <div class="workflow-shift" aria-label="从人工试跑转换为 AI 工作流" data-light-reveal>
+          <span class="workflow-shift-label">把重复判断写成规则</span>
+          <div class="workflow-accelerator" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+        <div class="workflow-phase workflow-after" aria-label="AI 工作流阶段">
+          <div class="workflow-phase-head">
+            <p class="workflow-phase-label">After</p>
+            <h3>AI workflow</h3>
+            <p>固定步骤交给工作流，真实判断和审核仍由人保留。</p>
+          </div>
+          <div class="pipeline-map" aria-label="Lighting Pipeline 四个阶段">
+            <article>
+              <span class="stage-kicker">01 · SOURCE</span>
+              <h3>从官网拿到真实输入</h3>
+              <p>确定商品范围，收集场景图、产品图、SKU 和基础参数。</p>
+              <div class="stage-detail">官网分类页 · 图片 · 参数</div>
+            </article>
+            <article>
+              <span class="stage-kicker">02 · PREPARE</span>
+              <h3>为每盏灯建立任务</h3>
+              <p>Python 整理素材和命名；每个商品拥有独立工作区与版本记录。</p>
+              <div class="stage-detail">一灯一任务 · 不覆盖原图</div>
+            </article>
+            <article class="pipeline-generate-stage">
+              <span class="stage-kicker">03 · GENERATE</span>
+              <h3>按固定顺序生成夜景</h3>
+              <p>先生成 Night Off，再结合原图生成 Night On。</p>
+              <div class="pipeline-state-pair" aria-hidden="true">
+                <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="" decoding="async" />
+                <span>→</span>
+                <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="" decoding="async" />
+              </div>
+            </article>
+            <article>
+              <span class="stage-kicker">04 · REVIEW & DELIVER</span>
+              <h3>通过审核才进入 Demo</h3>
+              <p>问题版本退回重做；通过版本自动归档，再进入 Day / Night 展示。</p>
+              <div class="stage-detail">Review → Archive → H5</div>
+            </article>
+          </div>
         </div>
         <div class="agent-rail">
-          <strong>AGENT 负责串联</strong>
-          <p>脚本、图像模型和文件系统负责重复动作；我负责判断素材是否真实、哪里需要重做，以及什么可以发布。</p>
-          <div class="agent-tools"><span>Python</span><span>Image Model</span><span>File System</span><span>Human Review</span></div>
+          <strong>于是，我把“做一张效果图”重新定义为“为一盏灯创建一次可审核任务”。</strong>
+          <p>脚本、图像模型和文件系统负责重复动作；我负责定义输入、判断什么是真实、哪里需要重做，以及什么可以进入 Demo。</p>
         </div>
       </section>
 
-      <section class="case-section lighting-section lighting-method">
-        <div class="lighting-section-head">
-          <p class="case-label">04 · HOW THE IMAGES WERE MADE</p>
-          <h2>先把场景变成夜晚，再把这盏灯原本的光加回来。</h2>
-          <p>我先用官网场景图生成 Night Off，锁定同一个房间的夜晚环境；再把原图作为光照证据生成 Night On，只恢复目标灯真实的落点、范围和阴影。</p>
+<section class="case-section lighting-section lighting-boundary-tests" aria-labelledby="boundary-title">
+  <div class="lighting-section-head boundary-head">
+    <p class="case-label">03B · BOUNDARY TESTS</p>
+    <h2 id="boundary-title">能生成，不等于可信。</h2>
+    <p class="section-intro">一开始的测试暴露了三类问题：共享提示词会抹平差异；非常规结构容易让光线失真；模型本身也会带来画面质量漂移。</p>
+  </div>
+
+  <div class="boundary-shared-prompt">
+    <div class="boundary-copy">
+      <p class="mono">01 · SHARED PROMPT</p>
+      <h3>同一套提示词，会把不同的灯推向同一种结果。</h3>
+      <p>同一套通用提示词下，开灯后的结果都被推向相似的暖黄氛围；灯具本身、光照范围和空间气质的差异被“好看”掩盖。</p>
+      <p class="boundary-rule"><span>判断</span>不再用一套通用提示词覆盖所有商品，而是为每盏灯写独立的 Lighting Signature。</p>
+    </div>
+
+    <div class="boundary-prompt-images">
+      <figure>
+        <img data-src="assets/lighting/boundary-tests/shared-prompt-day.png" alt="共享提示词下，开灯状态趋同的灯具案例" decoding="async" />
+        <figcaption><b>开灯</b><span>都趋向同一种暖黄氛围</span></figcaption>
+      </figure>
+      <figure>
+        <img data-src="assets/lighting/boundary-tests/shared-prompt-warm-grid.png" alt="共享提示词下，不同灯具趋同的暖黄色开灯案例" decoding="async" />
+        <figcaption><b>更多商品</b><span>同样趋向相似的暖黄色氛围</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="boundary-failure-grid">
+    <article class="boundary-failure-card">
+      <figure><img data-src="assets/lighting/boundary-tests/beam-direction-fail.png" alt="可调灯错误的出光方向与光照范围" decoding="async" /></figure>
+      <div>
+        <p class="mono">02 · PHYSICAL LOGIC</p>
+        <h3>物理关系失真</h3>
+        <p>可调灯的出光方向与光照范围不符合真实结构。</p>
+      </div>
+    </article>
+    <article class="boundary-failure-card">
+      <figure><img data-src="assets/lighting/boundary-tests/multi-head-fail.png" alt="多头灯具生成中出现错误的局部光束" decoding="async" /></figure>
+      <div>
+        <p class="mono">03 · UNUSUAL FORMS</p>
+        <h3>非常规结构失真</h3>
+        <p>多头、异形灯具难以同时锁定每个灯头与局部光束。</p>
+      </div>
+    </article>
+    <article class="boundary-failure-card">
+      <figure><img data-src="assets/lighting/boundary-tests/model-drift-fail.png" alt="模型生成产生噪点、偏蓝色调和材质变化的案例" decoding="async" /></figure>
+      <div>
+        <p class="mono">04 · MODEL DRIFT</p>
+        <h3>质量漂移</h3>
+        <p>不同模型可能带来噪点、偏冷色调和材质变化。</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="boundary-skill-strip">
+    <p class="mono">FROM EXPERIMENT TO SKILL</p>
+    <div>
+      <h3>写进 Lighting Skill 的判断</h3>
+      <p>每次生成前锁定：灯具结构 · 出光方向与范围 · 环境光与反光 · 审核条件</p>
+    </div>
+  </div>
+</section>
+
+      <section class="case-section lighting-section lighting-core-method">
+        <div class="lighting-section-head core-method-section-head">
+          <p class="case-label">04 · TURN JUDGMENT INTO RULES</p>
+          <h2>把一次做对的判断，写成下一次也能复用的规则。</h2>
         </div>
-        <div class="evidence-triptych lighting-state-strip">
-          <figure>
-            <img data-src="assets/lighting/comparison-day.jpg" alt="落地灯官网白天开灯场景" decoding="async" />
-            <figcaption><strong>官网原图 · DAY ON</strong><span>保留真实构图，也告诉模型光应该照亮哪里。</span></figcaption>
+        <div class="core-method" aria-label="核心生成规则">
+          <figure class="core-method-document">
+            <img data-src="assets/lighting/prompt-framework-overview-optimized.jpg" alt="IKEA Lighting Night State Prompt Framework 的真实工作文档摘录" decoding="async" />
+            <figcaption><span>真实工作文档摘录</span><p>Prompt Framework：目标、核心原则与标准生成流程。</p></figcaption>
           </figure>
-          <figure>
-            <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="同一落地灯夜间关灯场景" decoding="async" />
-            <figcaption><strong>第一步 · NIGHT OFF</strong><span>只把时间变成夜晚，不改变房间和商品。</span></figcaption>
-          </figure>
-          <figure>
-            <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="同一落地灯夜间开灯场景" decoding="async" />
-            <figcaption><strong>第二步 · NIGHT ON</strong><span>在 Night Off 上恢复原图里真实的灯光效果。</span></figcaption>
-          </figure>
-        </div>
-        <div class="generation-steps">
-          <article>
-            <span>STEP 01</span>
-            <strong>官网场景图 → Night Off</strong>
-            <p>先单独解决“夜晚环境”，避免模型同时改场景和灯光。</p>
-          </article>
-          <article>
-            <span>STEP 02</span>
-            <strong>Night Off + 官网原图 → Night On</strong>
-            <p>一张图锁定夜景，一张图提供光照位置、范围和阴影。</p>
-          </article>
-          <article class="generation-result">
-            <span>WHY</span>
-            <strong>把两个变化拆开，三张状态更容易对齐，也更容易审核。</strong>
-            <p>如果结果有问题，我能继续判断它来自夜景生成，还是开灯后的光效。</p>
-          </article>
+          <aside class="core-method-copy">
+            <span class="case-label">RULES IN PRACTICE</span>
+            <h3>让每一盏灯，都按同一套约束生成。</h3>
+            <p>我把看图时反复确认的光照判断，整理成每一盏灯都能沿用的生成规则。</p>
+            <ul>
+              <li><b>Day On</b><span>只提供目标灯真实的出光方向、范围、落点与阴影证据。</span></li>
+              <li><b>Night Off</b><span>先锁定同一房间的夜晚底图，不让模型同时改空间和灯光。</span></li>
+              <li><b>Lighting Signature</b><span>把每盏灯的差异写成一条简短、可检查的规则。</span></li>
+              <li><b>Human review</b><span>生成结果必须经过人工审核，不能直接进入展示。</span></li>
+            </ul>
+          </aside>
         </div>
       </section>
 
       <section class="case-section lighting-section lighting-skill-review">
-        <div class="lighting-section-head">
-          <p class="case-label">05 · SKILL & REVIEW LOOP</p>
-          <h2>Skill 先固定方法，Review 再把反复出现的问题补回规则。</h2>
-          <p>我先用 Prompt Framework 固定生成顺序和图片角色，再把输入来源、Lighting Signature、检查、版本和发布边界整理成 Skill；人工审核中反复出现的问题再更新为下一版规则。</p>
+        <div class="lighting-section-head lighting-review-head">
+          <p class="case-label">05 · REVIEW, THEN REMEMBER</p>
+          <h2>生成不是交付；审核决定什么可以进入 Demo，经验再被写回下一轮规则。</h2>
+          <p>我把生成方法、输入来源、Lighting Signature、检查、版本和发布边界整理成 Skill。审核中反复出现的问题，不再只修这一张图，而是回写成下一轮任务的规则。</p>
         </div>
         <div class="skill-review-layout">
-          <div class="skill-artifact-stack">
-            <figure class="skill-real-document">
-              <img data-src="assets/lighting/prompt-framework-overview-optimized.jpg" alt="Lighting Night State Prompt Framework 的真实 Markdown 内容" decoding="async" />
-              <figcaption>
-                <span class="mono">01 · PROMPT FRAMEWORK</span>
-                <p>先固定 Day On → Night Off → Night On 的顺序、图片角色与人工审核边界。</p>
-              </figcaption>
-            </figure>
-            <figure class="skill-real-document">
-              <img data-src="assets/lighting/skill-workflow-review-optimized.jpg" alt="Lighting State Generation Skill 的真实 Markdown 内容" decoding="async" />
-              <figcaption>
-                <span class="mono">02 · REUSABLE SKILL · SKILL.MD</span>
-                <p>再加入输入来源、Lighting Signature、检查、版本和发布规则，让方法可以继续复用。</p>
-              </figcaption>
-            </figure>
+          <div class="review-overview">
+            <span class="mono">HUMAN REVIEW LOOP</span>
+            <h3>不是挑一张“最好看”的图，而是决定哪一个状态能进入 Demo。</h3>
+            <p>同屏看 Day On、Night Off 和 Night On，把场景、商品结构和光效拆开记录；通过、退回或重做，都有对应的对象与版本。</p>
+            <div class="review-overview-note">
+              <span>审核保留在人工手里</span>
+              <b>生成 ≠ 自动发布</b>
+            </div>
           </div>
           <div class="review-loop">
             <figure class="review-ui">
@@ -267,17 +352,28 @@
                   <span></span><span></span><span></span>
                   <b>IKEA Lighting Review</b>
                 </div>
-                <img data-src="assets/lighting/review-ui-optimized.jpg" alt="Lighting Pipeline 本地人工审核页面" decoding="async" />
+                  <img data-src="assets/lighting/review-ui-v2.png" alt="Lighting Pipeline 本地人工审核页面" decoding="async" />
               </div>
-              <figcaption class="review-system-caption">
-                <span class="mono">REVIEW</span>
-                <p>这是一个人工审核系统：同屏比较 Day On、Night Off 和 Night On，逐项标记场景、商品结构与光效问题，决定通过或退回哪一个状态，并记录审核备注、重做对象和版本。</p>
+            </figure>
+          </div>
+          <div class="skill-reuse-row">
+            <figure class="skill-real-document">
+              <img data-src="assets/lighting/skill-workflow-review-optimized.jpg" alt="Lighting State Generation Skill 的真实 Markdown 内容" decoding="async" />
+              <figcaption>
+                <span class="mono">REUSABLE SKILL · SKILL.MD</span>
+                <p>把输入来源、Lighting Signature、检查、版本和发布边界写进同一份规则。</p>
               </figcaption>
             </figure>
-            <div class="review-loop-steps">
+            <div class="review-feedback-loop">
+              <div>
+                <span class="mono">FROM REVIEW TO RULE</span>
+                <h3>一次问题先局部修正；重复出现，才写回下一轮规则。</h3>
+              </div>
+              <div class="review-loop-steps">
               <article><span>01</span><p><strong>先定位问题</strong>场景、商品结构和灯光效果分开记录。</p></article>
               <article><span>02</span><p><strong>先做局部修正</strong>单个商品的问题不立刻改成全局规则。</p></article>
               <article><span>03</span><p><strong>重复出现再更新 Skill</strong>下一轮任务从新的规则继续执行。</p></article>
+              </div>
             </div>
           </div>
         </div>
@@ -285,8 +381,8 @@
 
       <section class="case-section lighting-section lighting-outcome" id="output">
         <div class="lighting-section-head">
-          <p class="case-label">06 · OUTPUT</p>
-          <h2>把一次性 Demo，变成一条可重复、可审核、可以继续增加商品的工作流。</h2>
+          <p class="case-label">06 · WHAT THIS MADE POSSIBLE</p>
+          <h2>从一个可体验的 Demo，变成一套可复用、可运行、可继续推进的基础。</h2>
         </div>
         <div class="output-grid">
           <article>
@@ -302,13 +398,13 @@
           <article>
             <span class="mono">WORKFLOW</span>
             <strong>可运行</strong>
-            <p>真实新增商品曾走完生成、审核与发布链路。</p>
+            <p>新增商品可按同一任务结构跑通；非生产系统，未上线。</p>
           </article>
         </div>
         <div class="output-footer">
-          <span><b>DELIVERED</b> 16 款稳定、自包含 Demo</span>
-          <span><b>SHARED</b> 我在 DXD 内部分享并推进协作沟通</span>
-          <span><b>NEXT</b> 待推进批量生产与相关购物页面接入</span>
+          <span><b>DELIVERED</b> 16 款可体验 Demo，用于验证体验与方法</span>
+          <span><b>HANDOFF</b> 可复用的输入、任务、审核与质量规则</span>
+          <span><b>NEXT</b> 作为与技术同事讨论批量化生产和页面接入的基础</span>
         </div>
       </section>
     </main>

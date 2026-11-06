@@ -20,47 +20,44 @@
         document.documentElement.dataset.heroFont = "pingfang";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261023-1" />
+    <link rel="stylesheet" href="styles.css?v=20261030-2" />
   </head>
   <body class="home-page">
     <nav class="nav">
       <div class="shell nav-inner">
         <a class="brand" href="index.html">Mira Xue</a>
         <div class="nav-links">
-          <a href="#work">Selected Work</a>
-          <a href="#workflow">How I Work</a>
-          <a href="#practice">Practice</a>
+          <a href="#home">Home</a>
+          <a href="#work">Work</a>
           <a href="#about">About</a>
+          <a href="#contact">Contact</a>
           <a class="nav-resource" href="documents/profile/ux-portfolio.pdf" target="_blank" rel="noopener noreferrer" aria-label="查看作品集 PDF（在新标签页打开）">作品集 PDF</a>
           <a class="nav-resource" href="documents/profile/resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="查看简历 PDF（在新标签页打开）">简历 PDF</a>
-          <a class="nav-cta" href="#work">查看项目 ↓</a>
         </div>
       </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero" id="home">
       <div class="shell hero-layout">
-        <div class="hero-heading">
-          <p class="hero-context">
-            我在宜家工作的天 · 的 worklog<br />
-            IKEA China Digital Innovation Center
-          </p>
+        <div class="hero-copy">
+          <div class="hero-main">
+            <h1 class="fade-up">
+              <span>需求通常只有一句话。</span>
+              <em>真正的设计，从下一句开始。</em>
+            </h1>
+            <p class="hero-intro fade-up">
+              Hi，我是薛铭，一名 UX/UI 设计师。目前在 IKEA China 做 AI 产品方向的 UX Design Intern。我喜欢把模糊的问题拆解清楚，再把它做成用户和团队都能继续推进的体验。
+            </p>
+          </div>
 
-          <h1>
-            <span>需求通常只有一句话。</span>
-            <em>真正的设计，从下一句开始。</em>
-          </h1>
+          <div class="hero-footer fade-up">
+            <a class="hero-scroll" href="#work">
+              <span>向下看项目</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
 
-        <div class="hero-footer">
-          <p class="hero-intro">
-            需求只是起点。我会先确认真实发生了什么、问题究竟在哪里，再把判断做成团队可以继续检查和推进的方案。
-          </p>
-          <a class="hero-scroll" href="#work">
-            <span>Selected Work</span>
-            <span aria-hidden="true">↓</span>
-          </a>
-        </div>
       </div>
     </header>
 
@@ -69,128 +66,85 @@
         <div class="shell">
           <div class="section-head fade-up">
             <div>
-              <p class="eyebrow">Selected Work</p>
-              <h2 class="section-title">三个项目，问题开始的地方完全不同。</h2>
+              <p class="work-kicker">Work</p>
+              <h2 class="section-title">从一句需求，到可以推进的体验。</h2>
             </div>
-            <p class="section-copy">一个从单张生图走向重复生产，一个从门店里的真实提问开始，另一个藏在企业工具的字段和状态里。</p>
           </div>
 
-          <div class="case-grid">
-            <a class="case-card fade-up" href="lighting.html">
-              <div class="case-visual lamp-preview" data-lamp-preview>
-                <img
-                  src="assets/home/lighting-night-off.jpg"
-                  alt="灯具夜间关灯场景"
-                  class="active"
-                  data-lamp-state="off"
-                  decoding="async"
-                />
-                <img
-                  src="assets/home/lighting-night-on.jpg"
-                  alt="灯具夜间开灯场景"
-                  data-lamp-state="on"
-                  decoding="async"
-                />
-                <div class="lamp-control" data-lamp-control>
-                  <button class="active" type="button" data-state="off">Light off</button>
-                  <button type="button" data-state="on">Light on</button>
+          <div class="project-index">
+            <a class="project-row project-row-lighting fade-up" href="lighting.html">
+              <div class="project-row-copy">
+                <span class="project-number">01</span>
+                <div>
+                  <h3>Lighting AIGC Pipeline</h3>
+                  <ul class="project-tags" aria-label="项目标签">
+                    <li>AI workflow</li>
+                    <li>Generative media</li>
+                    <li>Human review</li>
+                  </ul>
+                  <div class="project-story">
+                    <p class="project-brief"><span>需求是</span><q>让每款灯都能呈现开灯后的氛围。</q></p>
+                    <p class="project-answer"><span>真正要设计的是</span><b>一套能支持重复生产、人工审核与取舍的工作流。</b></p>
+                  </div>
                 </div>
+                <span class="project-open" aria-hidden="true">↗</span>
               </div>
-              <div class="case-body">
-                <span class="case-index">01 · AI WORKFLOW</span>
-                <h3>Lighting AIGC Pipeline</h3>
-                <p class="case-card-claim">
-                  单张效果图跑通后，真正麻烦的是每换一个商品，都要重新生成、检查和整理。
-                </p>
-                <div class="case-link">
-                  <span>从一张图到一条可重复的流程</span><span>↗</span>
+              <figure class="project-row-media lighting-index-media">
+                <img src="assets/lighting/night-on.png" alt="灯具夜间开灯场景" decoding="async" loading="lazy" />
+                <figcaption>Day / night states</figcaption>
+              </figure>
+            </a>
+
+            <a class="project-row project-row-shopping fade-up" href="shopping-buddy.html">
+              <figure class="project-row-media">
+                <img src="assets/shopping/research/life-language.jpg" alt="用户在门店用生活语言提问的现场" decoding="async" loading="lazy" />
+                <figcaption>Field study · in store</figcaption>
+              </figure>
+              <div class="project-row-copy">
+                <span class="project-number">02</span>
+                <div>
+                  <h3>AI Shopping Buddy</h3>
+                  <ul class="project-tags" aria-label="项目标签">
+                    <li>Field research</li>
+                    <li>AI UX</li>
+                    <li>Service design</li>
+                  </ul>
+                  <div class="project-story">
+                    <p class="project-brief"><span>需求是</span><q>帮助顾客更快找到要买的商品。</q></p>
+                    <p class="project-answer"><span>真正要设计的是</span><b>把生活语言翻成商品答案，并把回答接到服务与履约。</b></p>
+                  </div>
                 </div>
+                <span class="project-open" aria-hidden="true">↗</span>
               </div>
             </a>
 
-            <a class="case-card fade-up" href="shopping-buddy.html">
-              <div class="case-visual shopping-visual">
-                <img
-                  src="assets/home/shopping-life-language.jpg"
-                  alt="门店购物助手真实测试界面"
-                  decoding="async"
-                />
-                <img
-                  src="assets/home/shopping-journey.jpg"
-                  alt="AI Shopping Buddy 用户旅程"
-                  decoding="async"
-                />
-              </div>
-              <div class="case-body">
-                <span class="case-index">02 · USER RESEARCH</span>
-                <h3>AI Shopping Buddy</h3>
-                <p class="case-card-claim">
-                  用户站在商品旁边时，问的是“这是什么、适不适合我”，而不是系统里的品类名。
-                </p>
-                <div class="case-link">
-                  <span>看现场问题怎样进入下一轮设计</span><span>↗</span>
+            <a class="project-row project-row-content fade-up" href="content-space.html">
+              <div class="project-row-copy">
+                <span class="project-number">03</span>
+                <div>
+                  <h3>Content Space</h3>
+                  <ul class="project-tags" aria-label="项目标签">
+                    <li>AI search</li>
+                    <li>Enterprise UX</li>
+                    <li>Collaboration</li>
+                  </ul>
+                  <div class="project-story">
+                    <p class="project-brief"><span>需求是</span><q>让团队更快找到需要的素材。</q></p>
+                    <p class="project-answer"><span>真正要设计的是</span><b>让自然语言变成可编辑条件，也让协作里的字段、状态和责任看得见。</b></p>
+                  </div>
                 </div>
+                <span class="project-open" aria-hidden="true">↗</span>
               </div>
-            </a>
-
-            <a class="case-card fade-up" href="content-space.html">
-              <div class="case-visual content-space-visual">
-                <img
-                  src="assets/home/content-space-gallery.jpg"
-                  alt="Content Space Gallery 界面"
-                  decoding="async"
-                />
-              </div>
-              <div class="case-body">
-                <span class="case-index">03 · ENTERPRISE UX</span>
-                <h3>Content Space</h3>
-                <p class="case-card-claim">
-                  很多“小改动”继续追问下去，最后都会回到字段含义、批量规则和异常状态。
-                </p>
-                <div class="case-link">
-                  <span>四个小需求背后的系统问题</span><span>↗</span>
-                </div>
-              </div>
+              <figure class="project-row-media project-row-media-ui">
+                <img src="assets/content-space/gallery-overview.png" alt="Content Space Gallery 界面" decoding="async" loading="lazy" />
+                <figcaption>AI search · collaboration</figcaption>
+              </figure>
             </a>
           </div>
         </div>
       </section>
 
-      <section class="section" id="workflow">
-        <div class="shell">
-          <div class="section-head fade-up">
-            <div>
-              <p class="eyebrow">How I Work</p>
-              <h2 class="section-title">先看发生了什么，再决定要不要画页面。</h2>
-            </div>
-            <p class="section-copy">方法名不是起点。先看真实页面、用户原话和系统能力，找到问题发生在哪里，再决定用设计、原型还是流程解决。</p>
-          </div>
-          <div class="workflow-story">
-            <article class="workflow-chapter fade-up">
-              <span class="mono">01 · SEE</span>
-              <h3>先找事实</h3>
-              <p>真实页面、用户原话、会议记录和代码，优先于模型给出的完整解释。</p>
-            </article>
-            <article class="workflow-chapter fade-up">
-              <span class="mono">02 · JUDGE</span>
-              <h3>再做判断</h3>
-              <p>问题发生在字段、状态、用户决定，还是系统能力？不同判断会导向完全不同的方案。</p>
-            </article>
-            <article class="workflow-chapter fade-up">
-              <span class="mono">03 · MAKE</span>
-              <h3>做一个能被检查的东西</h3>
-              <p>可能是交互稿、流程图，也可能是可运行原型；重点是让团队能继续讨论和验证。</p>
-            </article>
-            <article class="workflow-chapter fade-up">
-              <span class="mono">04 · KEEP</span>
-              <h3>把边界和失败留下来</h3>
-              <p>哪些已经确认、哪些仍是推断、哪里需要人工判断，都会进入下一轮工作。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section blue" id="practice">
+      <section class="section blue" id="practice" hidden>
         <div class="shell">
           <div class="section-head fade-up">
             <div>
@@ -228,37 +182,146 @@
         </div>
       </section>
 
-      <section class="section soft" id="about">
-        <div class="shell about-grid">
-          <div class="fade-up">
+      <section class="section soft" id="about" data-light-reveal>
+        <div class="shell about-profile">
+          <figure class="about-portrait fade-up">
+            <img src="assets/profile/ming-xue-portrait-cutout.png" alt="薛铭的个人肖像" decoding="async" loading="lazy" />
+          </figure>
+
+          <div class="about-profile-main fade-up">
             <p class="eyebrow">About</p>
-            <h2 class="section-title">我更擅长把问题问清楚，再把它交到下一步。</h2>
+            <h2><span>Hi，</span>我是薛铭。</h2>
+            <p class="about-role">UX/UI Designer · AI Products</p>
+            <p class="about-bio">
+              我本科读数字媒体艺术，现在在上海大学读数字产品设计，也在 IKEA China 的 AI 产品方向实习。这个过程让我越来越在意：新技术不只是能不能做，更要让用户能用、让团队能把它继续做下去。
+            </p>
+            <dl class="about-facts">
+              <div>
+                <dt>Based in</dt>
+                <dd>Shanghai</dd>
+              </div>
+              <div>
+                <dt>Looking for</dt>
+                <dd>Product / UX Design</dd>
+              </div>
+            </dl>
           </div>
-          <div class="about-list fade-up">
-            <div class="about-row">
-              <strong>AI UX</strong>
-              <p>先确定 AI 在哪里有用，再确定用户在哪里需要确认、修改或退出。</p>
-            </div>
-            <div class="about-row">
-              <strong>Enterprise UX</strong>
-              <p>面对复杂字段和批量操作，先把数据与状态讲清楚，再谈界面。</p>
-            </div>
-            <div class="about-row">
-              <strong>Workflow</strong>
-              <p>当同一件事开始重复，就把经验整理成可以继续执行和检查的流程。</p>
-            </div>
-            <div class="about-row">
-              <strong>Collaboration</strong>
-              <p>把内部语言翻成不同角色都能继续行动的问题、规则和原型。</p>
-            </div>
+
+          <div class="about-history">
+            <section class="about-history-group fade-up" aria-labelledby="experience-heading">
+              <p class="about-history-label" id="experience-heading">实习经历</p>
+              <ol class="about-history-list">
+                <li>
+                  <time datetime="2026-08">2026.08 — now</time>
+                  <div>
+                    <h3>IKEA China</h3>
+                    <p>UX Design Intern · AI Products</p>
+                  </div>
+                </li>
+                <li>
+                  <time datetime="2026-01">2026.01 — 2026.04</time>
+                  <div>
+                    <h3>70mai</h3>
+                    <p>UED User Experience Design Intern</p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+
+            <section class="about-history-group fade-up" aria-labelledby="education-heading">
+              <p class="about-history-label" id="education-heading">教育经历</p>
+              <ol class="about-history-list">
+                <li>
+                  <time datetime="2024-09">2024.09 — 2027.06</time>
+                  <div>
+                    <h3>上海大学</h3>
+                    <p>数字产品设计 · 硕士</p>
+                  </div>
+                </li>
+                <li>
+                  <time datetime="2020-09">2020.09 — 2024.06</time>
+                  <div>
+                    <h3>上海工程技术大学</h3>
+                    <p>数字媒体艺术 · 学士</p>
+                  </div>
+                </li>
+              </ol>
+            </section>
           </div>
+
+          <section class="about-principles fade-up" aria-labelledby="principles-heading">
+            <p class="about-history-label" id="principles-heading">设计判断</p>
+            <h3>我做设计时，会反复确认四件事。</h3>
+            <div class="about-principles-grid">
+              <article>
+                <strong>AI UX</strong>
+                <p>先确定 AI 在哪里有用，再确定用户在哪里需要确认、修改或退出。</p>
+              </article>
+              <article>
+                <strong>Enterprise UX</strong>
+                <p>面对复杂字段和批量操作，先把数据与状态讲清楚，再谈界面。</p>
+              </article>
+              <article>
+                <strong>Workflow</strong>
+                <p>当同一件事开始重复，就把经验整理成可以继续执行和检查的流程。</p>
+              </article>
+              <article>
+                <strong>Collaboration</strong>
+                <p>把内部语言翻成不同角色都能继续行动的问题、规则和原型。</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="shell">Mira Xue · IKEA China Digital Innovation Centre · UX Design Internship</div>
+    <footer class="footer" id="contact">
+      <div class="shell footer-content">
+        <section class="footer-column footer-information" aria-labelledby="more-information-title">
+          <p class="footer-eyebrow" id="more-information-title">More information</p>
+          <nav class="footer-documents" aria-label="资料下载">
+            <a href="documents/profile/ux-portfolio.pdf" target="_blank" rel="noopener noreferrer">
+              <span>作品集 PDF</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+            <a href="documents/profile/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <span>简历 PDF</span>
+              <i aria-hidden="true">↗</i>
+            </a>
+          </nav>
+        </section>
+
+        <address class="footer-column footer-get-in-touch">
+          <p class="footer-eyebrow">Get in touch</p>
+          <div class="footer-contacts">
+          <button class="footer-contact-copy" type="button" data-copy="13311905880" aria-label="复制手机号码 133 1190 5880">
+            <span>Phone</span>
+            <strong>133 1190 5880</strong>
+            <i aria-hidden="true" data-copy-status>Copy</i>
+          </button>
+          <button class="footer-contact-copy" type="button" data-copy="948133998@qq.com" aria-label="复制邮箱 948133998@qq.com">
+            <span>Email</span>
+            <strong>948133998@qq.com</strong>
+            <i aria-hidden="true" data-copy-status>Copy</i>
+          </button>
+          <button class="footer-contact-copy" type="button" data-copy="xmaoie_" aria-label="复制微信号 xmaoie_">
+            <span>WeChat</span>
+            <strong>xmaoie_</strong>
+            <i aria-hidden="true" data-copy-status>Copy</i>
+          </button>
+          </div>
+        </address>
+
+        <div class="footer-statement" aria-label="Contact me">
+          <h2><span>Contact</span><span>me.</span></h2>
+        </div>
+
+        <div class="footer-meta">
+          <span>Mira Xue · UX/UI Designer</span>
+          <a href="#home">Back to top ↑</a>
+        </div>
+      </div>
     </footer>
-    <script src="main.js?v=20261010-9"></script>
+    <script src="main.js?v=20261030-1"></script>
   </body>
 </html>
