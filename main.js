@@ -5,7 +5,7 @@ let deferredImageCheckPending = false;
 
 const checkDeferredImages = () => {
   deferredImageCheckPending = false;
-  const preloadMargin = window.innerHeight;
+  const preloadMargin = window.innerHeight * 2;
 
   deferredImages.forEach((image) => {
     if (image.offsetParent === null) return;
