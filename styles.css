@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Portfolio Inter";
+  src: url("assets/fonts/InterVariable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Smiley Sans Portfolio";
   src: url("assets/fonts/smiley-sans/SmileySans-Portfolio-Subset.woff2") format("woff2");
   font-display: swap;
@@ -21,7 +29,10 @@
   --shadow: 0 18px 60px rgba(17, 17, 17, 0.07);
   --max: 1240px;
   --nav-height: 73px;
-  --font: "Avenir Next", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font: "Avenir Next", "Portfolio Inter", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --english-heavy-font: "Avenir Next", "Arial Black", "Portfolio Inter", sans-serif;
+  --display-font: var(--font);
+  --display-weight: 700;
   --hero-title-font: "Smiley Sans Portfolio", "PingFang SC", sans-serif;
   --hero-title-weight: 400;
   --hero-title-tracking: -0.025em;
@@ -2524,8 +2535,10 @@ h1 {
 
 .phone-screen iframe {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 390px;
+  height: calc(100% / var(--demo-scale, 1));
+  transform: scale(var(--demo-scale, 1));
+  transform-origin: top left;
   border: 0;
   background: #101114;
 }
@@ -6579,6 +6592,7 @@ h1 {
   grid-row: 1;
   align-self: baseline;
   color: #f7f6f1;
+  font-family: var(--english-heavy-font);
   font-size: clamp(40px, 4.45vw, 66px);
   font-weight: 650;
   letter-spacing: -0.075em;
@@ -6600,6 +6614,7 @@ h1 {
   grid-row: 1;
   max-width: none;
   margin: 0;
+  font-family: var(--english-heavy-font);
   padding-right: 54px;
   font-size: clamp(40px, 4.45vw, 66px);
   font-weight: 650;
@@ -7817,7 +7832,7 @@ h1 {
   display: grid;
   margin: 0;
   color: #f7f6f1;
-  font-family: var(--font);
+  font-family: var(--english-heavy-font);
   font-size: clamp(64px, 8.25vw, 154px);
   font-weight: 750;
   letter-spacing: -.085em;
@@ -8329,8 +8344,8 @@ h1 {
 .lighting-page .lighting-hero-copy h1 {
   max-width: 11ch;
   font-size: clamp(48px, 5.05vw, 88px);
-  line-height: 1.01;
-  letter-spacing: -.055em;
+  line-height: 1.12;
+  letter-spacing: -.025em;
 }
 
 .lighting-page .lighting-role {

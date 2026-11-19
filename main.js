@@ -128,6 +128,17 @@ const demoLoading = document.querySelector("[data-demo-loading]");
 const demoLaunchers = document.querySelectorAll("[data-demo-launch]");
 
 if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
+  const demoScreen = demoFrame.parentElement;
+  const resizeEmbeddedDemo = () => {
+    const width = demoScreen.clientWidth;
+    if (width) demoScreen.style.setProperty("--demo-scale", width / 390);
+  };
+  resizeEmbeddedDemo();
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(resizeEmbeddedDemo).observe(demoScreen);
+  } else {
+    window.addEventListener("resize", resizeEmbeddedDemo);
+  }
   let demoStarted = false;
   let demoLoadStarted = false;
   let demoReady = false;
