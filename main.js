@@ -232,6 +232,29 @@ document.querySelectorAll("[data-copy]").forEach((button) => {
 
 const siteNav = document.querySelector(".home-page .nav");
 
+const workMenu = document.querySelector("[data-work-menu]");
+if (workMenu) {
+  const trigger = workMenu.querySelector("button");
+  const menu = workMenu.querySelector(".work-menu-list");
+  const setOpen = (open) => {
+    trigger.setAttribute("aria-expanded", String(open));
+    menu.hidden = !open;
+  };
+  trigger.addEventListener("click", () => setOpen(menu.hidden));
+  menu.addEventListener("click", (event) => {
+    if (event.target.closest("a")) setOpen(false);
+  });
+  document.addEventListener("click", (event) => {
+    if (!workMenu.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.hidden) {
+      setOpen(false);
+      trigger.focus();
+    }
+  });
+}
+
 if (siteNav) {
   const updateNavState = () => {
     siteNav.classList.toggle("is-scrolled", window.scrollY > 12);

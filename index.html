@@ -28,7 +28,15 @@
         <a class="brand" href="index.html">Mira Xue</a>
         <div class="nav-links">
           <a href="#home">Home</a>
-          <a href="#work">Work</a>
+          <div class="work-menu" data-work-menu>
+            <button class="work-menu-trigger" type="button" aria-expanded="false" aria-controls="work-menu-list">Work <span aria-hidden="true">⌄</span></button>
+            <div class="work-menu-list" id="work-menu-list" hidden>
+              <a class="work-menu-all" href="#work">All Projects <span aria-hidden="true">↓</span></a>
+              <a href="lighting.html"><span class="work-menu-number">01</span> Lighting AIGC Pipeline</a>
+              <a href="shopping-buddy.html"><span class="work-menu-number">02</span> AI Shopping Buddy</a>
+              <a href="content-space.html"><span class="work-menu-number">03</span> Content Space</a>
+            </div>
+          </div>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
           <a class="nav-resource" href="documents/profile/%E8%96%9B%E9%93%AD-%E8%A1%A5%E5%85%85%E4%BD%9C%E5%93%81%E9%9B%86-%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E8%AE%BE%E8%AE%A1.pdf" target="_blank" rel="noopener noreferrer" aria-label="查看补充作品集 PDF（在新标签页打开）">补充作品集 PDF</a>
