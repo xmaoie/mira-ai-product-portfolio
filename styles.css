@@ -10382,8 +10382,9 @@ html.shopping-scroll { scroll-snap-type:none; }
 
 /* Use the original SVG as one continuous flow; each caption follows its screen. */
 .french-stages { display:block; overflow-x:auto; overscroll-behavior-x:contain; padding-bottom:12px; }
-.french-stage-track { display:grid; grid-template-columns:repeat(4,19.0647482%); column-gap:7.9136691%; align-items:start; width:100%; background:url('assets/shopping/french-voice/before.svg') left top / 100% auto no-repeat; }
-.french-flow-after .french-stage-track { background-image:url('assets/shopping/french-voice/after.svg'); }
+.french-stage-track { position:relative; display:grid; grid-template-columns:repeat(4,19.0647482%); column-gap:7.9136691%; align-items:start; width:100%; }
+.french-flow-art { position:absolute; inset:0 auto auto 0; display:block; width:100%; height:auto; pointer-events:none; }
+.french-stage-track figure { position:relative; }
 .french-stage-screen { width:100%; aspect-ratio:530 / 941; }
 .french-stages figure:not(:last-child) .french-stage-screen::before,
 .french-stages figure:not(:last-child) .french-stage-screen::after { display:none; }

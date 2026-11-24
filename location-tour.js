@@ -26,6 +26,8 @@
   function prepare() {
     const doc = frame.contentDocument;
     if (!doc || ready) return;
+    // A lazy iframe starts at about:blank; wait for its real load event.
+    if (doc.URL === 'about:blank') return;
     if (!doc.querySelector('.stage-switch')) {
       setTimeout(prepare, 100);
       return;

@@ -16,7 +16,7 @@
         document.documentElement.dataset.heroFont = "pingfang";
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=20261124-svg1" />
+    <link rel="stylesheet" href="styles.css?v=20261124-perf1" />
   </head>
   <body class="case-page shopping-page">
     <nav class="nav">
@@ -133,7 +133,7 @@
           <p>我将现场观察整理成购物旅程，并选取三个问题继续设计：如何提问、如何识别商品，以及如何找到商品。</p>
         </div>
         <figure class="shopping-journey-frame">
-          <img data-src="assets/shopping/research/journey-optimized.jpg" alt="AI Shopping Buddy 用户旅程与 AI 支持机会" decoding="async" />
+          <img src="assets/shopping/research/journey-optimized.jpg" alt="AI Shopping Buddy 用户旅程与 AI 支持机会" decoding="async" loading="lazy" />
           <figcaption>研究洞察被整理成一条门店旅程：每个行为节点对应 AI 支持，人工协助贯穿全程。</figcaption>
         </figure>
       </section>
@@ -196,7 +196,7 @@
           </div>
         </div>
         <div class="location-flow" aria-label="原有商品位置查询流程">
-          <figure><div class="location-shot"><img src="assets/shopping/location-before/25b0e3bd4613295c0b69bdd42ee6fe1d.png" alt="AI 回答商品所在的楼层与区域" loading="lazy"><span class="location-tap tap-details" aria-hidden="true"></span></div><figcaption><span>01</span><strong>AI 回答位置</strong><p>点击「查看更多详情」</p></figcaption></figure>
+          <figure><div class="location-shot"><img src="assets/shopping/location-before/25b0e3bd4613295c0b69bdd42ee6fe1d-fast.jpg" alt="AI 回答商品所在的楼层与区域" loading="lazy"><span class="location-tap tap-details" aria-hidden="true"></span></div><figcaption><span>01</span><strong>AI 回答位置</strong><p>点击「查看更多详情」</p></figcaption></figure>
           <figure><div class="location-shot"><img src="assets/shopping/location-before/e34ba54005bfa52742ccfcb575307c86.png" alt="进入商品详情并查看拿货方式" loading="lazy"><span class="location-tap tap-self-pickup" aria-hidden="true"></span></div><figcaption><span>02</span><strong>进入商品详情</strong><p>选择「自助拿货」</p></figcaption></figure>
           <figure><div class="location-shot"><img src="assets/shopping/location-before/2309a71f167529f16940cc97a6783264.png" alt="选择自助拿货后看到找货指引入口" loading="lazy"><span class="location-tap tap-guide" aria-hidden="true"></span></div><figcaption><span>03</span><strong>选择自助拿货</strong><p>点击「找货指引」</p></figcaption></figure>
           <figure><div class="location-shot"><img src="assets/shopping/location-before/c1f87c21736f6ca002a2d24e85113570.png" alt="在长列表中找到 12 号餐具和烹饪用品区" loading="lazy"></div><figcaption><span>04</span><strong>在列表中找到区域</strong><p>再对照门店标识判断位置</p></figcaption></figure>
@@ -230,6 +230,7 @@
           <p class="french-scroll-hint">左右滑动查看完整流程 →</p>
           <div class="french-stages" tabindex="0" role="region" aria-label="原有大屏语音提问流程，可横向滚动查看">
             <div class="french-stage-track">
+            <img class="french-flow-art" src="assets/shopping/french-voice/before-optimized.svg" alt="" loading="lazy" decoding="async">
             <figure><div class="french-stage-screen" role="img" aria-label="原有首页与语音入口"></div><figcaption><span>01 · 首页</span><strong>语音入口不够突出</strong><p>首页信息与文字较多，语音入口容易被忽略。</p></figcaption></figure>
             <figure><div class="french-stage-screen" role="img" aria-label="原有语音聆听页面"></div><figcaption><span>02 · 开始说话</span><strong>识别延迟没有提示</strong><p>说话后文字不会立即出现，页面没有解释。</p></figcaption></figure>
             <figure><div class="french-stage-screen" role="img" aria-label="原有语音识别与发送页面"></div><figcaption><span>03 · 识别与发送</span><strong>发送操作不明确</strong><p>再次点击语音按钮才能发送，但没有操作提示。</p></figcaption></figure>
@@ -243,6 +244,7 @@
           <p class="french-scroll-hint">左右滑动查看完整流程 →</p>
           <div class="french-stages" tabindex="0" role="region" aria-label="优化后的大屏语音提问流程，可横向滚动查看">
             <div class="french-stage-track">
+            <img class="french-flow-art" src="assets/shopping/french-voice/after-optimized.svg" alt="" loading="lazy" decoding="async">
             <figure><div class="french-stage-screen" role="img" aria-label="优化后的首页与语音入口"></div><figcaption><span>01 · 首页</span><strong>突出语音入口</strong><p>预设问题移至下方，减少干扰并优化屏幕空间。</p></figcaption></figure>
             <figure><div class="french-stage-screen" role="img" aria-label="优化后的语音聆听与识别提示"></div><figcaption><span>02 · 开始说话</span><strong>说明识别延迟</strong><p>提示正在聆听，识别文字可能稍后出现。</p></figcaption></figure>
             <figure><div class="french-stage-screen" role="img" aria-label="优化后的识别结果与独立发送按钮"></div><figcaption><span>03 · 识别与发送</span><strong>提供独立发送按钮</strong><p>文字出现后，用明确的发送入口提交问题。</p></figcaption></figure>
@@ -270,7 +272,7 @@
     <footer class="footer">
       <div class="shell"><a href="content-space.html">Next · Content Space →</a></div>
     </footer>
-    <script src="main.js?v=20261010-9"></script>
-    <script src="location-tour.js?v=4"></script>
+    <script src="main.js?v=20261124-perf1"></script>
+    <script src="location-tour.js?v=5"></script>
   </body>
 </html>

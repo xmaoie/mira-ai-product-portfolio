@@ -163,7 +163,6 @@ if (demoFrame && demoPlaceholder && demoLoading && demoLaunchers.length) {
     demoLoading.hidden = true;
   });
 
-  window.setTimeout(ensureDemoLoaded, 0);
 }
 
 const observer = new IntersectionObserver(

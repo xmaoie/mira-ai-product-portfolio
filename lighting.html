@@ -16,7 +16,7 @@
         document.documentElement.dataset.heroFont = "pingfang";
       }
     </script>
-  <link rel="stylesheet" href="styles.css?v=20261030-26" />
+  <link rel="stylesheet" href="styles.css?v=20261124-perf1" />
   </head>
   <body class="case-page lighting-page">
     <nav class="nav">
@@ -111,15 +111,15 @@
           </div>
           <div class="background-signals">
             <figure class="signal-store">
-              <img data-src="assets/lighting/background/store-lighting-web.jpg" alt="IKEA 门店中由灯光营造的餐厅空间" decoding="async" />
+              <img src="assets/lighting/background/store-lighting-web.jpg" alt="IKEA 门店中由灯光营造的餐厅空间" decoding="async" loading="lazy" />
               <figcaption><span>01 · 宜家门店样板间的真实体验</span><strong>人们感受到的是被灯光改变过的空间。</strong></figcaption>
             </figure>
             <figure class="signal-plp">
-              <img data-src="assets/lighting/background/plp-mobile.png" alt="线上列表页以白底落地灯商品图为主" decoding="async" />
+              <img src="assets/lighting/background/plp-mobile-fast.jpg" alt="线上列表页以白底落地灯商品图为主" decoding="async" loading="lazy" />
               <figcaption><span>02 · 线上当前表达</span><strong>白底图说明“它是什么”，却很难说明“它会带来什么”。</strong></figcaption>
             </figure>
             <figure class="signal-test">
-              <img data-src="assets/lighting/background/context-test-poster.png" alt="HEKTAR 场景优先实验的内部验证材料" decoding="async" />
+              <img src="assets/lighting/background/context-test-poster-fast.jpg" alt="HEKTAR 场景优先实验的内部验证材料" decoding="async" loading="lazy" />
               <figcaption><span>03 · 已有实验信号</span><strong>此前落地灯的 Context First 测试已显示正向加购和转化信号。</strong></figcaption>
             </figure>
           </div>
@@ -137,7 +137,7 @@
             <figure class="state-day">
               <div class="state-heading"><strong>Day On</strong><span>01 / 光效证据</span></div>
               <div class="state-image">
-                <img data-src="assets/lighting/comparison-day.jpg" alt="Day On：官网原始场景" decoding="async" />
+                <img src="assets/lighting/comparison-day.jpg" alt="Day On：官网原始场景" decoding="async" loading="lazy" />
                 <i class="callout callout-direction">出光方向</i>
                 <i class="callout callout-range">光照范围</i>
                 <i class="callout callout-shadow">阴影关系</i>
@@ -147,7 +147,7 @@
             <figure class="state-off">
               <div class="state-heading"><strong>Night Off</strong><span>02 / 夜景底图</span></div>
               <div class="state-image">
-                <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="Night Off：夜景底图" decoding="async" />
+                <img src="assets/lighting/comparison-night-off-optimized.jpg" alt="Night Off：夜景底图" decoding="async" loading="lazy" />
                 <i class="callout callout-night">先固定夜晚环境</i>
                 <i class="callout callout-lock">构图、家具和灯具位置不变</i>
               </div>
@@ -156,7 +156,7 @@
             <figure class="state-on">
               <div class="state-heading"><strong>Night On</strong><span>03 / 输出</span></div>
               <div class="state-image">
-                <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="Night On：夜晚开灯效果" decoding="async" />
+                <img src="assets/lighting/comparison-night-on-optimized.jpg" alt="Night On：夜晚开灯效果" decoding="async" loading="lazy" />
                 <i class="callout callout-restore">只恢复目标灯具的局部受光</i>
               </div>
               <figcaption>在同一夜景上恢复目标灯真实的局部光效。</figcaption>
@@ -223,9 +223,9 @@
               <h3>按固定顺序生成夜景</h3>
               <p>先生成 Night Off，再结合原图生成 Night On。</p>
               <div class="pipeline-state-pair" aria-hidden="true">
-                <img data-src="assets/lighting/comparison-night-off-optimized.jpg" alt="" decoding="async" />
+                <img src="assets/lighting/comparison-night-off-optimized.jpg" alt="" decoding="async" loading="lazy" />
                 <span>→</span>
-                <img data-src="assets/lighting/comparison-night-on-optimized.jpg" alt="" decoding="async" />
+                <img src="assets/lighting/comparison-night-on-optimized.jpg" alt="" decoding="async" loading="lazy" />
               </div>
             </article>
             <article>
@@ -259,11 +259,11 @@
 
     <div class="boundary-prompt-images">
       <figure>
-        <img data-src="assets/lighting/boundary-tests/shared-prompt-day.png" alt="共享提示词下，开灯状态趋同的灯具案例" decoding="async" />
+        <img src="assets/lighting/boundary-tests/shared-prompt-day.png" alt="共享提示词下，开灯状态趋同的灯具案例" decoding="async" loading="lazy" />
         <figcaption><b>开灯</b><span>都趋向同一种暖黄氛围</span></figcaption>
       </figure>
       <figure>
-        <img data-src="assets/lighting/boundary-tests/shared-prompt-warm-grid.png" alt="共享提示词下，不同灯具趋同的暖黄色开灯案例" decoding="async" />
+        <img src="assets/lighting/boundary-tests/shared-prompt-warm-grid.png" alt="共享提示词下，不同灯具趋同的暖黄色开灯案例" decoding="async" loading="lazy" />
         <figcaption><b>更多商品</b><span>同样趋向相似的暖黄色氛围</span></figcaption>
       </figure>
     </div>
@@ -271,7 +271,7 @@
 
   <div class="boundary-failure-grid">
     <article class="boundary-failure-card">
-      <figure><img data-src="assets/lighting/boundary-tests/beam-direction-fail.png" alt="可调灯错误的出光方向与光照范围" decoding="async" /></figure>
+      <figure><img src="assets/lighting/boundary-tests/beam-direction-fail-fast.jpg" alt="可调灯错误的出光方向与光照范围" decoding="async" loading="lazy" /></figure>
       <div>
         <p class="mono">02 · PHYSICAL LOGIC</p>
         <h3>物理关系失真</h3>
@@ -279,7 +279,7 @@
       </div>
     </article>
     <article class="boundary-failure-card">
-      <figure><img data-src="assets/lighting/boundary-tests/multi-head-fail-web.jpg" alt="多头灯具生成中出现错误的局部光束" decoding="async" /></figure>
+      <figure><img src="assets/lighting/boundary-tests/multi-head-fail-web.jpg" alt="多头灯具生成中出现错误的局部光束" decoding="async" loading="lazy" /></figure>
       <div>
         <p class="mono">03 · UNUSUAL FORMS</p>
         <h3>非常规结构失真</h3>
@@ -287,7 +287,7 @@
       </div>
     </article>
     <article class="boundary-failure-card">
-      <figure><img data-src="assets/lighting/boundary-tests/model-drift-fail.png" alt="模型生成产生噪点、偏蓝色调和材质变化的案例" decoding="async" /></figure>
+      <figure><img src="assets/lighting/boundary-tests/model-drift-fail-fast.jpg" alt="模型生成产生噪点、偏蓝色调和材质变化的案例" decoding="async" loading="lazy" /></figure>
       <div>
         <p class="mono">04 · MODEL DRIFT</p>
         <h3>质量漂移</h3>
@@ -312,7 +312,7 @@
         </div>
         <div class="core-method" aria-label="核心生成规则">
           <figure class="core-method-document">
-            <img data-src="assets/lighting/prompt-framework-overview-optimized.jpg" alt="IKEA Lighting Night State Prompt Framework 的真实工作文档摘录" decoding="async" />
+            <img src="assets/lighting/prompt-framework-overview-optimized.jpg" alt="IKEA Lighting Night State Prompt Framework 的真实工作文档摘录" decoding="async" loading="lazy" />
             <figcaption><span>真实工作文档摘录</span><p>Prompt Framework：目标、核心原则与标准生成流程。</p></figcaption>
           </figure>
           <aside class="core-method-copy">
@@ -352,13 +352,13 @@
                   <span></span><span></span><span></span>
                   <b>IKEA Lighting Review</b>
                 </div>
-                  <img data-src="assets/lighting/review-ui-v2-web.jpg" alt="Lighting Pipeline 本地人工审核页面" decoding="async" />
+                  <img src="assets/lighting/review-ui-v2-web.jpg" alt="Lighting Pipeline 本地人工审核页面" decoding="async" loading="lazy" />
               </div>
             </figure>
           </div>
           <div class="skill-reuse-row">
             <figure class="skill-real-document">
-              <img data-src="assets/lighting/skill-workflow-review-optimized.jpg" alt="Lighting State Generation Skill 的真实 Markdown 内容" decoding="async" />
+              <img src="assets/lighting/skill-workflow-review-optimized.jpg" alt="Lighting State Generation Skill 的真实 Markdown 内容" decoding="async" loading="lazy" />
               <figcaption>
                 <span class="mono">REUSABLE SKILL · SKILL.MD</span>
                 <p>把输入来源、Lighting Signature、检查、版本和发布边界写进同一份规则。</p>
@@ -412,6 +412,6 @@
     <footer class="footer">
       <div class="shell"><a href="shopping-buddy.html">Next · AI Shopping Buddy →</a></div>
     </footer>
-    <script src="main.js?v=20261010-9"></script>
+    <script src="main.js?v=20261124-perf1"></script>
   </body>
 </html>
