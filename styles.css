@@ -10837,5 +10837,8 @@ html.shopping-scroll { scroll-snap-type:none; }
 .comment-zoom-head { display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:14px; }
 .comment-zoom-head strong { font-size:16px; }.comment-zoom-head p { margin:4px 0 0; color:#66737b; font-size:13px; }
 .comment-zoom-close { flex:none; padding:9px 14px; border:1px solid #ced9e0; border-radius:999px; background:#fff; color:#275a7a; font-size:14px; }
-.comment-zoom-scroll { max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; border:1px solid #dce1e8; border-radius:8px; }
-.comment-zoom-scroll .figma-walk-viewport { width:100%; min-width:900px; }
+.comment-zoom-scroll { max-width:100%; overflow:hidden; border:1px solid #dce1e8; border-radius:8px; }
+.comment-zoom-scroll .figma-walk-viewport { width:100%; min-width:0; }
+@media (max-width:680px) {
+  .comment-zoom-dialog { width:calc(100% - 12px); padding:10px; }
+}

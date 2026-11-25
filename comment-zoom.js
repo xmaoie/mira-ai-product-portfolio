@@ -15,7 +15,7 @@
     const dialog = document.createElement('dialog');
     dialog.className = 'comment-zoom-dialog';
     dialog.setAttribute('aria-label', index === 0 ? '评论演示细节' : '关联内容删除后的演示细节');
-    dialog.innerHTML = '<div class="comment-zoom-head"><div><strong>评论演示细节</strong><p>左右滑动查看完整画面</p></div><button type="button" class="comment-zoom-close" aria-label="关闭放大视图">关闭</button></div><div class="comment-zoom-scroll"></div>';
+    dialog.innerHTML = '<div class="comment-zoom-head"><div><strong>评论演示细节</strong><p>完整画面自动适应屏幕</p></div><button type="button" class="comment-zoom-close" aria-label="关闭放大视图">关闭</button></div><div class="comment-zoom-scroll"></div>';
     document.body.appendChild(dialog);
     controls.appendChild(button);
     const target = dialog.querySelector('.comment-zoom-scroll');
