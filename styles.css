@@ -10804,3 +10804,38 @@ html.shopping-scroll { scroll-snap-type:none; }
 .fg-deletion[data-delete-stage="2"][data-delete-action="done"] .fg-thread-head .fg-check,
 .fg-deletion[data-delete-stage="2"][data-delete-action="done"] .fg-thread-head .fg-check-resolved,
 .fg-deletion[data-delete-stage="2"][data-delete-action="done"] .fg-message > img { display:none; }
+
+/* Phone layouts: keep the document rail independent of wide evidence and demos. */
+@media (max-width: 680px) {
+  .content-space-page .content-space-case,
+  .content-space-page .content-space-section,
+  .content-space-page .content-feature-list,
+  .content-space-page .content-feature,
+  .content-space-page .content-feature-heading,
+  .content-space-page .content-feature-body,
+  .content-space-page .comment-exception { min-width:0; max-width:100%; }
+  .content-space-page .content-feature-list,
+  .content-space-page .content-feature { grid-template-columns:minmax(0,1fr); }
+  .content-space-page .content-feature-identity { flex-wrap:wrap; }
+  .content-space-page .content-feature-identity > div { min-width:0; }
+  .content-space-page .content-feature-heading h3 { font-size:clamp(26px,7vw,34px); line-height:1.25; overflow-wrap:anywhere; }
+  .content-space-page .content-space-section-head h2 { font-size:clamp(28px,7.3vw,38px); line-height:1.2; }
+  .content-space-page .content-feature-body { grid-template-columns:minmax(0,1fr); }
+  .content-space-page .search-before { padding:16px; }
+  .content-space-page .search-before-scroll { max-width:100%; }
+  .content-space-page .figma-walk { width:100%; box-sizing:border-box; padding:16px; }
+  .content-space-page .figma-walk-scroll { width:100%; overflow:hidden; }
+  .content-space-page .figma-walk-viewport { min-width:0; width:100%; }
+  .content-space-page .figma-walk-hint { display:block; }
+  .content-space-page .figma-walk-actions { flex-wrap:wrap; }
+  .content-space-page .comment-zoom-open { display:inline-flex; }
+  .shopping-page .french-heading-phrase { white-space:normal; }
+}
+.comment-zoom-open { display:none; }
+.comment-zoom-dialog { box-sizing:border-box; width:min(1100px,calc(100% - 24px)); max-width:none; max-height:calc(100dvh - 24px); margin:auto; padding:16px; border:0; border-radius:14px; background:#fff; color:#17232c; }
+.comment-zoom-dialog::backdrop { background:rgba(10,20,30,.72); }
+.comment-zoom-head { display:flex; gap:12px; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.comment-zoom-head strong { font-size:16px; }.comment-zoom-head p { margin:4px 0 0; color:#66737b; font-size:13px; }
+.comment-zoom-close { flex:none; padding:9px 14px; border:1px solid #ced9e0; border-radius:999px; background:#fff; color:#275a7a; font-size:14px; }
+.comment-zoom-scroll { max-width:100%; overflow-x:auto; overscroll-behavior-x:contain; border:1px solid #dce1e8; border-radius:8px; }
+.comment-zoom-scroll .figma-walk-viewport { width:100%; min-width:900px; }
