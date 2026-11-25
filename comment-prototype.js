@@ -1,0 +1,40 @@
+(() => {
+  const root = document.querySelector('[data-comment-prototype]');
+  if (!root) return;
+  const el = name => root.querySelector(`[data-${name}]`);
+  const form = el('compose'), replyForm = el('reply-form');
+  const commentInput = form.elements.comment, replyInput = replyForm.elements.reply;
+  let text = '', replies = [], resolved = false;
+  const hint = message => { el('hint').textContent = message; };
+  const draw = () => {
+    const exists = Boolean(text);
+    el('empty').hidden = exists;
+    el('thread-row').hidden = !exists;
+    el('add').hidden = exists;
+    el('marker').hidden = !exists || resolved;
+    el('count').textContent = exists ? '1' : '0';
+    el('row-text').textContent = text;
+    el('comment-text').textContent = text;
+    el('row-status').textContent = resolved ? '已解决' : '进行中';
+    el('resolve').textContent = resolved ? '↺ 重新打开' : '✓ 标记已解决';
+    el('resolved-note').hidden = !resolved;
+    replyForm.hidden = resolved;
+    el('replies').replaceChildren(...replies.map(value => {
+      const message = document.createElement('div'); message.className = 'prototype-message';
+      const avatar = document.createElement('span'); avatar.className = 'prototype-avatar'; avatar.textContent = 'K';
+      const body = document.createElement('div'); const author = document.createElement('strong'); author.textContent = '协作者';
+      const content = document.createElement('p'); content.textContent = value; body.append(author, content); message.append(avatar, body); return message;
+    }));
+  };
+  el('add').addEventListener('click', () => { form.hidden = false; el('thread').hidden = true; commentInput.focus(); hint('输入评论后点击发送。'); });
+  el('cancel').addEventListener('click', () => { form.hidden = true; hint('点击画布上的「添加评论」开始体验。'); });
+  form.addEventListener('submit', event => { event.preventDefault(); const value = commentInput.value.trim(); if (!value) return; text = value; resolved = false; form.hidden = true; draw(); el('thread').hidden = false; hint('评论已关联到画布，试着回复或标记为已解决。'); });
+  const openThread = () => { el('thread').hidden = false; hint(resolved ? '已解决的评论仍可查看，也可以重新打开。' : '评论与画布位置相对应。'); };
+  el('marker').addEventListener('click', openThread);
+  el('thread-row').addEventListener('click', openThread);
+  el('close').addEventListener('click', () => { el('thread').hidden = true; hint(resolved ? '可从右侧列表再次查看已解决的评论。' : '点击画布标记或评论列表可再次打开。'); });
+  replyForm.addEventListener('submit', event => { event.preventDefault(); const value = replyInput.value.trim(); if (!value) return; replies.push(value); replyInput.value = ''; draw(); hint('回复已添加；可以继续讨论或标记已解决。'); });
+  el('resolve').addEventListener('click', () => { resolved = !resolved; draw(); hint(resolved ? '已解决：画布标记隐藏，评论记录保留在列表中。' : '评论已重新打开，画布标记重新出现。'); });
+  el('reset').addEventListener('click', () => { text = ''; replies = []; resolved = false; form.reset(); replyForm.reset(); form.hidden = true; el('thread').hidden = true; draw(); hint('点击画布上的「添加评论」开始体验。'); el('add').focus(); });
+  draw();
+})();
